@@ -6,12 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Conexao
-{
+public class Conexao { 
     /* Atributos estáticos */
     private static Connection sConexao;
 
-    /* Métodos estáticos */
+    /* Métodos estáticos 
     public static void main(String[] args) throws ClassNotFoundException
     {
 
@@ -23,18 +22,20 @@ public class Conexao
 
         System.out.println();
         System.out.println("Fechando a conexão");
-        getConexao();
+        desconectar();
     }
+    */
 
 
     /* Métodos da classe */
     public static Connection getConexao() {
     	
+    	
     	String tURL = "jdbc:oracle:thin:@localhost:1521:XE";
-    	String tUsuario = "aluno";
-    	String tSenha = "aluno";
-        try
-        {
+    	String tUsuario = "system";
+    	String tSenha = "system";
+        try {
+        	Class.forName("oracle.jdbc.driver.OracleDriver");
             // Caso a conexão já exista, verifica se está aberta e retorna ela
             if (sConexao != null) {
                 if (!sConexao.isClosed())
@@ -42,8 +43,10 @@ public class Conexao
             }
 
             sConexao =  DriverManager.getConnection(tURL, tUsuario, tSenha);
+            
+            System.out.println("Conexão aberta");
         }
-        catch (SQLException tExcept)
+        catch (SQLException | ClassNotFoundException tExcept)
         {
             mostrarErro(tExcept, "Problemas na conexão com o banco de dados");
             System.exit(9);
@@ -51,10 +54,8 @@ public class Conexao
         return sConexao;
     }
 
-    public static void desconectar()
-    {
-        try
-        {
+    public static void desconectar() {
+        try {
             // Desconectando do banco de dados e verificando se a desconex~]ao foi bem realizada
             DriverManager.println("|-------> Fechando a conexão.....");
             sConexao.close();
@@ -62,6 +63,7 @@ public class Conexao
             if (sConexao.isClosed())
             {
                 DriverManager.println("|-------> Conexão fechada");
+                System.out.println("Conexão fechada");
             }
             else
             {
@@ -75,49 +77,7 @@ public class Conexao
         }
     }
 
-    public static void iniciarTransacao()
-    {
-        try
-        {
-            sConexao.setAutoCommit(false);
-        }
-        catch (SQLException tExcept)
-        {
-            mostrarErro(tExcept, "Problemas no início da tansação com o banco de dados");
-            System.exit(9);
-        }
-    }
-
-    public static void confirmarTransacao()
-    {
-        try
-        {
-            sConexao.commit();
-            sConexao.setAutoCommit(true);
-        }
-        catch (SQLException tExcept)
-        {
-            mostrarErro(tExcept, "Problemas na confimação da transação no banco de dados");
-            System.exit(9);
-        }
-    }
-
-    public static void desfazerTransacao()
-    {
-        try
-        {
-            sConexao.rollback();
-            sConexao.setAutoCommit(true);
-        }
-        catch (SQLException tExcept)
-        {
-            mostrarErro(tExcept, "Problemas para desfazer a tansação no banco de dados");
-            System.exit(9);
-        }
-    }
-
-    public static void mostrarErro(Exception pExcept, String pMsg)
-    {
+    public static void mostrarErro(Exception pExcept, String pMsg) {
         System.out.println();
         System.out.println(pMsg);
         System.out.println("Exceção....: " + pExcept.getClass().getName());
@@ -139,4 +99,6 @@ public class Conexao
         System.out.println("Pilha de execução");
         pExcept.printStackTrace(System.out);
     }
+    
+    
 }

@@ -8,5 +8,9 @@ public class EmpresaController {
 		
 	}
 	
+	public boolean cadastroEmpresa(EmpresaDTO empresa){
+		return false;
+	}
+	
 	
 }
