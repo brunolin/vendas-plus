@@ -34,7 +34,7 @@ public class EmpresaDAO {
 			pstm.setString(5, empresa.getEstado());
 			pstm.setInt(6, empresa.getTelefone());
 			pstm.setString(7, empresa.getEmail());
-			pstm.setString(8, empresa.getSenha());
+			pstm.setString(8, empresa.getSenha()); 	
 			
 			
 			//executeUpdate() for table update

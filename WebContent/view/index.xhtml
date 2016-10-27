@@ -4,8 +4,18 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-<h:head></h:head> 
-<body> 
-	<h1 style="text-align: center; color: blue;">brunolin</h1>
-</body> 
+	<h:head>
+		<link type="text/css" rel="stylesheet" href="css/main.css" />
+		<script type="text/javascript" src="js/main.js"></script>
+		<title>Vendas Plus</title>
+	</h:head> 
+	<body> 
+		<div class="container">
+			<h1 class="teste">Index</h1>
+			<div class="buttons-container">
+				<h:commandButton value="Empresa" onclick="cadastroEmpresa()" />
+				<h:commandButton value="Vendedor" onclick="cadastroEmpresa()" />
+			</div>
+		</div>
+	</body> 
 </html>

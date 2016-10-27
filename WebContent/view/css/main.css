@@ -1,0 +1,20 @@
+.teste {
+	color: red;
+}
+
+.container {
+	text-align: center;
+    width: 230px;
+    position: relative;
+    left: 35%;
+}
+
+/* Button */
+
+.buttons-container {
+	width: 200px;	
+}
+
+.buttons-container input {
+	margin-left: 20px;
+}
