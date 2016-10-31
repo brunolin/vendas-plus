@@ -7,27 +7,29 @@
 
 
 body {
-	background-image: url('../img/bg.jpg');
+	
+}
+
+.bg {
+	background-image: url('../img/bg.png');
 }
 
 .morre-diabo-bg {
 	background-image: url('../img/maintence.jpg');
     width: 700px;
     height: 540px;
-    position: relative;
-    left: 11%;
+	margin: auto;
 }
 
 .container {
-	width: 450px;
-    left: 35%;
-    position: relative;
+	background-image: url('../img/bg.png');
+	height: 360px;
 }
 
 .buttons-container {
 	width: 240px;
     height: 50px;
-    margin: 70px 0 0 34px;
+	margin: 80px auto;
 }
 
 .buttons-container div {
@@ -39,6 +41,7 @@ body {
 	background-size: 300px 300px;
 	width: 300px;
 	height: 300px;
+	margin: auto;
 }
 
 .icon-company {
