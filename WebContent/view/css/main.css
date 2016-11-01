@@ -7,31 +7,54 @@
 
 
 body {
-	background-image: url('../img/bg.jpg');
+	
+}
+
+.bg {
+	background-image: url('../img/bg.png');
 }
 
 .morre-diabo-bg {
 	background-image: url('../img/maintence.jpg');
     width: 700px;
     height: 540px;
-    position: relative;
-    left: 11%;
+	margin: auto;
 }
 
 .container {
-	width: 450px;
-    left: 35%;
-    position: relative;
+	height: 400px;
+	width: 100%;
+	position: fixed;
 }
 
 .buttons-container {
-	width: 240px;
+	width: 323px;
     height: 50px;
-    margin: 70px 0 0 34px;
+	margin: 80px auto;
+}
+
+.bc-icon {
+	width: 40px;
+	height: 40px;
+	background-color: #444;
+}
+
+.bc-text {
+	width: 87px;
+	height: 40px;
+	background-color: #000;
+	margin-left: -3px;
+	vertical-align: top;
 }
 
 .buttons-container div {
 	display: inline-block;	
+}
+
+.buttons-container span {
+	color: white;
+    margin: 10px 10px;
+    vertical-align: -webkit-baseline-middle;
 }
 
 .icon-sale {
@@ -39,22 +62,25 @@ body {
 	background-size: 300px 300px;
 	width: 300px;
 	height: 300px;
+	margin: 50px auto;
 }
 
 .icon-company {
 	background-image: url('../img/icon-company.png');
-	background-size: 45px 45px;
-	width: 45px;
-	height: 45px;
+	background-size: 25px 25px;
+	width: 25px;
+	height: 25px;
 	cursor: pointer;
+	margin: 7.5px;
 }
 
 .icon-man {
 	background-image: url('../img/icon-man.png');
-	background-size: 45px 45px;
-	width: 45px;
-	height: 45px;
+	background-size: 25px 25px;
+	width: 25px;
+	height: 25px;
 	cursor: pointer;
+	margin: 7.5px;
 }
 
 .w-10 {

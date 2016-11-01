@@ -2,13 +2,56 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 	<h:head>
 		<link type="text/css" rel="stylesheet" href="../css/main.css" />
+		<link type="text/css" rel="stylesheet" href="../css/bootstrap.css" />
+		<title>Cadastro de empresa</title>
 	</h:head> 
 	<body> 
-		<h1 style="text-align: center;">Página em desenvolvimento</h1>
-		<div class="morre-diabo-bg"></div>
+		<div class="col-md-6">
+			<h:form>
+				<div class="form-group">
+			    	<h:outputLabel value="Nome da empresa" />
+	    			<h:inputText class="form-control" pt:placeholder="Nome" value="#{customerController.customer.nomeEmpresa}" />
+	    		</div>
+	    		<div class="form-group">
+					<h:outputLabel value="CNPJ" />
+	    			<h:inputText class="form-control" pt:placeholder="CNPJ" value="#{customerController.customer.cnpj}" />
+	    		</div>
+	    		<div class="form-group">
+					<h:outputLabel value="Estado" />
+	    			<h:inputText class="form-control" pt:placeholder="Estado" value="#{customerController.customer.estado}" />
+	    		</div>	    		
+				<div class="form-group">
+					<h:outputLabel value="Cidade" />
+	    			<h:inputText class="form-control" pt:placeholder="Cidade" value="#{customerController.customer.cidade}" />
+	    		</div>
+	    		<div class="form-group">
+					<h:outputLabel value="Telefone" />
+	    			<h:inputText class="form-control" pt:placeholder="Telefone" value="#{customerController.customer.telefone}" />
+	    		</div>
+	    		<div class="form-group">
+					<h:outputLabel value="E-mail" />
+	    			<h:inputText class="form-control" pt:placeholder="E-mail" value="#{customerController.customer.email}" />
+	    		</div>
+	    		<div class="form-group">
+					<h:outputLabel value="Senha" />
+	    			<h:inputText class="form-control" pt:placeholder="Senha" value="#{customerController.customer.senha}" />
+	    		</div>
+	    		<div class="form-group">
+		    		<h:outputLabel value="Confirmar senha" />
+		    		<h:inputText class="form-control" pt:placeholder="Confirma senha" value="#{customerController.customer.senha}" />
+	    		</div>
+	    		
+	    		<div class="pull-right">
+		    		<h:commandButton value="Limpar" type="submit" class="btn btn-default" action="#{user.goLoginPage}" />
+		    		<h:commandButton value="Confirmar" type="submit" class="btn btn-primary margin-left-20" action="#{user.goLoginPage}" />
+	    		</div>
+			</h:form>
+		</div>
+		<div class="col-md-6">
+		</div>
 	</body> 
 </html>
