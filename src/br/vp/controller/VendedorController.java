@@ -8,6 +8,8 @@ public class VendedorController {
 		
 	}
 	
-	
+	public boolean cadastroVendedor(VendedorDTO vendedor){
+		return false;
 
+}
 }
