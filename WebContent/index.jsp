@@ -9,7 +9,7 @@
 </head>
 <body>
 	<%	
-		response.sendRedirect("view/index.jsf");
+		response.sendRedirect("view/index.xhtml");
 	%>
 </body>
 </html>
