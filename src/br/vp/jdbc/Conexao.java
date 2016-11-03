@@ -10,8 +10,8 @@ public class Conexao {
     /* Atributos estáticos */
     private static Connection sConexao;
 
-    /* Métodos estáticos 
-    public static void main(String[] args) throws ClassNotFoundException
+    /* Métodos estáticos */
+    /*public static void main(String[] args) throws ClassNotFoundException
     {
 
    		Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -23,17 +23,16 @@ public class Conexao {
         System.out.println();
         System.out.println("Fechando a conexão");
         desconectar();
-    }
-    */
+    }*/
+    
 
 
     /* Métodos da classe */
     public static Connection getConexao() {
     	
-    	
-    	String tURL = "jdbc:oracle:thin:@localhost:1521:XE";
+    	String tURL = "jdbc:oracle:thin:@vendasplus.com.br:1521:XE";
     	String tUsuario = "system";
-    	String tSenha = "system";
+    	String tSenha = "3101wjs";
         try {
         	Class.forName("oracle.jdbc.driver.OracleDriver");
             // Caso a conexão já exista, verifica se está aberta e retorna ela

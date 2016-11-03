@@ -20,6 +20,7 @@ public class EmpresaBean implements Serializable {
 
 	public EmpresaBean() {
 		empresa = new EmpresaDTO();
+		empresa.setIdEmpresa(3);
 	}
 
 	public EmpresaDTO getEmpresa() {
