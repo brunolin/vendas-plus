@@ -1,6 +1,7 @@
 package br.vp.controller;
 
-import br.vp.dto.*;
+import br.vp.dao.EmpresaDAO;
+import br.vp.dto.EmpresaDTO;
 
 public class EmpresaController {
 	
@@ -9,7 +10,9 @@ public class EmpresaController {
 	}
 	
 	public boolean cadastroEmpresa(EmpresaDTO empresa){
-		return false;
+		EmpresaDAO empresaDAO = new EmpresaDAO();
+		
+		return empresaDAO.cadastroEmpresa(empresa);		 
 	}
 	
 	
