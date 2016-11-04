@@ -8,7 +8,7 @@ public class VendedorController {
 
 	}
 
-	public boolean cadastroEmpresa(VendedorDTO vendedor){
+	public boolean cadastroVendedor(VendedorDTO vendedor){
 	 	VendedorDAO vendedorDAO = new VendedorDAO();
 
 		return vendedorDAO.cadastroVendedor(vendedor);
