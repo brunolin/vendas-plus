@@ -15,5 +15,11 @@ public class EmpresaController {
 		return empresaDAO.cadastroEmpresa(empresa);		 
 	}
 	
+	public int getIdEmpresa() {
+		EmpresaDAO empresaDAO = new EmpresaDAO();
+		
+		return empresaDAO.getNextIdEmpresa(); 
+	}
+	
 	
 }

@@ -20,7 +20,14 @@ public class EmpresaBean implements Serializable {
 
 	public EmpresaBean() {
 		empresa = new EmpresaDTO();
-		empresa.setIdEmpresa(3);
+		empresaCtrl = new EmpresaController();
+		try{
+			empresa.setIdEmpresa(empresaCtrl.getIdEmpresa());
+		} catch (NullPointerException e){
+			e.printStackTrace();
+			System.out.println("Deu ruim na Id novo da Empresa");
+		}
+		
 	}
 
 	public EmpresaDTO getEmpresa() {
@@ -35,8 +42,6 @@ public class EmpresaBean implements Serializable {
 		FacesContext context = FacesContext.getCurrentInstance();
 		
 		System.out.println(empresa.toString());
-
-		empresaCtrl = new EmpresaController();
 
 		boolean empresaDTO = empresaCtrl.cadastroEmpresa(empresa);
 

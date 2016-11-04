@@ -11,7 +11,7 @@ public class Conexao {
     private static Connection sConexao;
 
     /* Métodos estáticos */
-    /*public static void main(String[] args) throws ClassNotFoundException
+    public static void main(String[] args) throws ClassNotFoundException
     {
 
    		Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -23,7 +23,7 @@ public class Conexao {
         System.out.println();
         System.out.println("Fechando a conexão");
         desconectar();
-    }*/
+    }
     
 
 
