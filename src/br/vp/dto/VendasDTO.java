@@ -5,10 +5,19 @@ import java.sql.Date;
 public class VendasDTO {
 	
 	public int idVenda, idProduto, idVendedor;
+	public String nomeProduto;
 	public Date data;
 	
 	public VendasDTO() {
 		
+	}
+
+	public String getNomeProduto() {
+		return nomeProduto;
+	}
+
+	public void setNomeProduto(String nomeProduto) {
+		this.nomeProduto = nomeProduto;
 	}
 
 	public int getIdVenda() {

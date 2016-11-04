@@ -4,11 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.vp.dto.EmpresaDTO;
+import br.vp.dto.VendasDTO;
 import br.vp.jdbc.Conexao;
 
 public class EmpresaDAO {
+	
+	private List<VendasDTO>listaVendas;
 
 	public EmpresaDAO() {
 
@@ -29,10 +34,10 @@ public class EmpresaDAO {
 
 			//executeUpdate() for table update
 
-			ResultSet max = pstm.executeQuery();
-
-			System.out.println("Bruno gostoso");
-			System.out.println(max);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()){
+				return ((int) rs.getObject(1)) + 1;
+			}
 
 			Conexao.desconectar();
 
@@ -42,7 +47,7 @@ public class EmpresaDAO {
 
 			Conexao.desconectar();
 			e.printStackTrace();
-			System.out.println("Algo de errado no id novo de empresa!");
+			System.out.println("Deu pau no novo ID empresa");
 			return 2;
 		}
 
@@ -89,4 +94,42 @@ public class EmpresaDAO {
 			return false;
 		}
 	}
+	public List<VendasDTO> notasPendentes(EmpresaDTO empresa) {
+		String query = "SELECT * FROM TB_VENDAS WHERE ID_EMPRESA = ? AND  APROVADA = FALSE";
+		listaVendas = new ArrayList<VendasDTO>();
+		VendasDTO venda = new VendasDTO();
+		try {
+
+			Connection myConnection = Conexao.getConexao();
+
+			PreparedStatement pstm = myConnection.prepareStatement(query);
+
+			//setting values for insert in pessoa table
+			pstm.setInt(1, empresa.getIdEmpresa());
+			
+			//executeUpdate() for table update
+			ResultSet rs = pstm.executeQuery();
+			
+			while(rs.next()){
+				venda.setNomeProduto(rs.getString("NOME_PRODUTO"));
+				venda.setIdProduto(rs.getInt("ID_PRODUTO"));
+				venda.setData(rs.getDate("DATA"));
+				
+				listaVendas.add(venda);
+			}
+
+			Conexao.desconectar();
+
+			return listaVendas;
+
+		} catch (SQLException e) {
+
+			Conexao.desconectar();
+			e.printStackTrace();
+			System.out.println("Algo de errado na consulta de notas pendentes!");
+			
+			return listaVendas;
+		}
+	}
+
 }
