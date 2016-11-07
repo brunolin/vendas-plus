@@ -19,11 +19,11 @@
 			<h:form name="cadastroVendedor">
 				<div class="form-group">
 			    	<h:outputLabel value="Nome" />
-	    			<h:inputText class="form-control" pt:placeholder="Nome" value="#{vendedorBean.vendedor.nomeEmpresa}" />
+	    			<h:inputText class="form-control" pt:placeholder="Nome" value="#{vendedorBean.vendedor.nome}" />
 	    		</div>
 	    		<div class="form-group">
 					<h:outputLabel value="CPF" />
-	    			<h:inputText class="form-control" pt:type="number" pt:placeholder="CNPJ" value="#{vendedorBean.vendedor.cnpj}" />
+	    			<h:inputText class="form-control" pt:type="number" pt:placeholder="CNPJ" value="#{vendedorBean.vendedor.cpf}" />
 	    		</div>
           <div class="row">
 	           <div class="form-group col-sm-6">
@@ -32,7 +32,7 @@
 	    		   </div>
     				<div class="form-group col-sm-6">
     					<h:outputLabel value="Cidade" />
-    	    		<h:inputText class="form-control" pt:placeholder="Cidade" value="#{empresaBean.empresa.cidade}" />
+    	    		<h:inputText class="form-control" pt:placeholder="Cidade" value="#{vendedorBean.vendedor.cidade}" />
     	    	</div>
           </div>
           <div class="row">

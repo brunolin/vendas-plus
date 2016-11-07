@@ -16,7 +16,7 @@ public class VendedorDAO {
 	public boolean cadastroVendedor(VendedorDTO vendedor) {
 		String query = "INSERT INTO TB_VENDEDOR("
 				+ "ID_VENDEDOR, NOME_VENDEDOR, CPF,PONTOS, TELEFONE, CIDADE, ESTADO, EMAIL, SENHA"
-				+ ") VALUES(?, ?, ?, ?, ?, ?, ?, ?,?)";
+				+ ") VALUES(id_seq.nextval, ?, ?, ?, ?, ?, ?, ?,?)";
 
 		try {
 
@@ -27,15 +27,14 @@ public class VendedorDAO {
 			/*TO DO - adicionar data de cadastro para empresa e vendedor */
 
 			//setting values for insert in pessoa table
-			pstm.setInt(1, vendedor.getIdVendedor());
-			pstm.setString(2, vendedor.getNome());
-			pstm.setInt(3, vendedor.getCpf());
-			pstm.setInt(4,vendedor.getPontos());
-			pstm.setInt(5, vendedor.getTelefone());
-			pstm.setString(6, vendedor.getCidade());
-			pstm.setString(7, vendedor.getEstado());
-			pstm.setString(8, vendedor.getEmail());
-			pstm.setString(9, vendedor.getSenha());
+			pstm.setString(1, vendedor.getNome());
+			pstm.setInt(2, vendedor.getCpf());
+			pstm.setInt(3, 0);
+			pstm.setInt(4, vendedor.getTelefone());
+			pstm.setString(5, vendedor.getCidade());
+			pstm.setString(6, vendedor.getEstado());
+			pstm.setString(7, vendedor.getEmail());
+			pstm.setString(8, vendedor.getSenha());
 
 
 			//executeUpdate() for table update

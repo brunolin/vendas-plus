@@ -1,6 +1,7 @@
 package br.vp.controller;
 
-import br.vp.dto.*;
+import br.vp.dao.VendedorDAO;
+import br.vp.dto.VendedorDTO;
 
 public class VendedorController {
 

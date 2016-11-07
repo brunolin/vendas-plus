@@ -19,44 +19,10 @@ public class EmpresaDAO {
 
 	}
 
-	public int getNextIdEmpresa(){
-		String query = "SELECT MAX(ID_EMPRESA) FROM TB_EMPRESA";
-
-		try {
-
-			Connection myConnection = Conexao.getConexao();
-
-			PreparedStatement pstm = myConnection.prepareStatement(query);
-
-			/*TO DO - adicionar data de cadastro para empresa e vendedor */
-
-			//setting values for insert in pessoa table
-
-			//executeUpdate() for table update
-
-			ResultSet rs = pstm.executeQuery();
-			while(rs.next()){
-				return ((int) rs.getObject(1)) + 1;
-			}
-
-			Conexao.desconectar();
-
-			return 1;
-
-		} catch (SQLException e) {
-
-			Conexao.desconectar();
-			e.printStackTrace();
-			System.out.println("Deu pau no novo ID empresa");
-			return 2;
-		}
-
-	}
-
 	public boolean cadastroEmpresa(EmpresaDTO empresa) {
 		String query = "INSERT INTO TB_EMPRESA("
 				+ "ID_EMPRESA, NOME_EMPRESA, CNPJ, CIDADE, ESTADO, TELEFONE, EMAIL, SENHA"
-				+ ") VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+				+ ") VALUES(id_seq.nextval, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 
@@ -67,14 +33,13 @@ public class EmpresaDAO {
 			/*TO DO - adicionar data de cadastro para empresa e vendedor */
 
 			//setting values for insert in pessoa table
-			pstm.setInt(1, empresa.getIdEmpresa());
-			pstm.setString(2, empresa.getNomeEmpresa());
-			pstm.setInt(3, empresa.getCnpj());
-			pstm.setString(4, empresa.getCidade());
-			pstm.setString(5, empresa.getEstado());
-			pstm.setInt(6, empresa.getTelefone());
-			pstm.setString(7, empresa.getEmail());
-			pstm.setString(8, empresa.getSenha());
+			pstm.setString(1, empresa.getNomeEmpresa());
+			pstm.setInt(2, empresa.getCnpj());
+			pstm.setString(3, empresa.getCidade());
+			pstm.setString(4, empresa.getEstado());
+			pstm.setInt(5, empresa.getTelefone());
+			pstm.setString(6, empresa.getEmail());
+			pstm.setString(7, empresa.getSenha());
 
 
 			//executeUpdate() for table update

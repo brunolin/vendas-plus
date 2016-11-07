@@ -20,14 +20,7 @@ public class EmpresaBean implements Serializable {
 
 	public EmpresaBean() {
 		empresa = new EmpresaDTO();
-		empresaCtrl = new EmpresaController();
-		try{
-			empresa.setIdEmpresa(empresaCtrl.getIdEmpresa());
-		} catch (NullPointerException e){
-			e.printStackTrace();
-			System.out.println("Deu ruim na Id novo da Empresa");
-		}
-		
+		empresaCtrl = new EmpresaController();	
 	}
 
 	public EmpresaDTO getEmpresa() {
