@@ -1,3 +1,3 @@
-angular.module('vendasPlusApp', []).controller('mainCtrl', ['$scope', function($scope){
-
+angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap']).controller('mainCtrl', ['$scope', function($scope){
+  
 }]);
