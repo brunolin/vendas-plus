@@ -26,15 +26,25 @@
     		</div>
     		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
     			<ul class="nav navbar-nav">
-    				<li class="active"><a href="#">Cadastrar produto<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-lock"></span></a></li>
-    				<li ><a href="#">Validar nota<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a></li>
-    				<li ><a href="#">Histórico de notas<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list"></span></a></li>
+    				<li ng-class="{ 'active': menu.active == 'cadastro-promocao' }" ng-click="menuSelected('cadastro-promocao')">
+              <a>Cadastrar promoção<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-lock"></span></a>
+            </li>
+            <li ng-class="{ 'active': menu.active == 'editar-promocao' }" ng-click="menuSelected('editar-promocao')">
+              <a>Editar promoção<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-wrench"></span></a>
+            </li>
+    				<li ng-class="{ 'active': menu.active == 'validar-notas' }" ng-click="menuSelected('validar-notas')">
+              <a>Validar nota<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a>
+            </li>
+    				<li ng-class="{ 'active': menu.active == 'historico-notas' }" ng-click="menuSelected('historico-notas')">
+              <a>Histórico de notas<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list"></span></a>
+            </li>
     			</ul>
     		</div>
     	</div>
+
     </nav>
     <div class="container">
-
+      <div ng-include src="selectedTemplate"></div>
     </div>
     <script src="../js/controllers/vendasPlusController.js"></script>
   </body>
