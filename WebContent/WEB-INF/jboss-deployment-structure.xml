@@ -4,7 +4,9 @@
  
     <exclusions>
       <module name="javaee.api" />
-      <module name="javax.ws.rs.api"/>
     </exclusions>
+    <dependencies>
+      <module name="javax.ws.rs.api" export="true"/>
+    </dependencies>
   </deployment>
 </jboss-deployment-structure>

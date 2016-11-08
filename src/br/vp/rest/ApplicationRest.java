@@ -3,7 +3,8 @@ package br.vp.rest;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("/rest")
-public class RestApplication extends Application {
-
+@ApplicationPath("/r")
+public class ApplicationRest extends Application {
+ 
 }
+
