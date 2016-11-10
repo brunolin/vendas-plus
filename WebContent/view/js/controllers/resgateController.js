@@ -1,12 +1,9 @@
 angular.module('vendasPlusApp').controller('resgateCtrl', ['$scope', '$uibModal', '$http', function($scope, $uibModal, $http){
 
-  $scope.produtos = [
-    {id: 1, nome: 'Produto 1', img: 'mixer', pontos: 170},
-    {id: 2, nome: 'Produto 2', img: 'liquidificador', pontos: 120},
-    {id: 3, nome: 'Produto 3', img: 'mixer', pontos: 170},
-    {id: 1, nome: 'Produto 4', img: 'liquidificador', pontos: 120},
-    {id: 2, nome: 'Produto 5', img: 'liquidificador', pontos: 120}
-  ];
+  $http.get('/r/vendedor/getCampanhas').then(function(resp) {
+	  console.log(resp);
+	  $scope.produtos = resp.data; 
+  });
 
   $scope.resgateProduto = function resgateProduto(produto){
     $uibModal.open(

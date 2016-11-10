@@ -21,6 +21,6 @@ public class VendedorController {
 	
 	public ArrayList<ProdutoDTO> getCampanhas(){
 		
-		return vendedorDAO.getCapanhas();
+		return vendedorDAO.getCampanhas();
 	}
 }

@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import br.vp.dto.ProdutoDTO;
 import br.vp.dto.VendedorDTO;
@@ -59,29 +58,30 @@ public class VendedorDAO {
 		}
 	}
 	
-	public ArrayList<ProdutoDTO> getCapanhas() {
-		String query = "SELECT * FROM TB_PRODUTOS";
-
+	public ArrayList<ProdutoDTO> getCampanhas() {
+		
+		String query = "SELECT * FROM TB_PRODUTO";
+		
 		try {
 			
 			ArrayList<ProdutoDTO> produtos = new ArrayList<ProdutoDTO>();
 			ProdutoDTO produto = new ProdutoDTO();
 			
 			Connection myConnection = Conexao.getConexao();
-
 			PreparedStatement pstm = myConnection.prepareStatement(query);
-
-			//executeUpdate() for table update
 			ResultSet rs = pstm.executeQuery();
-			
+
 			while(rs.next()){
 				produto.setNomeProduto(rs.getString("NOME_PRODUTO"));
 				produto.setIdProduto(rs.getInt("ID_PRODUTO"));
 				produto.setIdEmpresa(rs.getInt("ID_EMPRESA"));
 				produto.setPontosRecompensa(rs.getInt("PONTOS_RECOMPENSA"));
-				produto.setImg(rs.getString("IMG"));				
+				produto.setImg(rs.getString("IMG"));
+				produto.setInicioCampanha(rs.getDate("INICIO_CAMPANHA"));
+				produto.setVigenciaCampanha(rs.getDate("VIGENCIA_CAMPANHA"));				
 				
 				produtos.add(produto);
+				produto = new ProdutoDTO();
 			}
 			Conexao.desconectar();
 

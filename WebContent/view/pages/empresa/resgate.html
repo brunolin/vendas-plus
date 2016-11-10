@@ -1,10 +1,10 @@
-<div class="padding-20">
+<div class="padding-20" ng-controller="resgateCtrl">
   <h3><i>Registre as suas vendas, acumule pontos e troque por produtos de sua preferência!</i></h3>
   <div class="produtos">
     <div ng-repeat="produto in produtos" class="w-200 produto">
       <img ng-src="../img/produtos/{{produto.img}}.jpg"></img>
-      <div>{{produto.nome}}</div>
-      <div><strong>{{produto.pontos}} pontos</strong></div>
+      <div>{{produto.nomeProduto}}</div>
+      <div><strong>{{produto.pontosRecompensa}} pontos</strong></div>
       <div class="btn-trocar" ng-click="resgateProduto(produto)">TROCAR</div>
     </div>
   </div>

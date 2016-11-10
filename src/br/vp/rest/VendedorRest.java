@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import br.vp.controller.VendedorController;
+import br.vp.dao.VendedorDAO;
 import br.vp.dto.ProdutoDTO;
 
 @Path("/vendedor")
@@ -18,9 +18,9 @@ public class VendedorRest {
 	@Path("/getCampanhas")
 	public ArrayList<ProdutoDTO> getProdutos() {
 		
-		VendedorController vendedorCtrl = new VendedorController();
+		VendedorDAO vendedorDAO = new VendedorDAO();
 		
-		ArrayList<ProdutoDTO> produtos = vendedorCtrl.getCampanhas();	
+		ArrayList<ProdutoDTO> produtos = vendedorDAO.getCampanhas();
 		
 		return produtos;
   }
