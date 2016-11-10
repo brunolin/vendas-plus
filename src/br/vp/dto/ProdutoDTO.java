@@ -5,11 +5,19 @@ import java.util.Date;
 public class ProdutoDTO {
 	
 	public int idProduto, idEmpresa, pontosRecompensa;
-	public String nomeProduto;
+	public String nomeProduto, img;
 	public Date inicioCampanha, vigenciaCampanha;
 	
 	public ProdutoDTO() {
 		
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	public int getIdProduto() {
