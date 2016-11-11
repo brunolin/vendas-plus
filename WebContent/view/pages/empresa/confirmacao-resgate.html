@@ -1,7 +1,15 @@
 <div class="row" ng-init="exec()">
   <div class="col-xs-12">
-    <div class="">Deseja realmente resgar <strong>UM</strong> {{param.nome}}?</div>
-    <button type="button" class="btn btn-success">Sim</button>
-    <button type="button" class="btn btn-danger">Não</button>
+    <h3 class="text-align-center">Deseja realmente resgatar <strong>UM</strong></h3>
+    <h3 class="text-align-center">{{param.nomeProduto}} ?</h3>
+
+    <div class="">
+      <img ng-src="../img/produtos/{{param.img}}.jpg"></img>
+    </div>
+
+    <div class="buttons-container">
+      <button type="button" class="btn btn-success">Sim</button>
+      <button type="button" class="btn btn-danger">Não</button>
+    </div>
   </div>
 </div>

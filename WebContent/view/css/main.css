@@ -139,6 +139,10 @@ body {
 	text-align: right;
 }
 
+.text-align-center {
+	text-align: center;
+}
+
 .w-10 {
   width: 10px;
 }
