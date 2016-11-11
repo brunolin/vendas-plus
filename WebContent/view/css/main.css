@@ -14,13 +14,6 @@ body {
 	background-image: url('../img/bg.png');
 }
 
-.morre-diabo-bg {
-	background-image: url('../img/maintence.jpg');
-    width: 700px;
-    height: 540px;
-	margin: auto;
-}
-
 .container {
 	height: 400px;
 	width: 100%;
@@ -29,6 +22,18 @@ body {
 
 .menu-container {
 	margin-left: 200px;
+}
+
+.header-line {
+	background-color: #525252;
+	color: white;
+	height: 50px;
+	position: relative;
+}
+
+.header-line h4 {
+	margin: 15px 40px;
+	position: absolute;
 }
 
 .buttons-container {
@@ -75,6 +80,24 @@ body {
 	width: 150px;
 	height: 150px;
 	margin: 25% auto;
+}
+
+.icon-carrinho {
+	background-image: url(../img/venda.png);
+	background-size: 45px 45px;
+	width: 45px;
+	height: 45px;
+	margin-right: 15px;
+	float: right;
+}
+
+.icon-confirmar {
+	background-image: url(../img/confirmar.png);
+	background-size: 40px 40px;
+	width: 45px;
+	height: 45px;
+	margin-right: 15px;
+	cursor: pointer;
 }
 
 .icon-company {
@@ -128,6 +151,13 @@ body {
 	padding: 0 10px;
 	float: right;
 	cursor: pointer;
+}
+
+.input-form {
+	width: 310px!important;
+	height: 30px!important;
+	border: none!important;
+	background-color: rgba(128, 128, 128, 0.2)!important;
 }
 
 .cadastro-bg  {
@@ -479,6 +509,10 @@ body {
 .padding-10 {
   box-sizing: border-box;
   padding: 10px;
+}
+
+.margin-20 {
+	margin: 20px;
 }
 
 .margin-left-5 {

@@ -1,4 +1,4 @@
-angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap']).controller('mainCtrl', ['$scope', '$uibModal', function($scope, $uibModal){
+angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap', 'ngSanitize']).controller('mainCtrl', ['$scope', '$uibModal', function($scope, $uibModal){
 
   $scope.menu = {};
 

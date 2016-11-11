@@ -1,3 +1,29 @@
 <div class="padding-20" ng-controller="cadastroPromocaoCtrl">
-	<h1>Cadastro promoção</h1>
+	<div class="header-line">
+		<h4>CADASTRAR NOVA PROMOCAO</h4>
+		<div class="inline-block icon-carrinho"></div>
+	</div>
+	<form name="cadastroPromocao" class="margin-20">
+	  <div class="form-group">
+	    <label for="exampleInputEmail1">Nome do produto</label>
+	    <input type="text" ng-model="promocao.nomePromocao" class="input-form form-control" placeholder="Nome">
+	  </div>
+	  <div class="form-group">
+	    <label for="exampleInputPassword1">Vigência da campanha</label>
+			<div uib-datepicker ng-model="promocao.vigenciaCampanha" class="well well-sm" datepicker-options="options"></div>
+	  </div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">Pontuação</label>
+			<input type="text" ng-model="promocao.pontosRecompensa" class="input-form form-control" placeholder="Pontuação">
+		</div>
+
+		<div ng-click="save()" class="buttons-container">
+			<div class="bc-icon">
+				<div class="icon-confirmar"></div>
+			</div>
+			<div class="bc-text">
+				<span>Confirmar</span>
+			</div>
+		</div>
+	</form>
 </div>
