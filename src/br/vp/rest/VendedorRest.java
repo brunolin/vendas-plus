@@ -36,4 +36,14 @@ public class VendedorRest {
 		
 		return "200";
   }
+	
+	@GET
+	@Path("getNotas")
+	public ArrayList<VendasDTO> getNotas(){
+		VendedorDAO vendedorDAO = new VendedorDAO();
+		
+		ArrayList<VendasDTO> vendas = vendedorDAO.getNotasVendedor(1);
+		
+		return vendas;
+	}
 }

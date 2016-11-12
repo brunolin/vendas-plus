@@ -134,4 +134,44 @@ public class VendedorDAO {
 			return null;
 		}
 	}
+	
+	public ArrayList<VendasDTO> getNotasVendedor(int id) {
+		
+		String query = "SELECT * FROM TB_VENDAS WHERE ID_VENDEDOR = ?";
+		
+		try {
+			
+			ArrayList<VendasDTO> vendas = new ArrayList<VendasDTO>();
+			VendasDTO venda = new VendasDTO();
+			
+			Connection myConnection = Conexao.getConexao();
+			
+			PreparedStatement pstm = myConnection.prepareStatement(query);
+			pstm.setInt(1, id);
+			
+			ResultSet rs = pstm.executeQuery();
+
+			while(rs.next()){				
+				venda.setData(rs.getString("DATA_VENDA"));
+				venda.setIdProduto(rs.getInt("ID_PRODUTO"));
+				venda.setIdVenda(rs.getInt("ID_VENDA"));
+				venda.setNomeProduto(rs.getString("NOME_PRODUTO"));
+				venda.setIdVendedor(rs.getInt("ID_VENDEDOR"));
+				
+				vendas.add(venda);
+				venda = new VendasDTO();
+			}
+			
+			Conexao.desconectar();
+
+			return vendas;
+
+		} catch (SQLException e) {
+
+			Conexao.desconectar();
+			e.printStackTrace();
+			System.out.println("Algo de errado no cadastro do Vendedor!");
+			return null;
+		}
+	}
 }
