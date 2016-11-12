@@ -61,7 +61,7 @@ public class VendedorDAO {
 	
 	public boolean cadastroVenda(VendasDTO venda) {
 		String query = "INSERT INTO TB_VENDAS("
-				+ "ID_VENDA, ID_PRODUTO, ID_VENDEDOR, NOME_PRODUTO, DATA) "
+				+ "ID_VENDA, ID_PRODUTO, ID_VENDEDOR, NOME_PRODUTO, DATA_VENDA) "
 				+ "VALUES(id_seq.nextval, ?, ?, ?, ?)";
 
 		try {

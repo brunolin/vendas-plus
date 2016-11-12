@@ -38,7 +38,7 @@ public class VendedorRest {
   }
 	
 	@GET
-	@Path("getNotas")
+	@Path("getNotasVendedor")
 	public ArrayList<VendasDTO> getNotas(){
 		VendedorDAO vendedorDAO = new VendedorDAO();
 		

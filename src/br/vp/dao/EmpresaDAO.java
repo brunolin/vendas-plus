@@ -78,7 +78,7 @@ public class EmpresaDAO {
 			while(rs.next()){
 				venda.setNomeProduto(rs.getString("NOME_PRODUTO"));
 				venda.setIdProduto(rs.getInt("ID_PRODUTO"));
-				venda.setData(rs.getDate("DATA"));
+				venda.setData(rs.getString("DATA_VENDA"));
 				
 				listaVendas.add(venda);
 			}

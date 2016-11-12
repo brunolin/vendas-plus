@@ -1,6 +1,6 @@
 <div class="" ng-controller="historicoNotasCtrl">
   <div class="header-line">
-    <h4>CADASTRAR NOVA VENDA</h4>
+    <h4>HISTÓRICO DE NOTAS</h4>
     <div class="inline-block icon-carrinho"></div>
   </div>
   <table class="table table-bordered">
@@ -15,9 +15,9 @@
     <tbody>
       <tr ng-repeat="nota in notas">
         <td>{{nota.nomeProduto}}</td>
-        <td>{{nota.dataVenda}}</td>
-        <td>nota.idProduto</td>
-        <td>nota.idVenda</td>
+        <td>{{nota.data | date:'dd/MM/yyyy'}}</td>
+        <td>{{nota.idProduto}}</td>
+        <td>{{nota.idVenda}}</td>
       </tr>
     </tbody>
   </table>
