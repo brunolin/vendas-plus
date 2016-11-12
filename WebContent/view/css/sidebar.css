@@ -131,6 +131,7 @@ nav.sidebar:hover{
   nav.sidebar{
     margin-left: 0px;
     float: left;
+    height: 100%;
   }
   /*Show hidden items on nav*/
   nav.sidebar .forAnimate{

@@ -5,8 +5,7 @@ import java.sql.Date;
 public class VendasDTO {
 	
 	public int idVenda, idProduto, idVendedor;
-	public String nomeProduto;
-	public Date data;
+	public String nomeProduto, data;
 	
 	public VendasDTO() {
 		
@@ -44,11 +43,11 @@ public class VendasDTO {
 		this.idVendedor = idVendedor;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 	

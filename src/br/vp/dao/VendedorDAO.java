@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.vp.dto.ProdutoDTO;
+import br.vp.dto.VendasDTO;
 import br.vp.dto.VendedorDTO;
 import br.vp.jdbc.Conexao;
 
@@ -54,6 +55,44 @@ public class VendedorDAO {
 			Conexao.desconectar();
 			e.printStackTrace();
 			System.out.println("Algo de errado no cadastro do Vendedor!");
+			return false;
+		}
+	}
+	
+	public boolean cadastroVenda(VendasDTO venda) {
+		String query = "INSERT INTO TB_VENDAS("
+				+ "ID_VENDA, ID_PRODUTO, ID_VENDEDOR, NOME_PRODUTO, DATA) "
+				+ "VALUES(id_seq.nextval, ?, ?, ?, ?)";
+
+		try {
+
+			Connection myConnection = Conexao.getConexao();
+
+			PreparedStatement pstm = myConnection.prepareStatement(query);
+
+			/*TO DO - adicionar data de cadastro para empresa e vendedor */
+
+			//setting values for insert in pessoa table
+			pstm.setInt(1, venda.getIdProduto());
+			pstm.setInt(2, 1);
+			pstm.setString(3, venda.getNomeProduto());
+			pstm.setString(4, venda.getData());
+
+
+			//executeUpdate() for table update
+			pstm.executeQuery();
+
+			System.out.println(venda.toString());
+
+			Conexao.desconectar();
+
+			return true;
+
+		} catch (SQLException e) {
+
+			Conexao.desconectar();
+			e.printStackTrace();
+			System.out.println("Algo de errado no cadastro da nota!");
 			return false;
 		}
 	}
