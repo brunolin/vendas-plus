@@ -116,8 +116,8 @@ public class VendedorDAO {
 				produto.setIdEmpresa(rs.getInt("ID_EMPRESA"));
 				produto.setPontosRecompensa(rs.getInt("PONTOS_RECOMPENSA"));
 				produto.setImg(rs.getString("IMG"));
-				produto.setInicioCampanha(rs.getDate("INICIO_CAMPANHA"));
-				produto.setVigenciaCampanha(rs.getDate("VIGENCIA_CAMPANHA"));				
+				produto.setInicioCampanha(rs.getString("INICIO_CAMPANHA"));
+				produto.setVigenciaCampanha(rs.getString("VIGENCIA_CAMPANHA"));				
 				
 				produtos.add(produto);
 				produto = new ProdutoDTO();
