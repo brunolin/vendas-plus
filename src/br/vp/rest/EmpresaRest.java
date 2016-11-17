@@ -1,20 +1,24 @@
 package br.vp.rest;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import br.vp.dto.EmpresaDTO;
+import br.vp.dto.*;
+import br.vp.dao.EmpresaDAO;;
 
-@Path("/empresa")
+@Path("empresa")
+@Produces(MediaType.APPLICATION_JSON)
 public class EmpresaRest {
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/getProdutos")
-	public EmpresaDTO getProdutos() {
-		EmpresaDTO e = new EmpresaDTO(9999, 4444444, 5555555, "Wally's Hetero", "São José", "Paraná", "brunolin@gmail.com", "SEnHA");		
-		return e;
+	@POST
+	@Path("cadastrarCampanha")
+	public String cadastrarCampanha(ProdutoDTO produto) {
+		
+		EmpresaDAO empresaDAO = new EmpresaDAO();
+		empresaDAO.cadastroCampanha(produto);
+		
+		return "200";
   }
 }

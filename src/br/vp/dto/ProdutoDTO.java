@@ -5,8 +5,7 @@ import java.util.Date;
 public class ProdutoDTO {
 	
 	public int idProduto, idEmpresa, pontosRecompensa;
-	public String nomeProduto, img;
-	public Date inicioCampanha, vigenciaCampanha;
+	public String nomeProduto, img, inicioCampanha, vigenciaCampanha;
 	
 	public ProdutoDTO() {
 		
@@ -52,19 +51,19 @@ public class ProdutoDTO {
 		this.nomeProduto = nomeProduto;
 	}
 
-	public Date getInicioCampanha() {
+	public String getInicioCampanha() {
 		return inicioCampanha;
 	}
 
-	public void setInicioCampanha(Date inicioCampanha) {
+	public void setInicioCampanha(String inicioCampanha) {
 		this.inicioCampanha = inicioCampanha;
 	}
 
-	public Date getVigenciaCampanha() {
+	public String getVigenciaCampanha() {
 		return vigenciaCampanha;
 	}
 
-	public void setVigenciaCampanha(Date vigenciaCampanha) {
+	public void setVigenciaCampanha(String vigenciaCampanha) {
 		this.vigenciaCampanha = vigenciaCampanha;
 	}
 	

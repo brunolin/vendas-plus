@@ -2,14 +2,15 @@ package br.vp.dto;
 
 public class EmpresaDTO {
 
-	public int idEmpresa, telefone, cnpj;
+	public int idEmpresa;
+	public Long telefone, cnpj;
 	public String nomeEmpresa, cidade, estado, email, senha;
 	
 	public EmpresaDTO(){
 		
 	}
 	
-	public EmpresaDTO(int id,  int telefone, int cnpj, String nome, String cidade, String estado, String email, String senha){
+	public EmpresaDTO(int id,  Long telefone, Long cnpj, String nome, String cidade, String estado, String email, String senha){
 		this.idEmpresa = id;
 		this.telefone = telefone;
 		this.cnpj = cnpj;
@@ -28,19 +29,19 @@ public class EmpresaDTO {
 		this.idEmpresa = idEmpresa;
 	}
 
-	public int getTelefone() {
+	public long getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(int telefone) {
+	public void setTelefone(long telefone) {
 		this.telefone = telefone;
 	}
 
-	public int getCnpj() {
+	public Long getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(int cnpj) {
+	public void setCnpj(Long cnpj) {
 		this.cnpj = cnpj;
 	}
 

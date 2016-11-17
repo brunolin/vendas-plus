@@ -32,9 +32,9 @@ public class VendedorDAO {
 
 			//setting values for insert in pessoa table
 			pstm.setString(1, vendedor.getNome());
-			pstm.setInt(2, vendedor.getCpf());
+			pstm.setLong(2, vendedor.getCpf());
 			pstm.setInt(3, 0);
-			pstm.setInt(4, vendedor.getTelefone());
+			pstm.setLong(4, vendedor.getTelefone());
 			pstm.setString(5, vendedor.getCidade());
 			pstm.setString(6, vendedor.getEstado());
 			pstm.setString(7, vendedor.getEmail());
