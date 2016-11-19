@@ -1,3 +1,26 @@
-<div class="" ng-controller="editarPromocaoCtrl">
-  <h1>Editar Promoção</h1>
+<div class="padding-20" ng-controller="editarPromocaoCtrl">
+  <div class="header-line">
+    <h4>EDITAR PROMOÇÃO</h4>
+    <div class="inline-block icon-carrinho"></div>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Nome produto</th>
+        <th>Início campanha</th>
+        <th>Vigência campanha</th>
+        <th>Editar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="promocao in promocoes">
+        <td>{{promocao.nomeProduto}}</td>
+        <td>{{promocao.inicioCampanha | date:'dd/MM/yyyy'}}</td>
+        <td>{{promocao.vigenciaCampanha | date:'dd/MM/yyyy'}}</td>
+        <td>
+          <button type="button" ng-click="validar(promocao)">EDITAR</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

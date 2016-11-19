@@ -27,16 +27,16 @@
 
 		<div class="form-group">
 			<label for="exampleInputPassword1">Data da venda</label>
-			<div uib-datepicker ng-model="venda.data" class="well well-sm" datepicker-options="options"></div>
+			<div uib-datepicker ng-model="venda.data" class="well well-sm w-310" datepicker-options="options"></div>
 		</div>
 
-		<div ng-click="save()" class="buttons-container">
-			<div class="bc-icon">
-				<div class="icon-confirmar"></div>
-			</div>
-			<div class="bc-text">
-				<span>Confirmar</span>
-			</div>
+		<div class="w-310">
+			<button type="button" class="btn btn-default" ng-click="limpar()">Limpar</button>
+			<button type="button" class="btn btn-success float-right" ng-click="save()"
+							ng-disabled="loadingSuccess">
+				<i class="fa fa-circle-o-notch fa-spin" ng-if="loadingSuccess"></i>
+				Confirmar
+			</button>
 		</div>
 	</form>
 </div>

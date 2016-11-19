@@ -1,0 +1,26 @@
+<div class="padding-20">
+  <h2>Editar dados da: {{promocao.nomeProduto}}</h2>
+  <form name="cadastroPromocao" class="margin-20">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Nome do produto</label>
+      <input type="text" ng-model="promocao.nomeProduto" class="input-form form-control" placeholder="Nome">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Vigência da campanha</label>
+      <div uib-datepicker ng-model="promocao.vigenciaCampanha" class="well well-sm w-310" datepicker-options="options"></div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Pontuação</label>
+      <input type="text" ng-model="promocao.pontosRecompensa" class="input-form form-control" placeholder="Pontuação">
+    </div>
+
+    <div class="w-310">
+      <button type="button" class="btn btn-default" ng-click="modal.dismiss()">Cancelar</button>
+      <button type="button" class="btn btn-success float-right" ng-click="confirmar()"
+              ng-disabled="loadingSuccess">
+        <i class="fa fa-circle-o-notch fa-spin" ng-if="loadingSuccess"></i>
+        Confirmar
+      </button>
+    </div>
+  </form>
+</div>

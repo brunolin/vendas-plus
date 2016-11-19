@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="stylesheet" href="../css/alertify.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../js/angular/ui-bootstrap-csp.css">
   </head>
@@ -73,10 +74,21 @@
     </div>
 
     <script type="text/ng-template" id="confirmar-venda.html">
-        <div>
+        <div class="padding-20">
           <h4>Deseja confirmar essa venda?</h4>
-          <button type="button" class="btn btn-danger" ng-click="reprovar(param)">Reprovar</button>
-          <button type="button" class="btn btn-success" ng-click="confirmar(param)">Confirmar</button>
+          <h3 class="margin-bottom-20">{{param.nomeProduto}}</h3>
+          <div class="margin-top-20">
+            <button type="button" class="btn btn-danger" ng-click="reprovar(param)"
+                    ng-disabled="loadingDanger">
+              <i class="fa fa-circle-o-notch fa-spin" ng-if="loadingDanger"></i>
+              Reprovar
+            </button>
+            <button type="button" class="btn btn-success float-right" ng-click="confirmar(param)"
+                    ng-disabled="loadingSuccess">
+              <i class="fa fa-circle-o-notch fa-spin" ng-if="loadingSuccess"></i>
+              Confirmar
+            </button>
+          </div>
         </div>
     </script>
 
@@ -86,6 +98,7 @@
     <script src="../js/controllers/cadastroPromocaoController.js"></script>
     <script src="../js/controllers/campanhaController.js"></script>
     <script src="../js/controllers/editarPromocaoController.js"></script>
+    <script src="../js/controllers/editarPromocaoModalController.js"></script>
     <script src="../js/controllers/historicoNotasController.js"></script>
     <script src="../js/controllers/validarNotasController.js"></script>
     <script src="../js/controllers/confirmacaoController.js"></script>
