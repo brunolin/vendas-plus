@@ -1,7 +1,5 @@
 package br.vp.dto;
 
-import java.util.Date;
-
 public class ProdutoDTO {
 	
 	public int idProduto, idEmpresa, pontosRecompensa;

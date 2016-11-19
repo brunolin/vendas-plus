@@ -14,6 +14,7 @@ import br.vp.jdbc.Conexao;
 public class EmpresaDAO {
 	
 	private ArrayList<VendasDTO>listaVendas;
+	private ArrayList<ProdutoDTO>listaProdutos;
 
 	public EmpresaDAO() {
 
@@ -100,6 +101,42 @@ public class EmpresaDAO {
 		}
 	}
 	
+	public boolean atualizarCampanha(ProdutoDTO produto) {
+		String query = "UPDATE TB_PRODUTO SET NOME_PRODUTO = ?, VIGENCIA_CAMPANHA = ?,"
+				+ " PONTOS_RECOMPENSA = ? WHERE ID_PRODUTO = ?";
+
+		try {
+
+			Connection myConnection = Conexao.getConexao();
+
+			PreparedStatement pstm = myConnection.prepareStatement(query);
+
+			/*TO DO - adicionar data de cadastro para empresa e vendedor */
+
+			//setting values for insert in pessoa table
+			pstm.setString(1, produto.getNomeProduto());
+			pstm.setString(2, produto.getVigenciaCampanha());
+			pstm.setInt(3, produto.getPontosRecompensa());
+			pstm.setInt(4, produto.getIdProduto());
+
+			//executeUpdate() for table update
+			pstm.executeQuery();
+
+			System.out.println(produto.toString());
+
+			Conexao.desconectar();
+
+			return true;
+
+		} catch (SQLException e) {
+
+			Conexao.desconectar();
+			e.printStackTrace();
+			System.out.println("Algo de errado na atualização da campanha!");
+			return false;
+		}
+	}
+	
 	public ArrayList<VendasDTO> notasPendentes(int id) {
 		String query = "SELECT * FROM TB_VENDAS WHERE ID_EMPRESA = ? AND  APROVADA = ? ";
 		listaVendas = new ArrayList<VendasDTO>();
@@ -125,6 +162,7 @@ public class EmpresaDAO {
 				venda.setIdEmpresa(rs.getInt("ID_EMPRESA"));
 				
 				listaVendas.add(venda);
+				venda = new VendasDTO();
 			}
 
 			Conexao.desconectar();
@@ -138,6 +176,47 @@ public class EmpresaDAO {
 			System.out.println("Algo de errado na consulta de notas pendentes!");
 			
 			return listaVendas;
+		}
+	}
+	
+	public ArrayList<ProdutoDTO> getCampanhas(int id) {
+		String query = "SELECT * FROM TB_PRODUTO WHERE ID_EMPRESA = ?";
+		listaProdutos = new ArrayList<ProdutoDTO>();
+		ProdutoDTO campanha = new ProdutoDTO();
+		
+		try {
+
+			Connection myConnection = Conexao.getConexao();
+
+			PreparedStatement pstm = myConnection.prepareStatement(query);
+
+			pstm.setInt(1, id);
+			
+			//executeUpdate() for table update
+			ResultSet rs = pstm.executeQuery();
+			
+			while(rs.next()){				
+				campanha.setNomeProduto(rs.getString("NOME_PRODUTO"));
+				campanha.setInicioCampanha(rs.getString("INICIO_CAMPANHA"));
+				campanha.setVigenciaCampanha(rs.getString("VIGENCIA_CAMPANHA"));
+				campanha.setPontosRecompensa(rs.getInt("PONTOS_RECOMPENSA"));
+				campanha.setIdProduto(rs.getInt("ID_PRODUTO"));
+				
+				listaProdutos.add(campanha);
+				campanha = new ProdutoDTO();
+			}
+
+			Conexao.desconectar();
+
+			return listaProdutos;
+
+		} catch (SQLException e) {
+
+			Conexao.desconectar();
+			e.printStackTrace();
+			System.out.println("Algo de errado na consulta campanhas po empresa!");
+			
+			return listaProdutos;
 		}
 	}
 	

@@ -4,10 +4,10 @@ angular.module('vendasPlusApp').controller('editarPromocaoModalCtrl', ['$scope',
     $scope.loadingSuccess = false;
     $scope.modal = $uibModalInstance;
 
-   	$scope.confirmar = function confirmar(nota) {
+   	$scope.confirmar = function confirmar() {
       $scope.loadingSuccess = true;
 
-  		$http.post('/r/empresa/atualizarCampanha', nota).then(function(resp) {
+  		$http.post('/r/empresa/atualizarCampanha', $scope.promocao).then(function(resp) {
         $scope.loadingSuccess = false;
         alertify.success('Promoção alterada');
 

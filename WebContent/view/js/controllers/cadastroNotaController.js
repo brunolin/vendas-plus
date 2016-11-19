@@ -1,4 +1,4 @@
-angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http', function($scope, $http){
+angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http', 'alertify', function($scope, $http, alertify){
 
   $scope.venda = {};
   $scope.loadingSuccess = false;

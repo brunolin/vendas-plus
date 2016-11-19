@@ -6,8 +6,8 @@ angular.module('vendasPlusApp').controller('historicoNotasCtrl', ['$scope', '$ht
   $scope.getStatus = function getStatus(status) {
   	if(status == 'T') {
   		return 'Aprovada';
-  	} else if(status == 'X') {
-  		return 'Não aprovada';
+  	} else if(status == 'F') {
+  		return 'Em avaliação';
   	} else {
   		return 'Reprovada';
   	}

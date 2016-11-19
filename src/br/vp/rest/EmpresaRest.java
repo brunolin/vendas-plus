@@ -25,7 +25,16 @@ public class EmpresaRest {
 		
 		EmpresaDAO empresaDAO = new EmpresaDAO();
 		empresaDAO.cadastroCampanha(produto);
-  }
+    }
+	
+	@POST
+	@Path("atualizarCampanha")
+	public void atualizarCampanha(ProdutoDTO produto) {
+		
+		EmpresaDAO empresaDAO = new EmpresaDAO();
+		empresaDAO.atualizarCampanha(produto);
+    }
+	
 	
 	@GET
 	@Path("notasPendentes/{id}")
@@ -35,6 +44,16 @@ public class EmpresaRest {
 		ArrayList<VendasDTO> vendas = empresaDAO.notasPendentes(id);
 		
 		return vendas;
+	}
+	
+	@GET
+	@Path("getCampanhas/{id}")
+	public ArrayList<ProdutoDTO> getCampanhas(@PathParam("id") int id) {
+		
+		EmpresaDAO empresaDAO = new EmpresaDAO();
+		ArrayList<ProdutoDTO> produtos = empresaDAO.getCampanhas(id);
+		
+		return produtos;
 	}
 	
 	@POST
@@ -52,6 +71,6 @@ public class EmpresaRest {
 		
 		EmpresaDAO empresaDAO = new EmpresaDAO();
 		
-		return empresaDAO.confirmarVenda(venda);
+		return empresaDAO.reprovarVenda(venda);
 	}
 }
