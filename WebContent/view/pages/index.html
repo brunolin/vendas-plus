@@ -71,6 +71,15 @@
       </div>
       <div ng-include src="selectedTemplate"></div>
     </div>
+
+    <script type="text/ng-template" id="confirmar-venda.html">
+        <div>
+          <h4>Deseja confirmar essa venda?</h4>
+          <button type="button" class="btn btn-danger" ng-click="reprovar(param)">Reprovar</button>
+          <button type="button" class="btn btn-success" ng-click="confirmar(param)">Confirmar</button>
+        </div>
+    </script>
+
     <script src="../js/controllers/vendasPlusController.js"></script>
 	  <script src="../js/controllers/resgateController.js"></script>
     <script src="../js/controllers/cadastroNotaController.js"></script>

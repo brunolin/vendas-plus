@@ -29,11 +29,11 @@ public class VendedorDTO {
 		this.idVendedor = idVendedor;
 	}
 
-	public long getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(long cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 

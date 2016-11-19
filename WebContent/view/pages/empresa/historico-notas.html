@@ -10,6 +10,7 @@
         <th>Data venda</th>
         <th>Id produto</th>
         <th>Id venda</th>
+        <th>Estado</th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
         <td>{{nota.data | date:'dd/MM/yyyy'}}</td>
         <td>{{nota.idProduto}}</td>
         <td>{{nota.idVenda}}</td>
+        <th>{{getStatus(nota.aprovada)}}</th>
       </tr>
     </tbody>
   </table>

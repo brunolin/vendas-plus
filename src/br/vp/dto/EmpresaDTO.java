@@ -10,7 +10,7 @@ public class EmpresaDTO {
 		
 	}
 	
-	public EmpresaDTO(int id,  Long telefone, Long cnpj, String nome, String cidade, String estado, String email, String senha){
+	public EmpresaDTO(int id,  long telefone, long cnpj, String nome, String cidade, String estado, String email, String senha){
 		this.idEmpresa = id;
 		this.telefone = telefone;
 		this.cnpj = cnpj;
@@ -29,11 +29,11 @@ public class EmpresaDTO {
 		this.idEmpresa = idEmpresa;
 	}
 
-	public long getTelefone() {
+	public Long getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(long telefone) {
+	public void setTelefone(Long telefone) {
 		this.telefone = telefone;
 	}
 

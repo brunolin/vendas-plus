@@ -61,8 +61,8 @@ public class VendedorDAO {
 	
 	public boolean cadastroVenda(VendasDTO venda) {
 		String query = "INSERT INTO TB_VENDAS("
-				+ "ID_VENDA, ID_PRODUTO, ID_VENDEDOR, NOME_PRODUTO, DATA_VENDA) "
-				+ "VALUES(id_seq.nextval, ?, ?, ?, ?)";
+				+ "ID_VENDA, ID_PRODUTO, ID_VENDEDOR, ID_EMPRESA, NOME_PRODUTO, DATA_VENDA, APROVADA) "
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 
@@ -73,10 +73,13 @@ public class VendedorDAO {
 			/*TO DO - adicionar data de cadastro para empresa e vendedor */
 
 			//setting values for insert in pessoa table
-			pstm.setInt(1, venda.getIdProduto());
-			pstm.setInt(2, 1);
-			pstm.setString(3, venda.getNomeProduto());
-			pstm.setString(4, venda.getData());
+			pstm.setString(1, venda.getIdVenda());
+			pstm.setInt(2, venda.getIdProduto());
+			pstm.setInt(3, 1);
+			pstm.setInt(4, venda.getIdEmpresa());
+			pstm.setString(5, venda.getNomeProduto());
+			pstm.setString(6, venda.getData());
+			pstm.setString(7, "F");
 
 
 			//executeUpdate() for table update
@@ -154,9 +157,11 @@ public class VendedorDAO {
 			while(rs.next()){				
 				venda.setData(rs.getString("DATA_VENDA"));
 				venda.setIdProduto(rs.getInt("ID_PRODUTO"));
-				venda.setIdVenda(rs.getInt("ID_VENDA"));
+				venda.setIdVenda(rs.getString("ID_VENDA"));
 				venda.setNomeProduto(rs.getString("NOME_PRODUTO"));
 				venda.setIdVendedor(rs.getInt("ID_VENDEDOR"));
+				venda.setIdEmpresa(rs.getInt("ID_EMPRESA"));
+				venda.setAprovada(rs.getString("APROVADA"));
 				
 				vendas.add(venda);
 				venda = new VendasDTO();

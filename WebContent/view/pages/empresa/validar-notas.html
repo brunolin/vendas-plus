@@ -1,3 +1,26 @@
 <div class="" ng-controller="validarNotasCtrl">
-  <h1>Validar Notas</h1>
+  <div class="header-line">
+    <h4>VALIDAR NOTAS</h4>
+    <div class="inline-block icon-carrinho"></div>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Id produto</th>
+        <th>Nome produto</th>
+        <th>Data venda</th>
+        <th>Validar nota</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="nota in notas">
+        <td>{{nota.idVenda}}</td>
+        <td>{{nota.nomeProduto}}</td>
+        <td>{{nota.data | date:'dd/MM/yyyy'}}</td>
+        <td>
+        	<button type="button" ng-click="validar(nota)">VALIDAR</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

@@ -4,11 +4,27 @@ import java.sql.Date;
 
 public class VendasDTO {
 	
-	public int idVenda, idProduto, idVendedor;
-	public String nomeProduto, data;
+	public int idProduto, idVendedor, idEmpresa;
+	public String nomeProduto, data, idVenda, aprovada;
 	
 	public VendasDTO() {
 		
+	}
+	
+	public String getAprovada() {
+		return aprovada;
+	}
+
+	public void setAprovada(String aprovada) {
+		this.aprovada = aprovada;
+	}
+
+	public int getIdEmpresa() {
+		return idEmpresa;
+	}
+
+	public void setIdEmpresa(int idEmpresa) {
+		this.idEmpresa = idEmpresa;
 	}
 
 	public String getNomeProduto() {
@@ -19,11 +35,11 @@ public class VendasDTO {
 		this.nomeProduto = nomeProduto;
 	}
 
-	public int getIdVenda() {
+	public String getIdVenda() {
 		return idVenda;
 	}
 
-	public void setIdVenda(int idVenda) {
+	public void setIdVenda(String idVenda) {
 		this.idVenda = idVenda;
 	}
 

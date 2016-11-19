@@ -30,7 +30,7 @@ public class Conexao {
     /* Métodos da classe */
     public static Connection getConexao() {
     	
-    	String tURL = "jdbc:oracle:thin:@vendasplus.com.br:1521:XE";
+    	String tURL = "jdbc:oracle:thin:@localhost:1521:XE";
     	String tUsuario = "system";
     	String tSenha = "3101wjs";
         try {

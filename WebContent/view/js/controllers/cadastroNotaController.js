@@ -12,7 +12,8 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
   $scope.nomeProduto = function(produto){
     $scope.venda.nomeProduto = produto.nomeProduto;
     $scope.venda.idProduto = produto.idProduto;
-    $scope.venda.idVendedor = 0;
+    $scope.venda.idVendedor = 1;
+    $scope.venda.idEmpresa = produto.idEmpresa;
 
   };
 
