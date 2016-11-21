@@ -3,13 +3,13 @@ package br.vp.dto;
 public class VendedorDTO {
 	
 	public int idVendedor, pontos;
-	public Long cpf, telefone;
-	public String nome, email, cidade, estado, senha;
+	public Long telefone;
+	public String nome, email, cidade, estado, senha, cpf;
 	
 	public VendedorDTO() {
 		
 	}
-	public VendedorDTO(int id, String nome, Long telefone, Long cpf,  int pontos, String cidade, String estado, String email, String senha){
+	public VendedorDTO(int id, String nome, Long telefone, String cpf,  int pontos, String cidade, String estado, String email, String senha){
 		this.idVendedor = id;
 		this.nome = nome;
 		this.cpf = cpf;
@@ -29,11 +29,11 @@ public class VendedorDTO {
 		this.idVendedor = idVendedor;
 	}
 
-	public Long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 

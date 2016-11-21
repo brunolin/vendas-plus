@@ -1,4 +1,4 @@
-angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap']).controller('mainCtrl', ['$scope', '$uibModal', 'alertify', function($scope, $uibModal, alertify){
+angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap']).controller('mainCtrl', ['$scope', '$uibModal', 'alertify', '$http', function($scope, $uibModal, alertify, $http){
 
   $scope.menu = {};
 
@@ -6,6 +6,10 @@ angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap']).con
     $scope.menu.active = item
     $scope.selectedTemplate = 'empresa/' + item + '.html';
   };
+  
+  $http.get('/r/controller/user').then(function(resp) {
+	  console.log(resp);
+  });
 
   alertify.defaults = {
         // dialogs defaults

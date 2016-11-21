@@ -18,7 +18,7 @@ import br.vp.dto.VendasDTO;;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class EmpresaRest {
-
+	
 	@POST
 	@Path("cadastrarCampanha")
 	public void cadastrarCampanha(ProdutoDTO produto) {

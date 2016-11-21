@@ -1,5 +1,6 @@
 package br.vp.bean;
 
+import java.io.IOException;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -31,7 +32,7 @@ public class EmpresaBean implements Serializable {
 		this.empresa = empresa;
 	}
 
-	public String incluir() {
+	public String incluir() throws IOException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		
 		System.out.println(empresa.toString());
@@ -44,12 +45,13 @@ public class EmpresaBean implements Serializable {
 			
 			System.out.println("Empresa inserida");
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Empresa inserida", ""));
-
+			FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
 		} else {
 			
 			System.out.println("Empresa não inserida");		
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Empresa não adiciona", ""));
 		}
-		return "cadastroEmpresa";
+		
+		return "index";
 	}
 }
