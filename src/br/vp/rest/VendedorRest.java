@@ -9,8 +9,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.vp.dao.VendedorDAO;
+import br.vp.dto.LogadoDTO;
 import br.vp.dto.ProdutoDTO;
 import br.vp.dto.VendasDTO;
+import br.vp.dto.VendedorDTO;
 
 @Path("vendedor")
 @Produces(MediaType.APPLICATION_JSON)
@@ -25,6 +27,17 @@ public class VendedorRest {
 		ArrayList<ProdutoDTO> produtos = vendedorDAO.getCampanhas();
 		
 		return produtos;
+  }
+	
+	@POST
+	@Path("getInfoVendedor")
+	public VendedorDTO getInfoVendedor(LogadoDTO login) {
+		
+		VendedorDAO vendedorDAO = new VendedorDAO();
+		
+		VendedorDTO vendedor = vendedorDAO.getInfoVendedor(login.getUsername());
+		
+		return vendedor;
   }
 	
 	@POST

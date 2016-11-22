@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import br.vp.dto.EmpresaDTO;
 import br.vp.dto.ProdutoDTO;
 import br.vp.dto.VendasDTO;
+import br.vp.dto.VendedorDTO;
 import br.vp.jdbc.Conexao;
 
 public class EmpresaDAO {
@@ -217,6 +218,40 @@ public class EmpresaDAO {
 			System.out.println("Algo de errado na consulta campanhas po empresa!");
 			
 			return listaProdutos;
+		}
+	}
+	
+	public EmpresaDTO getInfoEmpresa(String cnpj) {
+		String query = "SELECT * FROM TB_EMPRESA WHERE CNPJ = ?";
+		
+		EmpresaDTO empresa = new EmpresaDTO();
+		
+		try {
+
+			Connection myConnection = Conexao.getConexao();
+
+			PreparedStatement pstm = myConnection.prepareStatement(query);
+
+			pstm.setString(1, cnpj);
+			
+			//executeUpdate() for table update
+			ResultSet rs = pstm.executeQuery();
+			
+			while(rs.next()){				
+				empresa.setNomeEmpresa(rs.getString("NOME_EMPRESA"));
+			}
+
+			Conexao.desconectar();
+
+			return empresa;
+
+		} catch (SQLException e) {
+
+			Conexao.desconectar();
+			e.printStackTrace();
+			System.out.println("Algo de errado na consulta de dados da empresa!");
+			
+			return empresa;
 		}
 	}
 	

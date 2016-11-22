@@ -29,28 +29,28 @@
     		</div>
     		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
     			<ul class="nav navbar-nav">
-  					<li ng-class="{ 'active': menu.active == 'cadastro-promocao' }" ng-click="menuSelected('cadastro-promocao')">
+  					<li ng-if="type == 'empresa'" ng-class="{ 'active': menu.active == 'cadastro-promocao' }" ng-click="menuSelected('cadastro-promocao')">
   					  <a>Cadastrar promoção<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a>
   					</li>
-  					<li ng-class="{ 'active': menu.active == 'editar-promocao' }" ng-click="menuSelected('editar-promocao')">
+  					<li ng-if="type == 'empresa'" ng-class="{ 'active': menu.active == 'editar-promocao' }" ng-click="menuSelected('editar-promocao')">
   					  <a>Editar promoção<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-wrench"></span></a>
   					</li>
-  					<li ng-class="{ 'active': menu.active == 'validar-notas' }" ng-click="menuSelected('validar-notas')">
+  					<li ng-if="type == 'empresa'" ng-class="{ 'active': menu.active == 'validar-notas' }" ng-click="menuSelected('validar-notas')">
   					  <a>Validar nota<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags"></span></a>
   					</li>
-  					<li ng-class="{ 'active': menu.active == 'historico-notas' }" ng-click="menuSelected('historico-notas')">
+  					<li ng-if="type == 'empresa'" ng-class="{ 'active': menu.active == 'historico-notas' }" ng-click="menuSelected('historico-notas')">
   					  <a>Histórico de notas<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list"></span></a>
   					</li>
-  					<li ng-class="{ 'active': menu.active == 'campanhas' }" ng-click="menuSelected('campanhas')">
+  					<li ng-if="type == 'vendedor'" ng-class="{ 'active': menu.active == 'campanhas' }" ng-click="menuSelected('campanhas')">
   					  <a>Campanhas<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-star"></span></a>
   					</li>
-            <li ng-class="{ 'active': menu.active == 'cadastro-nota' }" ng-click="menuSelected('cadastro-nota')">
+            <li ng-if="type == 'vendedor'" ng-class="{ 'active': menu.active == 'cadastro-nota' }" ng-click="menuSelected('cadastro-nota')">
               <a>Cadastrar nota<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus"></span></a>
             </li>
-            <li ng-class="{ 'active': menu.active == 'historico-notas' }" ng-click="menuSelected('historico-notas')">
+            <li ng-if="type == 'vendedor'" ng-class="{ 'active': menu.active == 'historico-notas' }" ng-click="menuSelected('historico-notas')">
   					  <a>Histórico de notas<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list"></span></a>
   					</li>
-            <li ng-class="{ 'active': menu.active == 'resgate' }" ng-click="menuSelected('resgate')">
+            <li ng-if="type == 'vendedor'" ng-class="{ 'active': menu.active == 'resgate' }" ng-click="menuSelected('resgate')">
               <a>Resgate<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-certificate"></span></a>
             </li>
     			</ul>
@@ -62,8 +62,8 @@
       <div class="h-100 padding-top-25">
         <div class="col-xs-11">
           <div class="pull-right text-align-right">
-            <div><span>Bem vindo, <strong>Bruno!</strong></span></div>
-            <div><span>Você já acumulou <strong>500 pontos</strong></span></div>
+            <div><span>Bem vindo, <strong>{{user.nome}}!</strong></span></div>
+            <div><span>Você já acumulou <strong>{{user.pontos}} pontos</strong></span></div>
           </div>
         </div>
         <div class="col-xs-1 no-padding">

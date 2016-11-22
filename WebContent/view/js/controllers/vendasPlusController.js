@@ -1,6 +1,7 @@
 angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap']).controller('mainCtrl', ['$scope', '$uibModal', 'alertify', '$http', function($scope, $uibModal, alertify, $http){
 
   $scope.menu = {};
+  $scope.user = undefined;
 
   $scope.menuSelected = function menuSelected(item){
     $scope.menu.active = item
@@ -8,7 +9,10 @@ angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap']).con
   };
   
   $http.get('/r/controller/user').then(function(resp) {
-	  console.log(resp);
+	  $scope.type = resp.data.type;
+	  $http.post('/r/vendedor/getInfoVendedor', resp.data).then(function(resp) {
+		  $scope.user = resp.data; 
+	  });
   });
 
   alertify.defaults = {

@@ -58,6 +58,41 @@ public class VendedorDAO {
 			return false;
 		}
 	}
+		
+	public VendedorDTO getInfoVendedor(String cpf) {
+		String query = "SELECT * FROM TB_VENDEDOR WHERE CPF = ?";
+		
+		VendedorDTO vendedor = new VendedorDTO();
+		
+		try {
+
+			Connection myConnection = Conexao.getConexao();
+
+			PreparedStatement pstm = myConnection.prepareStatement(query);
+
+			pstm.setString(1, cpf);
+			
+			//executeUpdate() for table update
+			ResultSet rs = pstm.executeQuery();
+			
+			while(rs.next()){				
+				vendedor.setPontos(rs.getInt("PONTOS"));
+				vendedor.setNome(rs.getString("NOME_VENDEDOR"));
+			}
+
+			Conexao.desconectar();
+
+			return vendedor;
+
+		} catch (SQLException e) {
+
+			Conexao.desconectar();
+			e.printStackTrace();
+			System.out.println("Algo de errado na consulta de dados do vendedor!");
+			
+			return vendedor;
+		}
+	}
 	
 	public boolean cadastroVenda(VendasDTO venda) {
 		String query = "INSERT INTO TB_VENDAS("
