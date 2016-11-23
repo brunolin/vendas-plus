@@ -11,6 +11,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.vp.dao.EmpresaDAO;
+import br.vp.dao.VendedorDAO;
+import br.vp.dto.EmpresaDTO;
+import br.vp.dto.LogadoDTO;
 import br.vp.dto.ProdutoDTO;
 import br.vp.dto.VendasDTO;;
 
@@ -35,6 +38,17 @@ public class EmpresaRest {
 		empresaDAO.atualizarCampanha(produto);
     }
 	
+	@POST
+	@Path("getInfoEmpresa")
+	public EmpresaDTO getInfoEmpresa(LogadoDTO login) {
+		
+		EmpresaDAO empresaDAO = new EmpresaDAO();
+		
+		EmpresaDTO empresa = empresaDAO.getInfoEmpresa(login.getUsername().toString());
+		
+		return empresa;
+    }	
+	
 	
 	@GET
 	@Path("notasPendentes/{id}")
@@ -52,6 +66,16 @@ public class EmpresaRest {
 		
 		EmpresaDAO empresaDAO = new EmpresaDAO();
 		ArrayList<ProdutoDTO> produtos = empresaDAO.getCampanhas(id);
+		
+		return produtos;
+	}
+	
+	@GET
+	@Path("getNotasEmpresa/{id}")
+	public ArrayList<VendasDTO> getNotasEmpresa(@PathParam("id") int id) {
+		
+		EmpresaDAO empresaDAO = new EmpresaDAO();
+		ArrayList<VendasDTO> produtos = empresaDAO.getNotasEmpresa(id);
 		
 		return produtos;
 	}

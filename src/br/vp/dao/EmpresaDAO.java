@@ -180,6 +180,48 @@ public class EmpresaDAO {
 		}
 	}
 	
+	public ArrayList<VendasDTO> getNotasEmpresa(int id) {
+		String query = "SELECT * FROM TB_VENDAS WHERE ID_EMPRESA = ?";
+		listaVendas = new ArrayList<VendasDTO>();
+		VendasDTO venda = new VendasDTO();
+		try {
+
+			Connection myConnection = Conexao.getConexao();
+
+			PreparedStatement pstm = myConnection.prepareStatement(query);
+
+			pstm.setInt(1, id);
+			
+			//executeUpdate() for table update
+			ResultSet rs = pstm.executeQuery();
+			
+			while(rs.next()){				
+				venda.setData(rs.getString("DATA_VENDA"));
+				venda.setIdProduto(rs.getInt("ID_PRODUTO"));
+				venda.setIdVenda(rs.getString("ID_VENDA"));
+				venda.setNomeProduto(rs.getString("NOME_PRODUTO"));
+				venda.setIdVendedor(rs.getInt("ID_VENDEDOR"));
+				venda.setIdEmpresa(rs.getInt("ID_EMPRESA"));
+				venda.setAprovada(rs.getString("APROVADA"));
+				
+				listaVendas.add(venda);
+				venda = new VendasDTO();
+			}
+
+			Conexao.desconectar();
+
+			return listaVendas;
+
+		} catch (SQLException e) {
+
+			Conexao.desconectar();
+			e.printStackTrace();
+			System.out.println("Algo de errado na consulta de notas pendentes!");
+			
+			return listaVendas;
+		}
+	}
+	
 	public ArrayList<ProdutoDTO> getCampanhas(int id) {
 		String query = "SELECT * FROM TB_PRODUTO WHERE ID_EMPRESA = ?";
 		listaProdutos = new ArrayList<ProdutoDTO>();

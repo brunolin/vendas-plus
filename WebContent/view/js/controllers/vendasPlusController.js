@@ -10,9 +10,16 @@ angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap']).con
   
   $http.get('/r/controller/user').then(function(resp) {
 	  $scope.type = resp.data.type;
-	  $http.post('/r/vendedor/getInfoVendedor', resp.data).then(function(resp) {
-		  $scope.user = resp.data; 
-	  });
+	  if($scope.type == 'vendedor'){
+		  $http.post('/r/vendedor/getInfoVendedor', resp.data).then(function(resp) {
+			  $scope.user = resp.data; 
+		  });		  
+	  } else {
+		  $http.post('/r/empresa/getInfoEmpresa', resp.data).then(function(resp) {
+			  $scope.user = resp.data; 
+		  });		  
+	  }
+
   });
 
   alertify.defaults = {

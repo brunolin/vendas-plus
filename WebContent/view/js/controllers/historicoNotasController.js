@@ -5,7 +5,7 @@ angular.module('vendasPlusApp').controller('historicoNotasCtrl', ['$scope', '$ht
 	  if(resp.data.type == 'empresa'){
 		  $http.post('/r/empresa/getInfoEmpresa', resp.data).then(function(resp) {
 			  $scope.user = resp.data;
-			  $http.get('/r/empresa/getNotasEmpresa/' + resp.data.idVendedor).then(function(resp) {
+			  $http.get('/r/empresa/getNotasEmpresa/' + resp.data.idEmpresa).then(function(resp) {
 				    $scope.notas = resp.data;
 			  });
 		  });		  
