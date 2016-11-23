@@ -77,7 +77,7 @@ public class EmpresaDAO {
 
 			//setting values for insert in pessoa table
 			pstm.setString(1, produto.getNomeProduto());
-			pstm.setInt(2, 71);
+			pstm.setInt(2, produto.getIdEmpresa());
 			pstm.setInt(3, produto.getPontosRecompensa());
 			pstm.setString(4, "no");
 			pstm.setString(5, produto.getInicioCampanha());
@@ -239,6 +239,7 @@ public class EmpresaDAO {
 			
 			while(rs.next()){				
 				empresa.setNomeEmpresa(rs.getString("NOME_EMPRESA"));
+				empresa.setIdEmpresa(rs.getInt("ID_EMPRESA"));
 			}
 
 			Conexao.desconectar();

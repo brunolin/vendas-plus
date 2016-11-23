@@ -78,6 +78,7 @@ public class VendedorDAO {
 			while(rs.next()){				
 				vendedor.setPontos(rs.getInt("PONTOS"));
 				vendedor.setNome(rs.getString("NOME_VENDEDOR"));
+				vendedor.setIdVendedor(rs.getInt("ID_VENDEDOR"));
 			}
 
 			Conexao.desconectar();
@@ -110,7 +111,7 @@ public class VendedorDAO {
 			//setting values for insert in pessoa table
 			pstm.setString(1, venda.getIdVenda());
 			pstm.setInt(2, venda.getIdProduto());
-			pstm.setInt(3, 1);
+			pstm.setInt(3, venda.getIdVendedor());
 			pstm.setInt(4, venda.getIdEmpresa());
 			pstm.setString(5, venda.getNomeProduto());
 			pstm.setString(6, venda.getData());

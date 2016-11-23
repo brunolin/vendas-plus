@@ -6,6 +6,12 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
   $http.get('/r/vendedor/getCampanhas').then(function(resp) {
     $scope.produtos = resp.data;
   });
+  
+  $http.get('/r/controller/user').then(function(resp) {
+	  $http.post('/r/vendedor/getInfoVendedor', resp.data).then(function(resp) {
+		  $scope.user = resp.data; 
+	  });
+  });
 
   $scope.status = {
     isopen: false
@@ -14,7 +20,7 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
   $scope.nomeProduto = function(produto){
     $scope.venda.nomeProduto = produto.nomeProduto;
     $scope.venda.idProduto = produto.idProduto;
-    $scope.venda.idVendedor = 1;
+    $scope.venda.idVendedor = $scope.user.idVendedor;
     $scope.venda.idEmpresa = produto.idEmpresa;
 
   };

@@ -5,3 +5,7 @@ function cadastroEmpresa(){
 function cadastroVendedor(){
 	window.location = 'pages/cadastro-vendedor.xhtml';
 }
+
+function login(){
+	window.location = 'pages/login.xhtml';
+}

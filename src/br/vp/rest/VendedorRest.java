@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -51,11 +52,11 @@ public class VendedorRest {
   }
 	
 	@GET
-	@Path("getNotasVendedor")
-	public ArrayList<VendasDTO> getNotas(){
+	@Path("getNotasVendedor/{id}")
+	public ArrayList<VendasDTO> getNotas(@PathParam("id") int id){
 		VendedorDAO vendedorDAO = new VendedorDAO();
 		
-		ArrayList<VendasDTO> vendas = vendedorDAO.getNotasVendedor(1);
+		ArrayList<VendasDTO> vendas = vendedorDAO.getNotasVendedor(id);
 		
 		return vendas;
 	}
