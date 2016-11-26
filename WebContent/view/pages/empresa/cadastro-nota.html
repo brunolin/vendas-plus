@@ -3,10 +3,10 @@
 		<h4>CADASTRAR NOVA VENDA</h4>
 		<div class="inline-block icon-carrinho"></div>
 	</div>
-	<form name="cadastroPromocao" class="margin-20">
+	<form name="cadastroNota" class="margin-20">
 		<div class="form-group">
 			<label for="exampleInputEmail1">Número nota fiscal</label>
-			<input type="text" ng-model="venda.idVenda" class="input-form form-control" placeholder="Número">
+			<input type="text" ng-required="true" ng-model="venda.idVenda" class="input-form form-control" placeholder="Número">
 		</div>
 		<div class="form-group">
 			<strong class="block">Produto</strong>
@@ -27,13 +27,13 @@
 
 		<div class="form-group">
 			<label for="exampleInputPassword1">Data da venda</label>
-			<div uib-datepicker ng-model="venda.data" class="well well-sm w-310" datepicker-options="options"></div>
+			<div uib-datepicker ng-model="venda.data" ng-required="true" class="well well-sm w-310" datepicker-options="options"></div>
 		</div>
 
 		<div class="w-310">
 			<button type="button" class="btn btn-default" ng-click="limpar()">Limpar</button>
 			<button type="button" class="btn btn-success float-right" ng-click="save()"
-							ng-disabled="loadingSuccess">
+							ng-disabled="loadingSuccess || !validForm()">
 				<i class="fa fa-circle-o-notch fa-spin" ng-if="loadingSuccess"></i>
 				Confirmar
 			</button>

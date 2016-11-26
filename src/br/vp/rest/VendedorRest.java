@@ -10,8 +10,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.vp.dao.VendedorDAO;
+import br.vp.dto.BonusDTO;
 import br.vp.dto.LogadoDTO;
 import br.vp.dto.ProdutoDTO;
+import br.vp.dto.ValidateBonusDTO;
 import br.vp.dto.VendasDTO;
 import br.vp.dto.VendedorDTO;
 
@@ -59,5 +61,23 @@ public class VendedorRest {
 		ArrayList<VendasDTO> vendas = vendedorDAO.getNotasVendedor(id);
 		
 		return vendas;
+	}
+	
+	@GET
+	@Path("getBonus")
+	public ArrayList<BonusDTO> getBonus() {
+		
+		VendedorDAO vendedorDAO = new VendedorDAO();
+		ArrayList<BonusDTO> produtos = vendedorDAO.getBonus();
+		
+		return produtos;
+	}
+	
+	@POST
+	@Path("resgatarBonus")
+	public boolean resgatarBonus(ValidateBonusDTO bonus){
+		
+		VendedorDAO vendedorDAO = new VendedorDAO();
+		return vendedorDAO.resgatarBonus(bonus.getPontos(), bonus.getCpf());
 	}
 }

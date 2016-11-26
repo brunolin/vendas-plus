@@ -20,7 +20,7 @@
 		<div class="w-310">
 			<button type="button" class="btn btn-default" ng-click="limpar()">Limpar</button>
 			<button type="button" class="btn btn-success float-right" ng-click="save()"
-							ng-disabled="loadingSuccess">
+							ng-disabled="loadingSuccess || !validForm()">
 				<i class="fa fa-circle-o-notch fa-spin" ng-if="loadingSuccess"></i>
 				Confirmar
 			</button>

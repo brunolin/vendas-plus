@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.vp.dto.BonusDTO;
 import br.vp.dto.ProdutoDTO;
 import br.vp.dto.VendasDTO;
 import br.vp.dto.VendedorDTO;
@@ -95,6 +96,42 @@ public class VendedorDAO {
 		}
 	}
 	
+	public VendedorDTO getInfoVendedorId(int id) {
+		String query = "SELECT * FROM TB_VENDEDOR WHERE ID_VENDEDOR = ?";
+		
+		VendedorDTO vendedor = new VendedorDTO();
+		
+		try {
+
+			Connection myConnection = Conexao.getConexao();
+
+			PreparedStatement pstm = myConnection.prepareStatement(query);
+
+			pstm.setInt(1, id);
+			
+			//executeUpdate() for table update
+			ResultSet rs = pstm.executeQuery();
+			
+			while(rs.next()){				
+				vendedor.setPontos(rs.getInt("PONTOS"));
+				vendedor.setNome(rs.getString("NOME_VENDEDOR"));
+				vendedor.setIdVendedor(rs.getInt("ID_VENDEDOR"));
+			}
+
+			Conexao.desconectar();
+
+			return vendedor;
+
+		} catch (SQLException e) {
+
+			Conexao.desconectar();
+			e.printStackTrace();
+			System.out.println("Algo de errado na consulta de dados do vendedor!");
+			
+			return vendedor;
+		}
+	}
+	
 	public boolean cadastroVenda(VendasDTO venda) {
 		String query = "INSERT INTO TB_VENDAS("
 				+ "ID_VENDA, ID_PRODUTO, ID_VENDEDOR, ID_EMPRESA, NOME_PRODUTO, DATA_VENDA, APROVADA) "
@@ -132,6 +169,42 @@ public class VendedorDAO {
 			Conexao.desconectar();
 			e.printStackTrace();
 			System.out.println("Algo de errado no cadastro da nota!");
+			return false;
+		}
+	}
+	
+	public boolean vendaAprovada(int idVendedor, int idProduto) {
+		String query = "UPDATE TB_VENDEDOR SET PONTOS = ? WHERE ID_VENDEDOR = ?";
+
+		try {
+			
+			VendedorDTO vendedor = getInfoVendedorId(idVendedor);
+			EmpresaDAO empresaDAO = new EmpresaDAO();
+			
+			int pontos = empresaDAO.getPontosProduto(idProduto);
+			
+			Connection myConnection = Conexao.getConexao();
+
+			PreparedStatement pstm = myConnection.prepareStatement(query);
+
+			/*TO DO - adicionar data de cadastro para empresa e vendedor */
+
+			//setting values for insert in pessoa table
+			pstm.setInt(1, vendedor.getPontos() + pontos);
+			pstm.setInt(2, idVendedor);
+			
+			//executeUpdate() for table update
+			pstm.executeQuery();
+
+			Conexao.desconectar();
+
+			return true;
+
+		} catch (SQLException e) {
+
+			Conexao.desconectar();
+			e.printStackTrace();
+			System.out.println("Algo de errado ao creditar pontos ao vendedor!");
 			return false;
 		}
 	}
@@ -174,6 +247,41 @@ public class VendedorDAO {
 		}
 	}
 	
+	public ArrayList<BonusDTO> getBonus() {
+		
+		String query = "SELECT * FROM TB_BONUS";
+		ArrayList<BonusDTO> produtos = new ArrayList<BonusDTO>();
+		
+		try {
+			
+			BonusDTO bonus = new BonusDTO();
+			
+			Connection myConnection = Conexao.getConexao();
+			PreparedStatement pstm = myConnection.prepareStatement(query);
+			ResultSet rs = pstm.executeQuery();
+
+			while(rs.next()){
+				bonus.setDescricao(rs.getString("DESCRICAO"));
+				bonus.setPontosNecessarios(rs.getInt("PONTOS_NECESSARIOS"));
+				bonus.setIdBonus(rs.getInt("ID_BONUS"));
+				bonus.setNome(rs.getString("NOME_BONUS"));
+				
+				produtos.add(bonus);
+				bonus = new BonusDTO();
+			}
+			Conexao.desconectar();
+
+			return produtos;
+
+		} catch (SQLException e) {
+
+			Conexao.desconectar();
+			e.printStackTrace();
+			System.out.println("Algo de errado na busca de bonus!");
+			return produtos;
+		}
+	}
+	
 	public ArrayList<VendasDTO> getNotasVendedor(int id) {
 		
 		String query = "SELECT * FROM TB_VENDAS WHERE ID_VENDEDOR = ?";
@@ -213,6 +321,39 @@ public class VendedorDAO {
 			e.printStackTrace();
 			System.out.println("Algo de errado no cadastro do Vendedor!");
 			return null;
+		}
+	}
+	
+	public boolean resgatarBonus(int pontos, String cpf) {
+		String query = "UPDATE TB_VENDEDOR SET PONTOS = ? WHERE CPF = ?";
+
+		try {
+			
+			VendedorDTO vendedor = getInfoVendedor(cpf);
+			
+			Connection myConnection = Conexao.getConexao();
+
+			PreparedStatement pstm = myConnection.prepareStatement(query);
+
+			/*TO DO - adicionar data de cadastro para empresa e vendedor */
+
+			//setting values for insert in pessoa table
+			pstm.setInt(1, vendedor.getPontos() - pontos);
+			pstm.setString(2, cpf);
+			
+			//executeUpdate() for table update
+			pstm.executeQuery();
+
+			Conexao.desconectar();
+
+			return true;
+
+		} catch (SQLException e) {
+
+			Conexao.desconectar();
+			e.printStackTrace();
+			System.out.println("Algo de errado ao reagatar bonus do vendedor!");
+			return false;
 		}
 	}
 }

@@ -318,6 +318,9 @@ public class EmpresaDAO {
 			pstm.executeQuery();
 
 			Conexao.desconectar();
+			
+			VendedorDAO vendedorDAO = new VendedorDAO();
+			vendedorDAO.vendaAprovada(venda.getIdVendedor(), venda.getIdProduto());
 
 			return true;
 
@@ -361,5 +364,36 @@ public class EmpresaDAO {
 			return false;
 		}
 	}
+	
+	public int getPontosProduto(int id) {
+		String query = "SELECT PONTOS_RECOMPENSA FROM TB_PRODUTO WHERE ID_PRODUTO = ?";
 
+		try {
+
+			Connection myConnection = Conexao.getConexao();
+
+			PreparedStatement pstm = myConnection.prepareStatement(query);
+
+			/*TO DO - adicionar data de cadastro para empresa e vendedor */
+
+			//setting values for insert in pessoa table
+			pstm.setInt(1, id);
+			
+			//executeUpdate() for table update
+			ResultSet rs = pstm.executeQuery();
+			if(rs.next()) {
+				
+				return rs.getInt("PONTOS_RECOMPENSA");
+			}
+			
+			return 0;
+
+		} catch (SQLException e) {
+
+			Conexao.desconectar();
+			e.printStackTrace();
+			System.out.println("Algo de errado na consulta de pontuação de produto!");
+			return 0;
+		}
+	}
 }

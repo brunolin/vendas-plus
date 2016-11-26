@@ -3,10 +3,18 @@ package br.vp.dto;
 public class BonusDTO {
 	
 	public int idBonus, pontosNecessarios;
-	public String descricao;
+	public String descricao, nomeBonus;
 
 	public BonusDTO() {
 		
+	}
+
+	public String getNome() {
+		return nomeBonus;
+	}
+
+	public void setNome(String nomeBonus) {
+		this.nomeBonus = nomeBonus;
 	}
 
 	public int getIdBonus() {

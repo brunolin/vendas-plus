@@ -30,6 +30,10 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
     showWeeks: true
   };
 
+  $scope.validForm = function() {
+    return $scope.venda.idVenda && $scope.venda.data && $scope.venda.idProduto;
+  }
+
   $scope.toggleDropdown = function($event) {
     $event.preventDefault();
     $event.stopPropagation();
@@ -46,7 +50,9 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
       $scope.loadingSuccess = false;
       alertify.success('Nota adicionada!');
       $scope.venda = {};
-	  })
+	  }, function(err) {
+        alertify.success('Nota não adicionada');        
+    });
   }
 
   $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));

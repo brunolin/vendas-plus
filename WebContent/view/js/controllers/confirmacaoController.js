@@ -27,9 +27,19 @@ angular.module('vendasPlusApp').controller('confirmacaoCtrl', ['$scope', '$uibMo
   		});
   	};
 
-    $scope.confirmarResgate = function confirmarResgate() {
+    $scope.confirmarResgate = function confirmarResgate(param) {
       $scope.loadingSuccess = true;
+      
+      var payload = {
+		  pontos: param.produto.pontosNecessarios,
+		  cpf: param.cpf
+      };
+      
+      $http.post('/r/vendedor/resgatarBonus', payload).then(function() {
+    	  $scope.loadingSuccess = false;  
+    	  alertify.success('Bonus resgatado');
+    	  
+    	  $uibModalInstance.close(resp);
+      });
     }
-
-
 }]);
