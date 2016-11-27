@@ -7,6 +7,14 @@ import java.sql.SQLException;
 
 import br.vp.jdbc.Conexao;
 
+/**
+ * 
+ * @author Bruno Wellython
+ *	
+ *	Classe responsável pela consulta do usuário no banco de dados.
+ *	O método de validação retorna um booleano caso tenha ou não validado aquele login
+ *	e senha informados.
+ */
 public class LoginDAO {
 
 	public LoginDAO() {
@@ -31,6 +39,7 @@ public class LoginDAO {
 				ResultSet rs = ps.executeQuery();
 	
 				if (rs.next()) {
+					System.out.println("Vendedor logado");
 					return true;
 				}
 			} else if(id.length() == 14) {
@@ -45,11 +54,12 @@ public class LoginDAO {
 				ResultSet rs = ps.executeQuery();
 	
 				if (rs.next()) {
+					System.out.println("Empresa logada");
 					return true;
 				}				
 			}
 		} catch (SQLException ex) {
-			System.out.println("Login error -->");
+			System.out.println("Erro no login");
 			return false;
 		} finally {
 			Conexao.desconectar();

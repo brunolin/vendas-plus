@@ -2,20 +2,33 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 	<title>Vendas Plus</title>
 	<link type="text/css" rel="stylesheet" href="../css/login.css" />
+    <script src="../js/angular/jquery-3.1.1.min.js"></script>
+    <script src="../js/angular/jquery-mask.js"></script>	
 </h:head>
 <h:body>
 	<div class="login-page">
   		<div class="form">
 			<h:form class="login-form">
-				<h:inputText pt:placeholder="CPF/CNPJ" id="username" value="#{login.user}"></h:inputText>								
-				<h:inputSecret pt:placeholder="Senha" id="password" value="#{login.pwd}"></h:inputSecret>
+				<h:inputText pt:placeholder="CPF/CNPJ" id="username" class="verificador" value="#{login.user}" validatorMessage="CPF/CNPJ é obrigatorio" >
+	    				<f:validateLength minimum="11" maximum="14"/>
+	    		</h:inputText>							
+				<h:inputSecret pt:placeholder="Senha" id="password" value="#{login.pwd}" validatorMessage="Senha é obrigatorio" >
+	    				<f:validateRequired  />
+	    		</h:inputSecret>
 				<h:commandButton action="#{login.validateLogin}" value="Login"></h:commandButton>
 			</h:form>
+			<h:messages style="color:red;margin:8px;" />
 	  </div>
 	</div>	
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('.verificador').mask('00000000000000');
+			});
+		</script>	
 </h:body>
 </html>

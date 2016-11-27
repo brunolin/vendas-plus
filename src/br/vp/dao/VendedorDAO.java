@@ -45,7 +45,7 @@ public class VendedorDAO {
 			//executeUpdate() for table update
 			pstm.executeQuery();
 
-			System.out.println(vendedor.toString());
+			System.out.println("Vendedor" + vendedor.getNome() + " cadastrado!");
 
 			Conexao.desconectar();
 
@@ -81,7 +81,7 @@ public class VendedorDAO {
 				vendedor.setNome(rs.getString("NOME_VENDEDOR"));
 				vendedor.setIdVendedor(rs.getInt("ID_VENDEDOR"));
 			}
-
+			System.out.println("Buscando informacoes do vendedor " + vendedor.getNome() + " por CPF");
 			Conexao.desconectar();
 
 			return vendedor;
@@ -117,7 +117,8 @@ public class VendedorDAO {
 				vendedor.setNome(rs.getString("NOME_VENDEDOR"));
 				vendedor.setIdVendedor(rs.getInt("ID_VENDEDOR"));
 			}
-
+			
+			System.out.println("Buscando informacoes do vendedor " + vendedor.getNome() + " por ID");
 			Conexao.desconectar();
 
 			return vendedor;
@@ -158,7 +159,7 @@ public class VendedorDAO {
 			//executeUpdate() for table update
 			pstm.executeQuery();
 
-			System.out.println(venda.toString());
+			System.out.println("Uma venda do produto " + venda.getNomeProduto() + " confirmada");
 
 			Conexao.desconectar();
 
@@ -195,7 +196,8 @@ public class VendedorDAO {
 			
 			//executeUpdate() for table update
 			pstm.executeQuery();
-
+			
+			System.out.println("Venda aprovada para o vendedor  " + vendedor.getNome());
 			Conexao.desconectar();
 
 			return true;
@@ -234,6 +236,8 @@ public class VendedorDAO {
 				produtos.add(produto);
 				produto = new ProdutoDTO();
 			}
+			
+			System.out.println("Select de produtos");
 			Conexao.desconectar();
 
 			return produtos;
@@ -269,6 +273,8 @@ public class VendedorDAO {
 				produtos.add(bonus);
 				bonus = new BonusDTO();
 			}
+			
+			System.out.println("Select de bonus");
 			Conexao.desconectar();
 
 			return produtos;
@@ -311,6 +317,7 @@ public class VendedorDAO {
 				venda = new VendasDTO();
 			}
 			
+			System.out.println("Select de notas para o vendedor " + id);
 			Conexao.desconectar();
 
 			return vendas;
@@ -319,7 +326,7 @@ public class VendedorDAO {
 
 			Conexao.desconectar();
 			e.printStackTrace();
-			System.out.println("Algo de errado no cadastro do Vendedor!");
+			System.out.println("Algo de errado no select de notas do Vendedor!");
 			return null;
 		}
 	}
@@ -344,6 +351,7 @@ public class VendedorDAO {
 			//executeUpdate() for table update
 			pstm.executeQuery();
 
+			System.out.println("Foram descontados " + pontos + " pontos do vendedor " + vendedor.getNome());
 			Conexao.desconectar();
 
 			return true;

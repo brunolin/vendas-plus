@@ -30,7 +30,21 @@ public class ControllerRest {
 			System.out.println(ex);
 			return null;
 		}
-		
-
 	}
+	
+	@GET
+	@Path("logout")
+	public boolean logout(@Context HttpServletRequest request){		
+		
+		try{
+			HttpSession session = request.getSession();
+			session.invalidate();
+			
+			return true;
+			
+		} catch(NullPointerException ex) {
+			System.out.println(ex);
+			return false;
+		}
+	}	
 }

@@ -47,7 +47,7 @@ public class EmpresaDAO {
 			//executeUpdate() for table update
 			pstm.executeQuery();
 
-			System.out.println(empresa.toString());
+			System.out.println("Empresa " + empresa.getNomeEmpresa() + " adicionada");
 
 			Conexao.desconectar();
 
@@ -87,7 +87,7 @@ public class EmpresaDAO {
 			//executeUpdate() for table update
 			pstm.executeQuery();
 
-			System.out.println(produto.toString());
+			System.out.println(produto.getNomeProduto() + " adicionado às campanhas");
 
 			Conexao.desconectar();
 
@@ -123,7 +123,7 @@ public class EmpresaDAO {
 			//executeUpdate() for table update
 			pstm.executeQuery();
 
-			System.out.println(produto.toString());
+			System.out.println(produto.getNomeProduto() + " atualizado");
 
 			Conexao.desconectar();
 
@@ -165,7 +165,8 @@ public class EmpresaDAO {
 				listaVendas.add(venda);
 				venda = new VendasDTO();
 			}
-
+			
+			System.out.println("Select nas notas pendentes da empresa " + id);
 			Conexao.desconectar();
 
 			return listaVendas;
@@ -207,7 +208,8 @@ public class EmpresaDAO {
 				listaVendas.add(venda);
 				venda = new VendasDTO();
 			}
-
+			
+			System.out.println("Select de notas da empresa " + id);
 			Conexao.desconectar();
 
 			return listaVendas;
@@ -248,7 +250,8 @@ public class EmpresaDAO {
 				listaProdutos.add(campanha);
 				campanha = new ProdutoDTO();
 			}
-
+			
+			System.out.println("Select de campanhas da empresa " + id);
 			Conexao.desconectar();
 
 			return listaProdutos;
@@ -283,7 +286,8 @@ public class EmpresaDAO {
 				empresa.setNomeEmpresa(rs.getString("NOME_EMPRESA"));
 				empresa.setIdEmpresa(rs.getInt("ID_EMPRESA"));
 			}
-
+			
+			System.out.println("Retornado dados da empresa com cnpj " + cnpj);
 			Conexao.desconectar();
 
 			return empresa;
@@ -316,12 +320,13 @@ public class EmpresaDAO {
 			
 			//executeUpdate() for table update
 			pstm.executeQuery();
-
+			
+			System.out.println("Nota confirmada pela empresa " + venda.getIdEmpresa());
 			Conexao.desconectar();
 			
 			VendedorDAO vendedorDAO = new VendedorDAO();
 			vendedorDAO.vendaAprovada(venda.getIdVendedor(), venda.getIdProduto());
-
+			
 			return true;
 
 		} catch (SQLException e) {
@@ -352,6 +357,7 @@ public class EmpresaDAO {
 			//executeUpdate() for table update
 			pstm.executeQuery();
 
+			System.out.println("Nota reprovada pela empresa " + venda.getIdEmpresa());
 			Conexao.desconectar();
 
 			return true;
@@ -360,7 +366,7 @@ public class EmpresaDAO {
 
 			Conexao.desconectar();
 			e.printStackTrace();
-			System.out.println("Algo de errado na confirmação nota!");
+			System.out.println("Algo de errado na reprovação de nota!");
 			return false;
 		}
 	}
@@ -382,9 +388,10 @@ public class EmpresaDAO {
 			//executeUpdate() for table update
 			ResultSet rs = pstm.executeQuery();
 			if(rs.next()) {
-				
 				return rs.getInt("PONTOS_RECOMPENSA");
 			}
+			
+			System.out.println("Retornando pontos da campanha " + id);
 			
 			return 0;
 

@@ -58,11 +58,6 @@ public class Login implements Serializable {
 				session.setAttribute("type", "empresa");
 			}
 			
-			
-			
-			System.out.println(SessionController.getUserName());
-			System.out.println(SessionController.getType());
-			
 			FacesContext.getCurrentInstance().getExternalContext().redirect("index.html");
 			
 			return "admin";
@@ -70,8 +65,8 @@ public class Login implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
-							"Incorrect Username and Passowrd",
-							"Please enter correct username and Password"));
+							"CNPJ/CPF e/ou senha incorretos",
+							"Por favor, entre com dados válidos"));
 			return "login";
 		}
 	}

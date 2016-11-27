@@ -52,7 +52,7 @@ public class VendedorBean implements Serializable {
 		} else {
 
 			System.out.println("vendedor nï¿½o inserido");
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "vendedor nï¿½o adicionado", ""));
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "vendedor não adicionado", ""));
 		}
 		
 		return "index";

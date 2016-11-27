@@ -21,6 +21,14 @@ angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap']).con
 	  }
 
   });
+  
+  $scope.logout = function logout() {
+	  $http.get('/r/controller/logout').then(function(resp) {
+		  if(resp.data){
+			  window.location = '/';
+		  }
+	  });
+  }
 
   alertify.defaults = {
         // dialogs defaults
