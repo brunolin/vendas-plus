@@ -32,9 +32,7 @@ public class VendedorDAO {
 	 * @return
 	 */
 	public boolean cadastroVendedor(VendedorDTO vendedor) {
-		/*String query = "INSERT INTO TB_VENDEDOR("
-				+ "ID_VENDEDOR, NOME_VENDEDOR, CPF,PONTOS, TELEFONE, CIDADE, ESTADO, EMAIL, SENHA"
-				+ ") VALUES(id_seq.nextval, ?, ?, ?, ?, ?, ?, ?,?)";*/
+
 		String query = "{call proc_vendedor_insert(id_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
 		try {
@@ -52,19 +50,6 @@ public class VendedorDAO {
 			callableStatement.setString(8, vendedor.getSenha());
 			
 			callableStatement.executeQuery();
-			
-			/*PreparedStatement pstm = myConnection.prepareStatement(query);
-			
-			pstm.setString(1, vendedor.getNome());
-			pstm.setString(2, vendedor.getCpf());
-			pstm.setInt(3, 0);
-			pstm.setLong(4, vendedor.getTelefone());
-			pstm.setString(5, vendedor.getCidade());
-			pstm.setString(6, vendedor.getEstado());
-			pstm.setString(7, vendedor.getEmail());
-			pstm.setString(8, vendedor.getSenha());
-
-			pstm.executeQuery();*/
 
 			System.out.println("Vendedor" + vendedor.getNome() + " cadastrado!");
 

@@ -35,10 +35,13 @@ angular.module('vendasPlusApp').controller('confirmacaoCtrl', ['$scope', '$uibMo
 		  cpf: param.cpf
       };
       
-      $http.post('/r/vendedor/resgatarBonus', payload).then(function() {
+      $http.post('/r/vendedor/resgatarBonus', payload).then(function(resp) {
     	  $scope.loadingSuccess = false;  
     	  alertify.success('Bonus resgatado');
-    	  
+
+    	  setTimeout(function() {
+    		  window.location.reload();
+    	  }, 500);
     	  $uibModalInstance.close(resp);
       });
     }

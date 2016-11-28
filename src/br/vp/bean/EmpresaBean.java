@@ -50,7 +50,7 @@ public class EmpresaBean implements Serializable {
 			
 			System.out.println("Empresa inserida");
 			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Empresa inserida", ""));
-			FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+			FacesContext.getCurrentInstance().getExternalContext().redirect("index.html");
 		} else {
 			
 			System.out.println("Empresa não inserida");		
