@@ -37,12 +37,8 @@ public class VendedorDAO {
 		try {
 
 			Connection myConnection = Conexao.getConexao();
-
 			PreparedStatement pstm = myConnection.prepareStatement(query);
-
-			/*TO DO - adicionar data de cadastro para empresa e vendedor */
-
-			//setting values for insert in pessoa table
+			
 			pstm.setString(1, vendedor.getNome());
 			pstm.setString(2, vendedor.getCpf());
 			pstm.setInt(3, 0);
@@ -52,8 +48,6 @@ public class VendedorDAO {
 			pstm.setString(7, vendedor.getEmail());
 			pstm.setString(8, vendedor.getSenha());
 
-
-			//executeUpdate() for table update
 			pstm.executeQuery();
 
 			System.out.println("Vendedor" + vendedor.getNome() + " cadastrado!");
@@ -84,12 +78,10 @@ public class VendedorDAO {
 		try {
 
 			Connection myConnection = Conexao.getConexao();
-
 			PreparedStatement pstm = myConnection.prepareStatement(query);
 
 			pstm.setString(1, cpf);
-			
-			//executeUpdate() for table update
+
 			ResultSet rs = pstm.executeQuery();
 			
 			while(rs.next()){				
@@ -125,12 +117,10 @@ public class VendedorDAO {
 		try {
 
 			Connection myConnection = Conexao.getConexao();
-
 			PreparedStatement pstm = myConnection.prepareStatement(query);
 
 			pstm.setInt(1, id);
-			
-			//executeUpdate() for table update
+
 			ResultSet rs = pstm.executeQuery();
 			
 			while(rs.next()){				
@@ -167,12 +157,8 @@ public class VendedorDAO {
 		try {
 
 			Connection myConnection = Conexao.getConexao();
-
 			PreparedStatement pstm = myConnection.prepareStatement(query);
 
-			/*TO DO - adicionar data de cadastro para empresa e vendedor */
-
-			//setting values for insert in pessoa table
 			pstm.setString(1, venda.getIdVenda());
 			pstm.setInt(2, venda.getIdProduto());
 			pstm.setInt(3, venda.getIdVendedor());
@@ -181,8 +167,6 @@ public class VendedorDAO {
 			pstm.setString(6, venda.getData());
 			pstm.setString(7, "F");
 
-
-			//executeUpdate() for table update
 			pstm.executeQuery();
 
 			System.out.println("Uma venda do produto " + venda.getNomeProduto() + " confirmada");
@@ -214,20 +198,14 @@ public class VendedorDAO {
 			
 			VendedorDTO vendedor = getInfoVendedorId(idVendedor);
 			EmpresaDAO empresaDAO = new EmpresaDAO();
-			
 			int pontos = empresaDAO.getPontosProduto(idProduto);
 			
 			Connection myConnection = Conexao.getConexao();
-
 			PreparedStatement pstm = myConnection.prepareStatement(query);
 
-			/*TO DO - adicionar data de cadastro para empresa e vendedor */
-
-			//setting values for insert in pessoa table
 			pstm.setInt(1, vendedor.getPontos() + pontos);
 			pstm.setInt(2, idVendedor);
-			
-			//executeUpdate() for table update
+
 			pstm.executeQuery();
 			
 			System.out.println("Venda aprovada para o vendedor  " + vendedor.getNome());
@@ -391,16 +369,11 @@ public class VendedorDAO {
 			VendedorDTO vendedor = getInfoVendedor(cpf);
 			
 			Connection myConnection = Conexao.getConexao();
-
 			PreparedStatement pstm = myConnection.prepareStatement(query);
 
-			/*TO DO - adicionar data de cadastro para empresa e vendedor */
-
-			//setting values for insert in pessoa table
 			pstm.setInt(1, vendedor.getPontos() - pontos);
 			pstm.setString(2, cpf);
-			
-			//executeUpdate() for table update
+
 			pstm.executeQuery();
 
 			System.out.println("Foram descontados " + pontos + " pontos do vendedor " + vendedor.getNome());

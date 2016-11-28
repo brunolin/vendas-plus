@@ -292,12 +292,10 @@ public class EmpresaDAO {
 		try {
 
 			Connection myConnection = Conexao.getConexao();
-
 			PreparedStatement pstm = myConnection.prepareStatement(query);
 
 			pstm.setString(1, cnpj);
 			
-			//executeUpdate() for table update
 			ResultSet rs = pstm.executeQuery();
 			
 			while(rs.next()){				
@@ -332,16 +330,11 @@ public class EmpresaDAO {
 		try {
 
 			Connection myConnection = Conexao.getConexao();
-
 			PreparedStatement pstm = myConnection.prepareStatement(query);
 
-			/*TO DO - adicionar data de cadastro para empresa e vendedor */
-
-			//setting values for insert in pessoa table
 			pstm.setString(1, "T");
 			pstm.setString(2, venda.getIdVenda());
 			
-			//executeUpdate() for table update
 			pstm.executeQuery();
 			
 			System.out.println("Nota confirmada pela empresa " + venda.getIdEmpresa());
@@ -373,16 +366,11 @@ public class EmpresaDAO {
 		try {
 
 			Connection myConnection = Conexao.getConexao();
-
 			PreparedStatement pstm = myConnection.prepareStatement(query);
-
-			/*TO DO - adicionar data de cadastro para empresa e vendedor */
-
-			//setting values for insert in pessoa table
+			
 			pstm.setString(1, "X");
 			pstm.setString(2, venda.getIdVenda());
-			
-			//executeUpdate() for table update
+
 			pstm.executeQuery();
 
 			System.out.println("Nota reprovada pela empresa " + venda.getIdEmpresa());
@@ -410,15 +398,10 @@ public class EmpresaDAO {
 		try {
 
 			Connection myConnection = Conexao.getConexao();
-
 			PreparedStatement pstm = myConnection.prepareStatement(query);
 
-			/*TO DO - adicionar data de cadastro para empresa e vendedor */
-
-			//setting values for insert in pessoa table
 			pstm.setInt(1, id);
-			
-			//executeUpdate() for table update
+
 			ResultSet rs = pstm.executeQuery();
 			if(rs.next()) {
 				return rs.getInt("PONTOS_RECOMPENSA");
