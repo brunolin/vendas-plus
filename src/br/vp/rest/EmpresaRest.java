@@ -11,7 +11,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.vp.dao.EmpresaDAO;
-import br.vp.dao.VendedorDAO;
 import br.vp.dto.EmpresaDTO;
 import br.vp.dto.LogadoDTO;
 import br.vp.dto.ProdutoDTO;

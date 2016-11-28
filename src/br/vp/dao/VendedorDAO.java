@@ -1,5 +1,6 @@
 package br.vp.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,18 +27,33 @@ public class VendedorDAO {
 	
 	/**
 	 * Método responsável por adicionar vendedor ao banco de dados
+	 * Usando Stored Procedure
 	 * @param vendedor
 	 * @return
 	 */
 	public boolean cadastroVendedor(VendedorDTO vendedor) {
-		String query = "INSERT INTO TB_VENDEDOR("
+		/*String query = "INSERT INTO TB_VENDEDOR("
 				+ "ID_VENDEDOR, NOME_VENDEDOR, CPF,PONTOS, TELEFONE, CIDADE, ESTADO, EMAIL, SENHA"
-				+ ") VALUES(id_seq.nextval, ?, ?, ?, ?, ?, ?, ?,?)";
+				+ ") VALUES(id_seq.nextval, ?, ?, ?, ?, ?, ?, ?,?)";*/
+		String query = "{call proc_vendedor_insert(id_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
 		try {
 
 			Connection myConnection = Conexao.getConexao();
-			PreparedStatement pstm = myConnection.prepareStatement(query);
+			
+			CallableStatement callableStatement = myConnection.prepareCall(query);
+			callableStatement.setString(1, vendedor.getNome());
+			callableStatement.setString(2, vendedor.getCpf());
+			callableStatement.setInt(3, 0);
+			callableStatement.setLong(4, vendedor.getTelefone());
+			callableStatement.setString(5, vendedor.getCidade());
+			callableStatement.setString(6, vendedor.getEstado());
+			callableStatement.setString(7, vendedor.getEmail());
+			callableStatement.setString(8, vendedor.getSenha());
+			
+			callableStatement.executeQuery();
+			
+			/*PreparedStatement pstm = myConnection.prepareStatement(query);
 			
 			pstm.setString(1, vendedor.getNome());
 			pstm.setString(2, vendedor.getCpf());
@@ -48,7 +64,7 @@ public class VendedorDAO {
 			pstm.setString(7, vendedor.getEmail());
 			pstm.setString(8, vendedor.getSenha());
 
-			pstm.executeQuery();
+			pstm.executeQuery();*/
 
 			System.out.println("Vendedor" + vendedor.getNome() + " cadastrado!");
 
