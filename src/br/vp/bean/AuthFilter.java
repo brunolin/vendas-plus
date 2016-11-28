@@ -12,6 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+/**
+ * 
+ * @author Brunolin
+ *	Classe responsável pela parte do filtro das páginas,
+ *	ela só da acesso as páginas do usuário somente se o mesmo estiver logado
+ */
 @WebFilter(filterName = "AuthFilter", urlPatterns = { "*.html" })
 public class AuthFilter implements Filter {
 

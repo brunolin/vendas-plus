@@ -12,12 +12,23 @@ import br.vp.dto.VendasDTO;
 import br.vp.dto.VendedorDTO;
 import br.vp.jdbc.Conexao;
 
+/**
+ * 
+ * @author Brunolin
+ *	Classe da camada DAO de vendedor que faz a ligação com o banco de dados
+ *	possui vários métodos de consulta e inserção no banco de dados
+ */
 public class VendedorDAO {
 
 	public VendedorDAO() {
 
 	}
-
+	
+	/**
+	 * Método responsável por adicionar vendedor ao banco de dados
+	 * @param vendedor
+	 * @return
+	 */
 	public boolean cadastroVendedor(VendedorDTO vendedor) {
 		String query = "INSERT INTO TB_VENDEDOR("
 				+ "ID_VENDEDOR, NOME_VENDEDOR, CPF,PONTOS, TELEFONE, CIDADE, ESTADO, EMAIL, SENHA"
@@ -59,7 +70,12 @@ public class VendedorDAO {
 			return false;
 		}
 	}
-		
+	
+	/**
+	 * Método responsável por retornar infomações de um vendedor específico pelo seu CPF
+	 * @param cpf
+	 * @return
+	 */
 	public VendedorDTO getInfoVendedor(String cpf) {
 		String query = "SELECT * FROM TB_VENDEDOR WHERE CPF = ?";
 		
@@ -96,6 +112,11 @@ public class VendedorDAO {
 		}
 	}
 	
+	/**
+	 * Método responsável por retornar infomações de um vendedor específico pelo seu ID
+	 * @param id
+	 * @return
+	 */
 	public VendedorDTO getInfoVendedorId(int id) {
 		String query = "SELECT * FROM TB_VENDEDOR WHERE ID_VENDEDOR = ?";
 		
@@ -133,6 +154,11 @@ public class VendedorDAO {
 		}
 	}
 	
+	/**
+	 * Método responsável por adicionar uma venda por parte de um vendedor
+	 * @param venda
+	 * @return
+	 */
 	public boolean cadastroVenda(VendasDTO venda) {
 		String query = "INSERT INTO TB_VENDAS("
 				+ "ID_VENDA, ID_PRODUTO, ID_VENDEDOR, ID_EMPRESA, NOME_PRODUTO, DATA_VENDA, APROVADA) "
@@ -174,6 +200,13 @@ public class VendedorDAO {
 		}
 	}
 	
+	/**
+	 * Método responsável por adicionar pontos ao vendedor, caso sua venda seja aprovada por uma empresa
+	 * 
+	 * @param idVendedor
+	 * @param idProduto
+	 * @return
+	 */
 	public boolean vendaAprovada(int idVendedor, int idProduto) {
 		String query = "UPDATE TB_VENDEDOR SET PONTOS = ? WHERE ID_VENDEDOR = ?";
 
@@ -211,6 +244,10 @@ public class VendedorDAO {
 		}
 	}
 	
+	/**
+	 * Método responsável por retornar as todas as campanhas em vigência
+	 * @return
+	 */
 	public ArrayList<ProdutoDTO> getCampanhas() {
 		
 		String query = "SELECT * FROM TB_PRODUTO";
@@ -251,6 +288,10 @@ public class VendedorDAO {
 		}
 	}
 	
+	/**
+	 * Método responsável por retornar todos os bonus disponíveis
+	 * @return
+	 */
 	public ArrayList<BonusDTO> getBonus() {
 		
 		String query = "SELECT * FROM TB_BONUS";
@@ -288,6 +329,11 @@ public class VendedorDAO {
 		}
 	}
 	
+	/**
+	 * Método responsável por retornar todas as notas de um vendedor em específico
+	 * @param id
+	 * @return
+	 */
 	public ArrayList<VendasDTO> getNotasVendedor(int id) {
 		
 		String query = "SELECT * FROM TB_VENDAS WHERE ID_VENDEDOR = ?";
@@ -331,6 +377,12 @@ public class VendedorDAO {
 		}
 	}
 	
+	/**
+	 * Métodos responsável para fazer o descontos dos pontos de um vendedor quando ele resgata um bonus.
+	 * @param pontos
+	 * @param cpf
+	 * @return
+	 */
 	public boolean resgatarBonus(int pontos, String cpf) {
 		String query = "UPDATE TB_VENDEDOR SET PONTOS = ? WHERE CPF = ?";
 

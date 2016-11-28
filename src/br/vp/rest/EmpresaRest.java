@@ -16,12 +16,20 @@ import br.vp.dto.EmpresaDTO;
 import br.vp.dto.LogadoDTO;
 import br.vp.dto.ProdutoDTO;
 import br.vp.dto.VendasDTO;;
-
+/**
+ * Classe responsável por controlar as requisições na parte da empresa
+ * @author Brunolin
+ *
+ */
 @Path("empresa")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class EmpresaRest {
 	
+	/**
+	 * Responsável por cadastrar uma nova campanha
+	 * @param produto
+	 */
 	@POST
 	@Path("cadastrarCampanha")
 	public void cadastrarCampanha(ProdutoDTO produto) {
@@ -30,6 +38,10 @@ public class EmpresaRest {
 		empresaDAO.cadastroCampanha(produto);
     }
 	
+	/**
+	 * Responsável por atualizar uma campanha já existente
+	 * @param produto
+	 */
 	@POST
 	@Path("atualizarCampanha")
 	public void atualizarCampanha(ProdutoDTO produto) {
@@ -38,6 +50,11 @@ public class EmpresaRest {
 		empresaDAO.atualizarCampanha(produto);
     }
 	
+	/**
+	 * Retorna dados de uma empresa em específico
+	 * @param login
+	 * @return
+	 */
 	@POST
 	@Path("getInfoEmpresa")
 	public EmpresaDTO getInfoEmpresa(LogadoDTO login) {
@@ -49,7 +66,11 @@ public class EmpresaRest {
 		return empresa;
     }	
 	
-	
+	/**
+	 * Retorna notas pendentes de uma empresa
+	 * @param id
+	 * @return
+	 */
 	@GET
 	@Path("notasPendentes/{id}")
 	public ArrayList<VendasDTO> notasPendentes(@PathParam("id") int id) {
@@ -60,6 +81,11 @@ public class EmpresaRest {
 		return vendas;
 	}
 	
+	/**
+	 * Retorna as campanhas de uma empresa
+	 * @param id
+	 * @return
+	 */
 	@GET
 	@Path("getCampanhas/{id}")
 	public ArrayList<ProdutoDTO> getCampanhas(@PathParam("id") int id) {
@@ -70,6 +96,11 @@ public class EmpresaRest {
 		return produtos;
 	}
 	
+	/**
+	 * Retorna todas as notas de uma empresa
+	 * @param id
+	 * @return
+	 */
 	@GET
 	@Path("getNotasEmpresa/{id}")
 	public ArrayList<VendasDTO> getNotasEmpresa(@PathParam("id") int id) {
@@ -80,6 +111,11 @@ public class EmpresaRest {
 		return produtos;
 	}
 	
+	/**
+	 * Confirma uma venda por parte da empresa
+	 * @param venda
+	 * @return
+	 */
 	@POST
 	@Path("confirmarNota")
 	public boolean confirmarNota(VendasDTO venda) {
@@ -89,6 +125,11 @@ public class EmpresaRest {
 		return empresaDAO.confirmarVenda(venda);
 	}
 	
+	/**
+	 * Reprova uma venda por parte da empresa
+	 * @param venda
+	 * @return
+	 */
 	@POST
 	@Path("reprovarNota")
 	public boolean reprovarNota(VendasDTO venda) {

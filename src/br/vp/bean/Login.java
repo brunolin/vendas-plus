@@ -11,7 +11,12 @@ import javax.servlet.http.HttpSession;
 
 import br.vp.controller.SessionController;
 import br.vp.dao.LoginDAO;
-
+/**
+ * 
+ * @author Brunolin
+ *	Classe Bean responsável pela tela de login
+ *	com um método de validar login que adiciona o usuário na sessão
+ */
 @ManagedBean
 @SessionScoped
 public class Login implements Serializable {

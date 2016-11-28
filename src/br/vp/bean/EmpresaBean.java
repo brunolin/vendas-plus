@@ -9,7 +9,12 @@ import javax.inject.Named;
 
 import br.vp.dto.*;
 import br.vp.controller.EmpresaController;
-
+/**
+ * 
+ * @author Brunolin
+ *	Classe Bean responsável pela tela de cadastro de empresa
+ *	com metodo de incluir que faz ligação com a controller da Empresa
+ */
 @Named("empresaBean")
 @SessionScoped
 public class EmpresaBean implements Serializable {

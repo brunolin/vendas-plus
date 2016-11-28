@@ -16,11 +16,19 @@ import br.vp.dto.ProdutoDTO;
 import br.vp.dto.ValidateBonusDTO;
 import br.vp.dto.VendasDTO;
 import br.vp.dto.VendedorDTO;
-
+/**
+ * Classe responsável por controlar as requisições na parte de vendedor
+ * @author Brunolin
+ *
+ */
 @Path("vendedor")
 @Produces(MediaType.APPLICATION_JSON)
 public class VendedorRest {
 
+	/**
+	 * Retorna as campanhas disponíveis
+	 * @return
+	 */
 	@GET
 	@Path("getCampanhas")
 	public ArrayList<ProdutoDTO> getProdutos() {
@@ -30,8 +38,13 @@ public class VendedorRest {
 		ArrayList<ProdutoDTO> produtos = vendedorDAO.getCampanhas();
 		
 		return produtos;
-  }
+	}
 	
+	/**
+	 * Retorna dados de um vendedor
+	 * @param login
+	 * @return
+	 */
 	@POST
 	@Path("getInfoVendedor")
 	public VendedorDTO getInfoVendedor(LogadoDTO login) {
@@ -41,8 +54,13 @@ public class VendedorRest {
 		VendedorDTO vendedor = vendedorDAO.getInfoVendedor(login.getUsername());
 		
 		return vendedor;
-  }
+	}
 	
+	/**
+	 * Cadastra uma venda feita por um vendedor
+	 * @param venda
+	 * @return
+	 */
 	@POST
 	@Path("cadastrarNota")
 	public String cadastrarNota(VendasDTO venda) {
@@ -51,8 +69,13 @@ public class VendedorRest {
 		vendedorDAO.cadastroVenda(venda);			
 		
 		return "200";
-  }
+	}
 	
+	/**
+	 * Retorna as notas específicas de um vendedor
+	 * @param id
+	 * @return
+	 */
 	@GET
 	@Path("getNotasVendedor/{id}")
 	public ArrayList<VendasDTO> getNotas(@PathParam("id") int id){
@@ -63,6 +86,10 @@ public class VendedorRest {
 		return vendas;
 	}
 	
+	/**
+	 * Retorna os bonus disponíveis para resgate
+	 * @return
+	 */
 	@GET
 	@Path("getBonus")
 	public ArrayList<BonusDTO> getBonus() {
@@ -73,6 +100,11 @@ public class VendedorRest {
 		return produtos;
 	}
 	
+	/**
+	 * Realiza o resgate de um bonus por parte do vendedor
+	 * @param bonus
+	 * @return
+	 */
 	@POST
 	@Path("resgatarBonus")
 	public boolean resgatarBonus(ValidateBonusDTO bonus){

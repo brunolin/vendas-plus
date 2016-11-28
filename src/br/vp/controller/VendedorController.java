@@ -6,6 +6,11 @@ import br.vp.dao.VendedorDAO;
 import br.vp.dto.ProdutoDTO;
 import br.vp.dto.VendedorDTO;
 
+/**
+ * 
+ * @author Brunolin
+ *	Classe de controlle que é a ponte entre a Bean e a DAO
+ */
 public class VendedorController {
 	
  	VendedorDAO vendedorDAO;

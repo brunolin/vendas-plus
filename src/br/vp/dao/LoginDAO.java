@@ -9,7 +9,7 @@ import br.vp.jdbc.Conexao;
 
 /**
  * 
- * @author Bruno Wellython
+ * @author Brunolin
  *	
  *	Classe responsável pela consulta do usuário no banco de dados.
  *	O método de validação retorna um booleano caso tenha ou não validado aquele login

@@ -11,7 +11,12 @@ import javax.inject.Named;
 
 import br.vp.controller.VendedorController;
 import br.vp.dto.VendedorDTO;
-
+/**
+ * 
+ * @author Brunolin
+ *	Classe Bean responsável pela tela de cadastro de vendedor
+ *	com metodo de incluir que faz ligação com a controller da vendedor
+ */
 @Named("vendedorBean")
 @SessionScoped
 public class VendedorBean implements Serializable {
