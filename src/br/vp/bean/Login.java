@@ -51,7 +51,12 @@ public class Login implements Serializable {
 		this.user = user;
 	}
 
-	//validate login
+	/**
+	 * Caso os dados de login informados pelo usuário estiverem ok
+	 * seus dados são jogados na sessão e ele é redirecionado para a tela inicial do sistema
+	 * @return
+	 * @throws IOException
+	 */
 	public String validateLogin() throws IOException {
 		boolean valid = LoginDAO.validate(user, pwd);
 		if (valid) {
@@ -74,13 +79,6 @@ public class Login implements Serializable {
 							"Por favor, entre com dados válidos"));
 			return "login";
 		}
-	}
-
-	//logout event, invalidate session
-	public String logout() {
-		HttpSession session = SessionController.getSession();
-		session.invalidate();
-		return "login";
 	}
 }
 

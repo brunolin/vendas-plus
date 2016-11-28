@@ -37,6 +37,11 @@ public class EmpresaBean implements Serializable {
 		this.empresa = empresa;
 	}
 
+	/**
+	 * Envia uma EmpresaDTO para a controller, caso esteja tudo ok, o usuário será direcionado para a tela de login
+	 * @return
+	 * @throws IOException
+	 */
 	public String incluir() throws IOException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		
