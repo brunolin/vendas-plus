@@ -28,4 +28,5 @@ public class VendedorController {
 		
 		return vendedorDAO.getCampanhas();
 	}
+	
 }
