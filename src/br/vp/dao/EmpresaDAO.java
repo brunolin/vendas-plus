@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import br.vp.dto.EmpresaDTO;
 import br.vp.dto.ProdutoDTO;
 import br.vp.dto.VendasDTO;
-import br.vp.dto.VendedorDTO;
 import br.vp.jdbc.Conexao;
 /**
  * 

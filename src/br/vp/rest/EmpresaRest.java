@@ -10,6 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import br.vp.controller.EmpresaController;
 import br.vp.dao.EmpresaDAO;
 import br.vp.dto.EmpresaDTO;
 import br.vp.dto.LogadoDTO;
@@ -25,6 +26,8 @@ import br.vp.dto.VendasDTO;;
 @Consumes(MediaType.APPLICATION_JSON)
 public class EmpresaRest {
 	
+	EmpresaController controller = new EmpresaController();
+	
 	/**
 	 * Responsável por cadastrar uma nova campanha
 	 * @param produto
@@ -32,9 +35,7 @@ public class EmpresaRest {
 	@POST
 	@Path("cadastrarCampanha")
 	public void cadastrarCampanha(ProdutoDTO produto) {
-		
-		EmpresaDAO empresaDAO = new EmpresaDAO();
-		empresaDAO.cadastroCampanha(produto);
+		controller.cadastrarCampanha(produto);
     }
 	
 	/**
@@ -44,9 +45,7 @@ public class EmpresaRest {
 	@POST
 	@Path("atualizarCampanha")
 	public void atualizarCampanha(ProdutoDTO produto) {
-		
-		EmpresaDAO empresaDAO = new EmpresaDAO();
-		empresaDAO.atualizarCampanha(produto);
+		controller.atualizarCampanha(produto);
     }
 	
 	/**
@@ -57,11 +56,7 @@ public class EmpresaRest {
 	@POST
 	@Path("getInfoEmpresa")
 	public EmpresaDTO getInfoEmpresa(LogadoDTO login) {
-		
-		EmpresaDAO empresaDAO = new EmpresaDAO();
-		
-		EmpresaDTO empresa = empresaDAO.getInfoEmpresa(login.getUsername().toString());
-		
+		EmpresaDTO empresa = controller.getInfoEmpresa(login);
 		return empresa;
     }	
 	
@@ -73,11 +68,7 @@ public class EmpresaRest {
 	@GET
 	@Path("notasPendentes/{id}")
 	public ArrayList<VendasDTO> notasPendentes(@PathParam("id") int id) {
-		
-		EmpresaDAO empresaDAO = new EmpresaDAO();
-		ArrayList<VendasDTO> vendas = empresaDAO.notasPendentes(id);
-		
-		return vendas;
+		return controller.notasPendentes(id);
 	}
 	
 	/**
@@ -88,11 +79,7 @@ public class EmpresaRest {
 	@GET
 	@Path("getCampanhas/{id}")
 	public ArrayList<ProdutoDTO> getCampanhas(@PathParam("id") int id) {
-		
-		EmpresaDAO empresaDAO = new EmpresaDAO();
-		ArrayList<ProdutoDTO> produtos = empresaDAO.getCampanhas(id);
-		
-		return produtos;
+		return controller.getCampanhasId(id);
 	}
 	
 	/**
@@ -103,11 +90,7 @@ public class EmpresaRest {
 	@GET
 	@Path("getNotasEmpresa/{id}")
 	public ArrayList<VendasDTO> getNotasEmpresa(@PathParam("id") int id) {
-		
-		EmpresaDAO empresaDAO = new EmpresaDAO();
-		ArrayList<VendasDTO> produtos = empresaDAO.getNotasEmpresa(id);
-		
-		return produtos;
+		return controller.getNotasEmpresa(id);
 	}
 	
 	/**
@@ -118,10 +101,7 @@ public class EmpresaRest {
 	@POST
 	@Path("confirmarNota")
 	public boolean confirmarNota(VendasDTO venda) {
-		
-		EmpresaDAO empresaDAO = new EmpresaDAO();
-		
-		return empresaDAO.confirmarVenda(venda);
+		return controller.confirmarNota(venda);
 	}
 	
 	/**
@@ -132,9 +112,6 @@ public class EmpresaRest {
 	@POST
 	@Path("reprovarNota")
 	public boolean reprovarNota(VendasDTO venda) {
-		
-		EmpresaDAO empresaDAO = new EmpresaDAO();
-		
-		return empresaDAO.reprovarVenda(venda);
+		return controller.reprovarNota(venda);
 	}
 }

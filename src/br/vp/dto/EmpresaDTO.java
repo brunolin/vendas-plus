@@ -1,6 +1,10 @@
 package br.vp.dto;
 
+import br.vp.model.Empresa;
+
 public class EmpresaDTO {
+
+	public Empresa empresa;
 
 	public int idEmpresa;
 	public Long telefone, cnpj;
@@ -84,13 +88,4 @@ public class EmpresaDTO {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-	@Override
-	public String toString() {
-		return "EmpresaDTO [idEmpresa=" + idEmpresa + ", telefone=" + telefone + ", cnpj=" + cnpj + ", nomeEmpresa="
-				+ nomeEmpresa + ", cidade=" + cidade + ", estado=" + estado + ", email=" + email + ", senha=" + senha + "]";
-	}
-	
-	
-	
 }

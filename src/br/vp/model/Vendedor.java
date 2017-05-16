@@ -92,8 +92,4 @@ public class Vendedor {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-	
-	
-
 }

@@ -1,7 +1,5 @@
 package br.vp.model;
 
-import java.sql.Date;
-
 public class Vendas {
 	
 	public int idProduto, idVendedor, idEmpresa;

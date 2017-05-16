@@ -1,5 +1,7 @@
 package br.vp.dto;
 
+import br.vp.model.ValidateBonus;
+
 public class ValidateBonusDTO {
 	
 	public int pontos;
@@ -24,5 +26,4 @@ public class ValidateBonusDTO {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	
 }

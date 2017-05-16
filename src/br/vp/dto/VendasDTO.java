@@ -1,7 +1,5 @@
 package br.vp.dto;
 
-import java.sql.Date;
-
 public class VendasDTO {
 	
 	public int idProduto, idVendedor, idEmpresa;
@@ -66,6 +64,5 @@ public class VendasDTO {
 	public void setData(String data) {
 		this.data = data;
 	}
-	
 	
 }

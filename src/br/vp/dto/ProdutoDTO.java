@@ -1,7 +1,7 @@
 package br.vp.dto;
 
 public class ProdutoDTO {
-	
+
 	public int idProduto, idEmpresa, pontosRecompensa;
 	public String nomeProduto, img, inicioCampanha, vigenciaCampanha;
 	
@@ -64,6 +64,5 @@ public class ProdutoDTO {
 	public void setVigenciaCampanha(String vigenciaCampanha) {
 		this.vigenciaCampanha = vigenciaCampanha;
 	}
-	
 	
 }
