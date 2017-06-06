@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "=//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory>
+  <!-- Dialeto e Driver para Oracle -->
+  <property name="dialect">org.hibernate.dialect.OracleDialect</property>
+  
+  <!-- Detalhes do Banco de Dados-->
+  <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+  <property name="connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
+  <property name="connection.username">system</property>
+  <property name="connection.password">3101wjs</property>
+  
+  <!-- Propriedades Adicionais -->
+  <property name="connection.pool_size">1</property>
+  <property name="hibernate.default_schema">system</property>
+  <property name="hibernate.current_session_context_class">thread</property>
+  <property name="show_sql">true</property>
+  <property name="hbm2ddl.auto">validate</property>
+  
+  <!-- Mapeamento das Classes -->
+  <mapping class="br.vp.dto.ProdutoDTO"/>
+  
+ </session-factory>
+</hibernate-configuration>

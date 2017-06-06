@@ -1,9 +1,35 @@
 package br.vp.dto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity()
+@Table(name="TB_PRODUTO", schema="system")
 public class ProdutoDTO {
 
-	public int idProduto, idEmpresa, pontosRecompensa;
-	public String nomeProduto, img, inicioCampanha, vigenciaCampanha;
+    @Id()
+    @Column(name="ID_PRODUTO")
+	public int idProduto;
+    
+    @Column(name="ID_EMPRESA")
+    public int idEmpresa;
+    
+    @Column(name="PONTOS_RECOMPENSA")
+    public int pontosRecompensa;
+	
+    @Column(name="NOME_PRODUTO")
+	public String nomeProduto;
+    
+    @Column(name="IMG")
+	public String img;
+    
+    @Column(name="INICIO_CAMPANHA")
+	public String inicioCampanha;
+    
+    @Column(name="VIGENCIA_CAMPANHA")
+	public String vigenciaCampanha;
 	
 	public ProdutoDTO() {
 		

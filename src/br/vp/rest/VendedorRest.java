@@ -1,6 +1,7 @@
 package br.vp.rest;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -34,8 +35,8 @@ public class VendedorRest {
 	 */
 	@GET
 	@Path("getCampanhas")
-	public ArrayList<ProdutoDTO> getProdutos() {
-		ArrayList<ProdutoDTO> produtos = controller.getCampanhas();
+	public List<ProdutoDTO> getProdutos() {
+		List<ProdutoDTO> produtos = controller.getCampanhas();
 		return produtos;
 	}
 	

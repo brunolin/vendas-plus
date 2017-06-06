@@ -1,8 +1,12 @@
 package br.vp.controller;
 
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import br.vp.dao.VendedorDAO;
+import br.vp.dao.hibernate.VendedorDaoHibernate;
 import br.vp.dto.BonusDTO;
 import br.vp.dto.LogadoDTO;
 import br.vp.dto.ProdutoDTO;
@@ -19,9 +23,11 @@ import br.vp.dto.VendedorDTO;
 public class VendedorController {
 	
  	VendedorDAO vendedorDAO;
+ 	VendedorDaoHibernate vendedorHibernate;
  	
 	public VendedorController() {
 		vendedorDAO = new VendedorDAO();
+		vendedorHibernate = new VendedorDaoHibernate();
 	}
 
 	public boolean cadastroVendedor(VendedorDTO vendedor){
@@ -29,8 +35,10 @@ public class VendedorController {
 		return vendedorDAO.cadastroVendedor(vendedor);
 	}
 	
-	public ArrayList<ProdutoDTO> getCampanhas(){	
-		return vendedorDAO.getCampanhas();
+	public List<ProdutoDTO> getCampanhas(){	
+		//return vendedorDAO.getCampanhas();
+		return vendedorHibernate.getCampanhas();
+
 	}
 	
 	public VendedorDTO getInfoVendedor(LogadoDTO login) {
@@ -58,6 +66,4 @@ public class VendedorController {
 		validacao = vendedorDAO.resgatarBonus(bonus.getPontos(), bonus.getCpf());
 		return validacao;
 	}
-	
-	
 }
