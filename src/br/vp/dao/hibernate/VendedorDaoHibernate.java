@@ -32,14 +32,14 @@ public class VendedorDaoHibernate {
         List<ProdutoDTO> tLista = new ArrayList<>();
 
         try {
-            /*SessionFactory tFactory = HibernateUtil.getSessionFactory();
-            Session tSessao = tFactory.getCurrentSession();*/
+            SessionFactory tFactory = HibernateUtil.getSessionFactory();
+            Session tSessao = tFactory.getCurrentSession();
             
-    		@SuppressWarnings("deprecation")
+    		/*@SuppressWarnings("deprecation")
 			SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
-    		Session session = sessions.openSession();
+    		Session session = sessions.openSession();*/
             
-            Query tQuery = session.createQuery("FROM ProdutoDTO");
+            Query tQuery = tSessao.createQuery("FROM ProdutoDTO");
             tLista = tQuery.list();
 
         } catch (HibernateException tExcept) {
