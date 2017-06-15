@@ -1,5 +1,7 @@
 package br.vp.rest;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import br.vp.controller.VendedorController;
@@ -50,6 +53,23 @@ public class VendedorRest {
 	public VendedorDTO getInfoVendedor(LogadoDTO login) {		
 		VendedorDTO vendedor = 	controller.getInfoVendedor(login);	
 		return vendedor;
+	}
+	
+	@SuppressWarnings("finally")
+	@GET
+	@Path("getInfoVendedorByEmail")
+	public VendedorDTO getInfoVendedorByEmail(@QueryParam("email") String email) {
+		
+		System.out.println(email);
+		
+		VendedorDTO vendedor = new VendedorDTO();
+		try {
+			vendedor = controller.getInfoVendedorByEmail(URLDecoder.decode(email, "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} finally {
+			return vendedor;			
+		}
 	}
 	
 	/**

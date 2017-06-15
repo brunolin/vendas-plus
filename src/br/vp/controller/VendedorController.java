@@ -45,6 +45,10 @@ public class VendedorController {
 		return vendedorDAO.getInfoVendedor(login.getUsername());
 	}
 	
+	public VendedorDTO getInfoVendedorByEmail(String email) {
+		return vendedorDAO.getInfoVendedorByEmail(email);
+	}
+	
 	public String cadastrarNota(VendasDTO venda) {
 		if(vendedorDAO.cadastroVenda(venda)) {
 			return "200";

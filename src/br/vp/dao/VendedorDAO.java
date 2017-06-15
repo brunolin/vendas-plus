@@ -105,6 +105,43 @@ public class VendedorDAO {
 		}
 	}
 	
+	public VendedorDTO getInfoVendedorByEmail(String email) {
+		String query = "SELECT * FROM TB_VENDEDOR WHERE EMAIL = ?";
+		
+		System.out.println(email);
+		VendedorDTO vendedor = new VendedorDTO();
+		try {
+
+			Connection myConnection = Conexao.getConexao();
+			PreparedStatement pstm = myConnection.prepareStatement(query);
+
+			pstm.setString(1, email);
+
+			ResultSet rs = pstm.executeQuery();
+			
+			while(rs.next()){				
+				vendedor.setPontos(rs.getInt("PONTOS"));
+				vendedor.setNome(rs.getString("NOME_VENDEDOR"));
+				vendedor.setCidade(rs.getString("CIDADE"));
+				vendedor.setEstado(rs.getString("ESTADO"));
+				vendedor.setEmail(rs.getString("EMAIL"));
+				vendedor.setTelefone(rs.getLong("TELEFONE"));
+			}
+			System.out.println("Buscando informacoes do vendedor " + vendedor.getNome() + " por EMAIL");
+			Conexao.desconectar();
+
+			return vendedor;
+
+		} catch (SQLException e) {
+
+			Conexao.desconectar();
+			e.printStackTrace();
+			System.out.println("Algo de errado na consulta de dados do vendedor!");
+			
+			return vendedor;
+		}
+	}
+	
 	/**
 	 * Método responsável por retornar infomações de um vendedor específico pelo seu ID
 	 * @param id

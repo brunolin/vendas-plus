@@ -2,10 +2,18 @@ package br.vp.dto;
 
 public class LogadoDTO {
 	
-	public String username, type;
+	public String username, type, email;
 	
 	public LogadoDTO() {
 		
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getUsername() {
