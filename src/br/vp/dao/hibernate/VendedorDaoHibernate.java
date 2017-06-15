@@ -18,6 +18,7 @@ import org.hibernate.criterion.Restrictions;
 import br.vp.dto.ProdutoDTO;
 import br.vp.hibernate.HibernateUtil;
 import br.vp.jdbc.Conexao;
+import br.vp.model.Produto;
 
 public class VendedorDaoHibernate {
 	
@@ -26,9 +27,9 @@ public class VendedorDaoHibernate {
 	}
 	
 	@SuppressWarnings("unchecked")
-    public List<ProdutoDTO> getCampanhas() {
+    public List<Produto> getCampanhas() {
 
-        List<ProdutoDTO> tLista = new ArrayList<>();
+        List<Produto> tLista = new ArrayList<>();
 
         try {
             SessionFactory tFactory = HibernateUtil.getSessionFactory();
@@ -38,7 +39,7 @@ public class VendedorDaoHibernate {
 			SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
     		Session session = sessions.openSession();*/
             
-            Query tQuery = tSessao.createQuery("FROM ProdutoDTO");
+            Query tQuery = tSessao.createQuery("FROM Produto");
             tLista = tQuery.list();
 
         } catch (HibernateException tExcept) {

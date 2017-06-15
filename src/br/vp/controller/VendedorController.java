@@ -13,6 +13,7 @@ import br.vp.dto.ProdutoDTO;
 import br.vp.dto.ValidateBonusDTO;
 import br.vp.dto.VendasDTO;
 import br.vp.dto.VendedorDTO;
+import br.vp.model.Produto;
 
 
 /**
@@ -35,10 +36,22 @@ public class VendedorController {
 		return vendedorDAO.cadastroVendedor(vendedor);
 	}
 	
-	public List<ProdutoDTO> getCampanhas(){	
-		//return vendedorDAO.getCampanhas();
-		return vendedorHibernate.getCampanhas();
-
+	public List<ProdutoDTO> getCampanhas(){		
+		ProdutoDTO produtoDTO;
+		List<ProdutoDTO> produtosDTO = new ArrayList<ProdutoDTO>();
+		
+		List<Produto> produtos = vendedorHibernate.getCampanhas();
+		
+		for(Produto produto : produtos) {
+			
+			produtoDTO = new ProdutoDTO();
+			produtoDTO.setNomeProduto(produto.getNomeProduto());
+			produtoDTO.setPontosRecompensa(produto.getPontosRecompensa());
+			produtoDTO.setImg(produto.getImg());
+			
+			produtosDTO.add(produtoDTO);
+		}
+		return produtosDTO;
 	}
 	
 	public VendedorDTO getInfoVendedor(LogadoDTO login) {

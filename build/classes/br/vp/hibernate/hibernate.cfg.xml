@@ -20,7 +20,7 @@
   <property name="hbm2ddl.auto">validate</property>
   
   <!-- Mapeamento das Classes -->
-  <mapping class="br.vp.dto.ProdutoDTO"/>
+  <mapping class="br.vp.model.Produto"/>
   
  </session-factory>
 </hibernate-configuration>
