@@ -21,6 +21,10 @@
   
   <!-- Mapeamento das Classes -->
   <mapping class="br.vp.model.Produto"/>
+  <mapping class="br.vp.model.Empresa"/>
+  <mapping class="br.vp.model.Bonus"/>
+  <mapping class="br.vp.model.Vendedor"/>
+  <mapping class="br.vp.model.Vendas"/>
   
  </session-factory>
 </hibernate-configuration>

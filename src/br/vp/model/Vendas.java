@@ -1,9 +1,36 @@
 package br.vp.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity()
+@Table(name="TB_VENDAS", schema="system")
+
 public class Vendas {
 	
-	public int idProduto, idVendedor, idEmpresa;
-	public String nomeProduto, data, idVenda, aprovada;
+    @Id()
+    @Column(name="ID_VENDA")
+    public String idVenda;
+    
+    @Column(name="DATA_VENDA")
+	public String data;
+    
+    @Column(name="NOME_PRODUTO")
+    public String nomeProduto;
+	
+    @Column(name="APROVADA")
+	public String aprovada;
+    
+    @Column(name="ID_PRODUTO")
+	public int idProduto;
+    
+    @Column(name="ID_VENDEDOR")
+	public int idVendedor;
+    
+    @Column(name="ID_EMPRESA")
+	public int idEmpresa;
 	
 	public Vendas() {
 		

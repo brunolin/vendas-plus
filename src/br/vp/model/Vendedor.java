@@ -1,10 +1,41 @@
 package br.vp.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity()
+@Table(name="TB_VENDEDOR", schema="system")
 public class Vendedor {
 	
-	public int idVendedor, pontos;
+    @Id()
+    @Column(name="ID_VENDEDOR")
+	public int idVendedor;
+    
+    @Column(name="PONTOS")
+	public int pontos;
+    
+    @Column(name="TELEFONE")
 	public Long telefone;
-	public String nome, email, cidade, estado, senha, cpf;
+    
+    @Column(name="NOME")
+	public String nome;
+    
+    @Column(name="EMAIL")
+	public String email;
+    
+    @Column(name="CIDADE")
+	public String cidade;
+    
+    @Column(name="ESTADO")
+	public String estado;
+    
+    @Column(name="SENHA")
+	public String senha;
+    
+    @Column(name="CPF")
+	public String cpf;
 	
 	public Vendedor() {
 		

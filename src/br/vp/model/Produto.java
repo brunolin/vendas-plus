@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Table(name="TB_PRODUTO", schema="system")
 public class Produto {
 	
-	   @Id()
+	    @Id()
 	    @Column(name="ID_PRODUTO")
 		public int idProduto;
 	    

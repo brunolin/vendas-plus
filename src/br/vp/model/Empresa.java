@@ -1,10 +1,38 @@
 package br.vp.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity()
+@Table(name="TB_EMPRESA", schema="system")
 public class Empresa {
 
+    @Id()
+    @Column(name="ID_EMPRESA")
 	public int idEmpresa;
-	public Long telefone, cnpj;
-	public String nomeEmpresa, cidade, estado, email, senha;
+	
+    @Column(name="TELEFONE")
+	public Long telefone;
+    
+    @Column(name="CNPJ")
+	public Long cnpj;
+    
+    @Column(name="NOME_EMPRESA")
+	public String nomeEmpresa;
+    
+    @Column(name="CIDADE")
+	public String cidade;
+    
+    @Column(name="ESTADO")
+	public String estado;
+    
+    @Column(name="EMAIL")
+	public String email;
+    
+    @Column(name="SENHA")
+	public String senha;
 	
 	public Empresa(){
 		
