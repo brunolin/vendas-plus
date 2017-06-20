@@ -90,8 +90,8 @@ public class VendedorRest {
 	 */
 	@GET
 	@Path("getNotasVendedor/{id}")
-	public ArrayList<VendasDTO> getNotas(@PathParam("id") int id){
-		ArrayList<VendasDTO> vendas = controller.getNotas(id);
+	public List<VendasDTO> getNotas(@PathParam("id") int id){
+		List<VendasDTO> vendas = controller.getNotas(id);
 		return vendas;
 	}
 	

@@ -2,7 +2,10 @@ package br.vp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity()
@@ -11,6 +14,8 @@ public class Empresa {
 
     @Id()
     @Column(name="ID_EMPRESA")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_seq")
+	@SequenceGenerator(name = "id_seq", sequenceName = "id_seq", allocationSize = 1)
 	public int idEmpresa;
 	
     @Column(name="TELEFONE")

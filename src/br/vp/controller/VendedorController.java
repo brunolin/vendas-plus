@@ -7,13 +7,8 @@ import java.util.List;
 
 import br.vp.dao.VendedorDAO;
 import br.vp.dao.hibernate.VendedorDaoHibernate;
-import br.vp.dto.BonusDTO;
-import br.vp.dto.LogadoDTO;
-import br.vp.dto.ProdutoDTO;
-import br.vp.dto.ValidateBonusDTO;
-import br.vp.dto.VendasDTO;
-import br.vp.dto.VendedorDTO;
-import br.vp.model.Produto;
+import br.vp.dto.*;
+import br.vp.model.*;
 
 
 /**
@@ -31,9 +26,19 @@ public class VendedorController {
 		vendedorHibernate = new VendedorDaoHibernate();
 	}
 
-	public boolean cadastroVendedor(VendedorDTO vendedor){
-
-		return vendedorDAO.cadastroVendedor(vendedor);
+	public boolean cadastroVendedor(VendedorDTO vendedorDTO){
+		Vendedor vendedor = new Vendedor();
+		
+		vendedor.setNome(vendedorDTO.getNome());
+		vendedor.setCidade(vendedorDTO.getCidade());	
+		vendedor.setCpf(vendedorDTO.getCpf());
+		vendedor.setEmail(vendedorDTO.getCpf());
+		vendedor.setEstado(vendedorDTO.getEstado());
+		vendedor.setPontos(0);
+		vendedor.setSenha(vendedorDTO.getSenha());
+		vendedor.setTelefone(vendedorDTO.getTelefone());
+		
+		return vendedorHibernate.cadastroVendedor(vendedor);
 	}
 	
 	public List<ProdutoDTO> getCampanhas(){		
@@ -55,23 +60,67 @@ public class VendedorController {
 	}
 	
 	public VendedorDTO getInfoVendedor(LogadoDTO login) {
-		return vendedorDAO.getInfoVendedor(login.getUsername());
+		try {		
+			VendedorDTO vendedorDTO = new VendedorDTO();
+			Vendedor vendedor = vendedorHibernate.getInfoVendedor(login.getUsername());
+			
+			vendedorDTO.setNome(vendedor.getNome());
+			vendedorDTO.setPontos(vendedor.getPontos());
+			vendedorDTO.setIdVendedor(vendedor.getIdVendedor());
+			
+			return vendedorDTO;
+		} catch (NullPointerException e) {
+			System.out.println("Salve");
+		}
+		
+		return null;
 	}
 	
 	public VendedorDTO getInfoVendedorByEmail(String email) {
+		//TODO
 		return vendedorDAO.getInfoVendedorByEmail(email);
 	}
 	
-	public String cadastrarNota(VendasDTO venda) {
-		if(vendedorDAO.cadastroVenda(venda)) {
-			return "200";
-		} else {
-			return null;
-		}
+	public String cadastrarNota(VendasDTO vendaDTO) {
+		Vendas venda = new Vendas();
+		
+		venda.setNomeProduto(vendaDTO.getNomeProduto());
+		venda.setAprovada("F");
+		venda.setData(vendaDTO.getData());
+		venda.setIdEmpresa(vendaDTO.getIdEmpresa());
+		venda.setIdProduto(vendaDTO.getIdProduto());
+		venda.setIdVenda(vendaDTO.getIdVenda());
+		venda.setIdVendedor(vendaDTO.getIdVendedor());
+		
+		return vendedorHibernate.cadastroVenda(venda) ? "200" : null;
 	}
 	
-	public ArrayList<VendasDTO> getNotas(int id) {
-		return vendedorDAO.getNotasVendedor(id);
+	public List<VendasDTO> getNotas(int id) {
+		VendasDTO vendaDTO;
+		List<VendasDTO> vendasDTO = new ArrayList<VendasDTO>();
+		
+		List<Vendas> vendas = vendedorHibernate.getNotasVendedor(id);
+		
+		try{
+			for(Vendas venda : vendas) {
+				
+				vendaDTO = new VendasDTO(); 
+	
+				vendaDTO.setNomeProduto(venda.getNomeProduto());
+				vendaDTO.setData(venda.getData());
+				vendaDTO.setIdProduto(venda.getIdProduto());
+				vendaDTO.setIdVenda(venda.getIdVenda());
+				vendaDTO.setAprovada(venda.getAprovada());
+				
+				vendasDTO.add(vendaDTO);
+			}
+			
+			return vendasDTO;
+		} catch(NullPointerException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 	public ArrayList<BonusDTO> getBonus() {
@@ -79,8 +128,6 @@ public class VendedorController {
 	}
 	
 	public boolean resgatarBonus(ValidateBonusDTO bonus) {
-		boolean validacao;
-		validacao = vendedorDAO.resgatarBonus(bonus.getPontos(), bonus.getCpf());
-		return validacao;
+		return vendedorHibernate.resgatarBonus(bonus.getPontos(), bonus.getCpf());
 	}
 }

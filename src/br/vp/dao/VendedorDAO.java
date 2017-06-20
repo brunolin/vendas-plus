@@ -351,7 +351,7 @@ public class VendedorDAO {
 	 * @return
 	 */
 	public ArrayList<VendasDTO> getNotasVendedor(int id) {
-		
+		//ok
 		String query = "SELECT * FROM TB_VENDAS WHERE ID_VENDEDOR = ?";
 		
 		try {
