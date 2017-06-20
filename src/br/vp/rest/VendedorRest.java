@@ -101,8 +101,8 @@ public class VendedorRest {
 	 */
 	@GET
 	@Path("getBonus")
-	public ArrayList<BonusDTO> getBonus() {
-		ArrayList<BonusDTO> produtos = controller.getBonus();
+	public List<BonusDTO> getBonus() {
+		List<BonusDTO> produtos = controller.getBonus();
 		return produtos;
 	}
 	

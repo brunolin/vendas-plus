@@ -77,8 +77,23 @@ public class VendedorController {
 	}
 	
 	public VendedorDTO getInfoVendedorByEmail(String email) {
-		//TODO
-		return vendedorDAO.getInfoVendedorByEmail(email);
+		try {		
+			VendedorDTO vendedorDTO = new VendedorDTO();
+			Vendedor vendedor = vendedorHibernate.getInfoVendedorByEmail(email);
+			
+			vendedorDTO.setNome(vendedor.getNome());
+			vendedorDTO.setPontos(vendedor.getPontos());
+			vendedorDTO.setCidade(vendedor.getCidade());
+			vendedorDTO.setEstado(vendedor.getEstado());
+			vendedorDTO.setEmail(vendedor.getEmail());
+			vendedorDTO.setTelefone(vendedor.getTelefone());
+			
+			return vendedorDTO;
+		} catch (NullPointerException e) {
+			System.out.println("Salve");
+		}
+		
+		return null;
 	}
 	
 	public String cadastrarNota(VendasDTO vendaDTO) {
@@ -123,8 +138,23 @@ public class VendedorController {
 		return null;
 	}
 	
-	public ArrayList<BonusDTO> getBonus() {
-		return vendedorDAO.getBonus();
+	public List<BonusDTO> getBonus() {
+		BonusDTO bonusDTO;
+		List<BonusDTO> bonusDTOList = new ArrayList<BonusDTO>();
+		List<Bonus> bonusList = vendedorHibernate.getBonus();
+		
+		for(Bonus bonus : bonusList) {
+			bonusDTO = new BonusDTO();
+			
+			bonusDTO.setDescricao(bonus.getDescricao());
+			bonusDTO.setIdBonus(bonus.getIdBonus());
+			bonusDTO.setNome(bonus.getNome());
+			bonusDTO.setPontosNecessarios(bonus.getPontosNecessarios());
+			
+			bonusDTOList.add(bonusDTO);
+		}
+		
+		return bonusDTOList;
 	}
 	
 	public boolean resgatarBonus(ValidateBonusDTO bonus) {

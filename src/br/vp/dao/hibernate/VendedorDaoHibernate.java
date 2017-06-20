@@ -35,15 +35,11 @@ public class VendedorDaoHibernate {
             SessionFactory tFactory = HibernateUtil.getSessionFactory();
             Session tSessao = tFactory.getCurrentSession();
             
-    		/*@SuppressWarnings("deprecation")
-			SessionFactory sessions = new AnnotationConfiguration().configure().buildSessionFactory();
-    		Session session = sessions.openSession();*/
-            
             Query tQuery = tSessao.createQuery("FROM Produto");
             tLista = tQuery.list();
 
         } catch (HibernateException tExcept) {
-        	mostrarErro(tExcept, "Erro no método de recuperação da lista de Livros");
+        	mostrarErro(tExcept, "Erro no método de recuperação da lista de Produtos");
         }
         return tLista;
     }
@@ -138,6 +134,45 @@ public class VendedorDaoHibernate {
 
             Criteria tCriterio = tSessao.createCriteria(Vendedor.class)
                     .add(Restrictions.like("cpf", cpf));
+            
+            vendedor = (Vendedor) tCriterio.list().get(0);
+
+            return vendedor;
+        }
+        catch (HibernateException tExcept) {
+            mostrarErro(tExcept, "Erro no método de vendas do Vendedor");
+        }
+		
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Bonus> getBonus() {
+		
+        List<Bonus> tLista = new ArrayList<>();
+
+        try {
+            SessionFactory tFactory = HibernateUtil.getSessionFactory();
+            Session tSessao = tFactory.getCurrentSession();
+            
+            Query tQuery = tSessao.createQuery("FROM Bonus");
+            tLista = tQuery.list();
+
+        } catch (HibernateException tExcept) {
+        	mostrarErro(tExcept, "Erro no método de recuperação da lista de Bonus");
+        }
+        return tLista;
+	}
+	
+	public Vendedor getInfoVendedorByEmail(String email) {
+		Vendedor vendedor = new Vendedor();
+		
+        try {
+            SessionFactory tFactory = HibernateUtil.getSessionFactory();
+            Session tSessao = tFactory.getCurrentSession();
+
+            Criteria tCriterio = tSessao.createCriteria(Vendedor.class)
+                    .add(Restrictions.like("email", email));
             
             vendedor = (Vendedor) tCriterio.list().get(0);
 
