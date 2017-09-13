@@ -10,7 +10,7 @@
   <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
   <property name="connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
   <property name="connection.username">system</property>
-  <property name="connection.password">3101wjs</property>
+  <property name="connection.password">1234566</property>
   
   <!-- Propriedades Adicionais -->
   <property name="connection.pool_size">1</property>

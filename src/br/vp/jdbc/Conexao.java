@@ -32,7 +32,7 @@ public class Conexao {
     	
     	String tURL = "jdbc:oracle:thin:@localhost:1521:XE";
     	String tUsuario = "system";
-    	String tSenha = "3101wjs";
+    	String tSenha = "1234566";
         try {
         	Class.forName("oracle.jdbc.driver.OracleDriver");
             // Caso a conexão já exista, verifica se está aberta e retorna ela

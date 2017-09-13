@@ -1,4 +1,4 @@
-angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap']).controller('mainCtrl', ['$scope', '$uibModal', 'alertify', '$http', function($scope, $uibModal, alertify, $http){
+angular.module('vendasPlusApp', ['ngFileUpload', 'ngAnimate', 'ngAlertify', 'ui.bootstrap']).controller('mainCtrl', ['$scope', '$uibModal', 'alertify', '$http', function($scope, $uibModal, alertify, $http){
 
   $scope.menu = {};
   $scope.user = undefined;
