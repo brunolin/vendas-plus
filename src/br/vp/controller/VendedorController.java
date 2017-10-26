@@ -53,6 +53,7 @@ public class VendedorController {
 			produtoDTO.setNomeProduto(produto.getNomeProduto());
 			produtoDTO.setPontosRecompensa(produto.getPontosRecompensa());
 			produtoDTO.setImg(produto.getImg());
+			produtoDTO.setInicioCampanha(produto.getInicioCampanha());
 			
 			produtosDTO.add(produtoDTO);
 		}
