@@ -79,11 +79,11 @@ public class EmpresaDAO {
 
 			Connection myConnection = Conexao.getConexao();
 			PreparedStatement pstm = myConnection.prepareStatement(query);
-
+			System.out.println(produto.toString());
 			pstm.setString(1, produto.getNomeProduto());
 			pstm.setInt(2, produto.getIdEmpresa());
-			pstm.setInt(3, produto.getPontosRecompensa());
-			pstm.setString(4, "no");
+			pstm.setLong(3, produto.getPontosRecompensa());
+			pstm.setString(4, produto.getImg());
 			pstm.setString(5, produto.getInicioCampanha());
 			pstm.setString(6, produto.getVigenciaCampanha());
 

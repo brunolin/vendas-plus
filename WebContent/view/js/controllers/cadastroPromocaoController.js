@@ -13,6 +13,7 @@ angular.module('vendasPlusApp').controller('cadastroPromocaoCtrl', ['$scope', '$
   $scope.save = function save() {
     $scope.loadingSuccess = true;
     $scope.promocao.idEmpresa = $scope.user.idEmpresa;
+    $scope.promocao.img = $scope.image64.base64;
     $http.post('/r/empresa/cadastrarCampanha', $scope.promocao).then(function(resp) {
       $scope.promocao = {};
       $scope.loadingSuccess = false;
@@ -29,6 +30,12 @@ angular.module('vendasPlusApp').controller('cadastroPromocaoCtrl', ['$scope', '$
 
   $scope.validForm = function() {
     return $scope.promocao.vigenciaCampanha && $scope.promocao.nomeProduto && $scope.promocao.pontosRecompensa;
+  }
+  
+  $scope.getImage64 = function getImage64(img) {
+    if($scope.image64) {
+      return 'data:image/jpeg;base64,' + $scope.image64.base64;
+    }
   }
 
   $scope.limpar = function limpar() {

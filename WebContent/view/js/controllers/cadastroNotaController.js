@@ -2,6 +2,7 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
 
   $scope.venda = {};
   $scope.loadingSuccess = false;
+  $scope.image64 = null;
 
   $http.get('/r/vendedor/getCampanhas').then(function(resp) {
     $scope.produtos = resp.data;
@@ -56,6 +57,7 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
 
   $scope.save = function save(){
     $scope.loadingSuccess = true;
+    $scope.venda.img = $scope.image64.base64;
 	  $http.post('/r/vendedor/cadastrarNota', $scope.venda).then(function(resp) {
       $scope.loadingSuccess = false;
       alertify.success('Nota adicionada!');
@@ -65,8 +67,9 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
     });
   }
 
-  $scope.getImage = function() {
+  $scope.getImage64 = function getImage64() {
     if($scope.image64) {
+    	debugger;
       return 'data:image/jpeg;base64,' + $scope.image64.base64;
     }
    }

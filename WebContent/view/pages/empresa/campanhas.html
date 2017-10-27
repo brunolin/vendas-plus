@@ -2,7 +2,7 @@
   <h3><i>Registre as suas vendas, acumule pontos e troque por produtos de sua preferência!</i></h3>
   <div class="produtos">
     <div ng-repeat="produto in produtos" class="w-200 produto">
-      <img ng-src="../img/produtos/{{produto.img}}.jpg"></img>
+      <img data-ng-src="{{getImage64(produto.img)}}"></img>
       <div>{{produto.nomeProduto}}</div>
       <div><strong>{{produto.pontosRecompensa}} pontos</strong></div>
     </div>
