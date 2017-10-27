@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap', 'naif.base64']).controller('mainCtrl', ['$scope', '$uibModal', 'alertify', '$http', function($scope, $uibModal, alertify, $http){
+=======
+angular.module('vendasPlusApp', ['ngFileUpload', 'ngAnimate', 'ngAlertify', 'ui.bootstrap']).controller('mainCtrl', ['$scope', '$uibModal', 'alertify', '$http', function($scope, $uibModal, alertify, $http){
+>>>>>>> 9c39b36146e0919d1535b0e441b4bad69efcd4dd
 
   $scope.menu = {};
   $scope.user = undefined;
@@ -21,6 +25,14 @@ angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap', 'nai
 	  }
 
   });
+  
+  $scope.logout = function logout() {
+	  $http.get('/r/controller/logout').then(function(resp) {
+		  if(resp.data){
+			  window.location = '/';
+		  }
+	  });
+  }
 
   alertify.defaults = {
         // dialogs defaults

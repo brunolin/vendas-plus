@@ -12,11 +12,17 @@ angular.module('vendasPlusApp').controller('editarPromocaoModalCtrl', ['$scope',
         alertify.success('Promoção alterada');
 
   			$uibModalInstance.close(resp);
-  		});
+  		}, function(err) {
+        alertify.success('Promoção não alterada');        
+      });
   	};
 
     $scope.options = {
       minDate: new Date(),
       showWeeks: true
     };
+    
+    $scope.validForm = function() {
+        return $scope.promocao.vigenciaCampanha && $scope.promocao.nomeProduto && $scope.promocao.pontosRecompensa;
+	}
 }]);

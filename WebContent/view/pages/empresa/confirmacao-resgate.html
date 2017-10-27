@@ -1,7 +1,7 @@
 <div class="row padding-20" ng-init="exec()">
   <div class="col-xs-12">
     <h3 class="text-align-center">Deseja realmente resgatar <strong>UM</strong></h3>
-    <h3 class="text-align-center">{{param.nomeProduto}} ?</h3>
+    <h3 class="text-align-center">{{param.produto.nomeBonus}} ?</h3>
 
     <div>
       <img class="margin-left-140" ng-src="../img/produtos/{{param.img}}.jpg"></img>
@@ -9,7 +9,7 @@
 
     <div class="padding-horizontal-150">
       <button type="button" class="btn btn-default" ng-click="modal.dismiss()">Cancelar</button>
-      <button type="button" class="btn btn-success float-right" ng-click="confirmar(param)"
+      <button type="button" class="btn btn-success float-right" ng-click="confirmarResgate(param)"
               ng-disabled="loadingSuccess">
         <i class="fa fa-circle-o-notch fa-spin" ng-if="loadingSuccess"></i>
         Confirmar

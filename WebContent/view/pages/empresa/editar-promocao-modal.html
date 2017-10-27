@@ -1,6 +1,6 @@
 <div class="padding-20">
   <h2>Editar dados da: {{promocao.nomeProduto}}</h2>
-  <form name="cadastroPromocao" class="margin-20">
+  <form name="editarPromocao" class="margin-20">
     <div class="form-group">
       <label for="exampleInputEmail1">Nome do produto</label>
       <input type="text" ng-model="promocao.nomeProduto" class="input-form form-control" placeholder="Nome">
@@ -17,7 +17,7 @@
     <div class="w-310">
       <button type="button" class="btn btn-default" ng-click="modal.dismiss()">Cancelar</button>
       <button type="button" class="btn btn-success float-right" ng-click="confirmar()"
-              ng-disabled="loadingSuccess">
+              ng-disabled="loadingSuccess || !validForm()">
         <i class="fa fa-circle-o-notch fa-spin" ng-if="loadingSuccess"></i>
         Confirmar
       </button>

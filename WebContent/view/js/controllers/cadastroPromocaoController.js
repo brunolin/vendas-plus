@@ -17,6 +17,8 @@ angular.module('vendasPlusApp').controller('cadastroPromocaoCtrl', ['$scope', '$
       $scope.promocao = {};
       $scope.loadingSuccess = false;
       alertify.success('Promoção adicionada!');
+    }, function(err) {
+        alertify.success('Promoção não adicionada');        
     });
   };
 
@@ -24,6 +26,10 @@ angular.module('vendasPlusApp').controller('cadastroPromocaoCtrl', ['$scope', '$
     minDate: new Date(),
     showWeeks: true
   };
+
+  $scope.validForm = function() {
+    return $scope.promocao.vigenciaCampanha && $scope.promocao.nomeProduto && $scope.promocao.pontosRecompensa;
+  }
 
   $scope.limpar = function limpar() {
     $scope.promocao = {};

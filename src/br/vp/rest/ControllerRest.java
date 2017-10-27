@@ -14,6 +14,11 @@ import br.vp.dto.LogadoDTO;
 @Produces(MediaType.APPLICATION_JSON)
 public class ControllerRest {
 	
+	/**
+	 * Retorna os dados do usuários resgatados da sessão
+	 * @param request
+	 * @return
+	 */
 	@GET
 	@Path("user")
 	public LogadoDTO user(@Context HttpServletRequest request){		
@@ -30,7 +35,26 @@ public class ControllerRest {
 			System.out.println(ex);
 			return null;
 		}
-		
-
 	}
+	
+	/**
+	 * Tira o usuário da sessão
+	 * @param request
+	 * @return
+	 */
+	@GET
+	@Path("logout")
+	public boolean logout(@Context HttpServletRequest request){		
+		
+		try{
+			HttpSession session = request.getSession();
+			session.invalidate();
+			
+			return true;
+			
+		} catch(NullPointerException ex) {
+			System.out.println(ex);
+			return false;
+		}
+	}	
 }

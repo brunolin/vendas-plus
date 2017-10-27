@@ -1,11 +1,26 @@
 angular.module('vendasPlusApp').controller('resgateCtrl', ['$scope', '$uibModal', '$http', function($scope, $uibModal, $http){
 
-  $scope.produtos = [
-    {id: 1, nomeProduto: 'Produto 1', img: 'mixer', pontosRecompensa: 250},
-    {id: 2, nomeProduto: 'Produto 2', img: 'liquidificador', pontosRecompensa: 780},
-    {id: 3, nomeProduto: 'Produto 3', img: 'mixer', pontosRecompensa: 2500},
-  ]
-
+  $scope.produtos = [];
+  
+  $http.get('/r/controller/user').then(function(resp) {
+	  $scope.type = resp.data.type;
+	  $scope.cpf = resp.data.username;
+	  $http.post('/r/vendedor/getInfoVendedor', resp.data).then(function(resp) {
+		  $scope.user = resp.data; 
+	  });		  
+});
+  
+  $http.get('/r/vendedor/getBonus').then(function(resp) {
+	  $scope.produtos = resp.data;
+  });
+  
+  $scope.canGetItem = function canGetItem(produto) {
+	  if($scope.user.pontos >= produto.pontosNecessarios){
+		  return true;
+	  }
+	  
+	  return false;
+  };
 
   $scope.resgateProduto = function resgateProduto(produto){
     $uibModal.open(
@@ -15,7 +30,10 @@ angular.module('vendasPlusApp').controller('resgateCtrl', ['$scope', '$uibModal'
        size: 'md',
        resolve: {
             params: function () {
-                return produto
+                return {
+                	'produto': produto,
+                	'cpf': $scope.cpf 
+                }
             }
       }
     });

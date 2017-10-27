@@ -11,7 +11,12 @@ import javax.inject.Named;
 
 import br.vp.controller.VendedorController;
 import br.vp.dto.VendedorDTO;
-
+/**
+ * 
+ * @author Brunolin
+ *	Classe Bean responsável pela tela de cadastro de vendedor
+ *	com metodo de incluir que faz ligação com a controller da vendedor
+ */
 @Named("vendedorBean")
 @SessionScoped
 public class VendedorBean implements Serializable {
@@ -33,7 +38,12 @@ public class VendedorBean implements Serializable {
 	public void setVendedor(VendedorDTO vendedor) {
 		this.vendedor = vendedor;
 	}
-
+	
+	/**
+	 * Envia uma VendedorDTO para a controller, caso esteja tudo ok, o usuário será direcionado para a tela de login
+	 * @return
+	 * @throws IOException
+	 */
 	public String incluir() throws IOException {
 		FacesContext context = FacesContext.getCurrentInstance();
 
@@ -52,7 +62,7 @@ public class VendedorBean implements Serializable {
 		} else {
 
 			System.out.println("vendedor nï¿½o inserido");
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "vendedor nï¿½o adicionado", ""));
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "vendedor não adicionado", ""));
 		}
 		
 		return "index";

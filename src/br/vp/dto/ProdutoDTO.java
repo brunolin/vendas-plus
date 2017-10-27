@@ -65,5 +65,4 @@ public class ProdutoDTO {
 		this.vigenciaCampanha = vigenciaCampanha;
 	}
 	
-	
 }

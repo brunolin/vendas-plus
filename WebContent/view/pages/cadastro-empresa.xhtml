@@ -19,46 +19,57 @@
 			<h:form name="cadastroEmpresa">
 				<div class="form-group">
 			    	<h:outputLabel value="Nome da empresa" />
-	    			<h:inputText class="form-control" pt:placeholder="Nome" value="#{empresaBean.empresa.nomeEmpresa}" />
+	    			<h:inputText class="form-control" pt:placeholder="Nome" value="#{empresaBean.empresa.nomeEmpresa}" validatorMessage="Nome é obrigatorio" >
+	    				<f:validateRequired  />
+	    			</h:inputText>
 	    		</div>
 	    		<div class="form-group">
 					<h:outputLabel value="CNPJ" />
-	    			<h:inputText class="form-control cnpj" pt:placeholder="CNPJ" value="#{empresaBean.empresa.cnpj}">
-	    				<f:converter converterId="javax.faces.Long" />
+	    			<h:inputText class="form-control cnpj" pt:placeholder="CNPJ" value="#{empresaBean.empresa.cnpj}" validatorMessage="CNPJ é obrigatorio(14 dígitos)">
+	    				<f:validateLength minimum="14"/>
 	    			</h:inputText>
 	    		</div>
           <div class="row">
 	           <div class="form-group col-sm-6">
 					     <h:outputLabel value="Estado" />
-	    			   <h:inputText class="form-control" pt:placeholder="Estado" value="#{empresaBean.empresa.estado}" />
+	    			   <h:inputText class="form-control" pt:placeholder="Estado" value="#{empresaBean.empresa.estado}" validatorMessage="Estado é obrigatorio">
+	    				<f:validateRequired  />
+	    			</h:inputText>
 	    		   </div>
     				<div class="form-group col-sm-6">
     					<h:outputLabel value="Cidade" />
-    	    		<h:inputText class="form-control" pt:placeholder="Cidade" value="#{empresaBean.empresa.cidade}" />
+    	    		<h:inputText class="form-control" pt:placeholder="Cidade" value="#{empresaBean.empresa.cidade}" validatorMessage="Cidade é obrigatorio">
+	    				<f:validateRequired  />
+	    			</h:inputText>
     	    	</div>
           </div>
           <div class="row">
   	    		<div class="form-group col-sm-6">
   					<h:outputLabel value="Telefone" />
-  	    			<h:inputText class="form-control telefone" pt:placeholder="Telefone" value="#{empresaBean.empresa.telefone}">
-  	    				<f:converter converterId="javax.faces.Long" />
-  	    			</h:inputText>
+  	    			<h:inputText class="form-control telefone" pt:placeholder="Telefone" value="#{empresaBean.empresa.telefone}" validatorMessage="Telefone é obrigatorio(mínimo 10 digitos)">
+	    				<f:validateLength minimum="10" maximum="11"/>
+	    				<f:converter converterId="javax.faces.Long" />
+	    			</h:inputText>
   	    		</div>
   	    		<div class="form-group col-sm-6">
   					<h:outputLabel value="E-mail" />
-  	    			<h:inputText class="form-control" pt:placeholder="E-mail" value="#{empresaBean.empresa.email}" />
-  	    		</div>
+  	    			<h:inputText class="form-control" pt:placeholder="E-mail" value="#{empresaBean.empresa.email}" validatorMessage="Email é obrigatorio">
+	    				<f:validateRequired  />
+	    			</h:inputText>
+	    		</div>
           </div>
           <div class="row">
   	    		<div class="form-group col-sm-6">
   					<h:outputLabel value="Senha" />
-  	    			<h:inputSecret class="form-control" pt:placeholder="Senha" value="#{empresaBean.empresa.senha}" />
+  	    			<h:inputSecret class="form-control" pt:placeholder="Senha" value="#{empresaBean.empresa.senha}" validatorMessage="Senha é obrigatorio">
+	    				<f:validateRequired  />
+	    			</h:inputSecret>
   	    		</div>
           </div>
 	    		<div class="pull-right">
-		    		<h:commandButton value="Limpar" class="btn btn-default" action="#{user.goLoginPage}" />
 		    		<h:commandButton value="Confirmar" class="btn btn-primary aa margin-left-20" action="#{empresaBean.incluir()}"/>
 	    		</div>
+				<h:messages style="color:red;margin:8px;" />
 			</h:form>
 		</div>
 		<div class="col-sm-6 cadastro-bg">
@@ -68,7 +79,7 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$('.cnpj').mask('00000000000000');
-				$('.telefone').mask('0000000000');
+				$('.telefone').mask('00000000000');
 			});
 		</script>
 	</h:body>

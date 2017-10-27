@@ -17,19 +17,33 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
     isopen: false
   };
 
+  $scope.options = {
+    maxDate: new Date(),
+    showWeeks: true
+  };
+
   $scope.nomeProduto = function(produto){
     $scope.venda.nomeProduto = produto.nomeProduto;
     $scope.venda.idProduto = produto.idProduto;
     $scope.venda.idVendedor = $scope.user.idVendedor;
     $scope.venda.idEmpresa = produto.idEmpresa;
 
+    minDate();
   };
 
-  $scope.options = {
-    maxDate: new Date(),
-    showWeeks: true
+  function minDate() {
+    $scope.produtos.forEach(function(produto) {
+      if($scope.venda.idProduto == produto.idProduto) {
+        $scope.options.minDate = produto.inicioCampanha;
+        return;
+      }
+    });
   };
 
+  $scope.validForm = function() {
+    return $scope.venda.idVenda && !!$scope.venda.data && ($scope.venda.idProduto || $scope.venda.idProduto == 0);
+  }
+  
   $scope.toggleDropdown = function($event) {
     $event.preventDefault();
     $event.stopPropagation();
@@ -46,7 +60,9 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
       $scope.loadingSuccess = false;
       alertify.success('Nota adicionada!');
       $scope.venda = {};
-	  })
+	  }, function(err) {
+        alertify.success('Nota não adicionada');        
+    });
   }
 
   $scope.getImage = function() {

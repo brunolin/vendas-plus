@@ -93,7 +93,4 @@ public class VendedorDTO {
 		this.senha = senha;
 	}
 
-	
-	
-
 }

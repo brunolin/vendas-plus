@@ -11,7 +11,12 @@ import javax.servlet.http.HttpSession;
 
 import br.vp.controller.SessionController;
 import br.vp.dao.LoginDAO;
-
+/**
+ * 
+ * @author Brunolin
+ *	Classe Bean responsável pela tela de login
+ *	com um método de validar login que adiciona o usuário na sessão
+ */
 @ManagedBean
 @SessionScoped
 public class Login implements Serializable {
@@ -46,7 +51,12 @@ public class Login implements Serializable {
 		this.user = user;
 	}
 
-	//validate login
+	/**
+	 * Caso os dados de login informados pelo usuário estiverem ok
+	 * seus dados são jogados na sessão e ele é redirecionado para a tela inicial do sistema
+	 * @return
+	 * @throws IOException
+	 */
 	public String validateLogin() throws IOException {
 		boolean valid = LoginDAO.validate(user, pwd);
 		if (valid) {
@@ -58,11 +68,6 @@ public class Login implements Serializable {
 				session.setAttribute("type", "empresa");
 			}
 			
-			
-			
-			System.out.println(SessionController.getUserName());
-			System.out.println(SessionController.getType());
-			
 			FacesContext.getCurrentInstance().getExternalContext().redirect("index.html");
 			
 			return "admin";
@@ -70,17 +75,10 @@ public class Login implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(
 					null,
 					new FacesMessage(FacesMessage.SEVERITY_WARN,
-							"Incorrect Username and Passowrd",
-							"Please enter correct username and Password"));
+							"CNPJ/CPF e/ou senha incorretos",
+							"Por favor, entre com dados válidos"));
 			return "login";
 		}
-	}
-
-	//logout event, invalidate session
-	public String logout() {
-		HttpSession session = SessionController.getSession();
-		session.invalidate();
-		return "login";
 	}
 }
 
