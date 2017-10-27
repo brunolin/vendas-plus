@@ -32,9 +32,12 @@
 		</div>
 		<div class="col-xs-6">
 		  <div class="w-270 margin-top-50">
-			  <div class="no-margin h-300"><img ng-if="picFile" ngf-src="picFile" class="thumb"/></div>
+			  <div class="no-margin h-300">
+					<img class="thumb" data-ng-src="{{getImage()}}" />
+				</div>
 			  <div class="no-margin">
-		      <button type="file" ngf-select="upload($file, $invalidFiles)" accept="image/*" ng-model="picFile" ngf-max-height="1000" ngf-max-size="1MB" class="h-50 one-column"><span>Select file</span></button>
+		      <!-- <button type="file" ngf-select="upload($file, $invalidFiles)" accept="image/*" ng-model="picFile" ngf-max-height="1000" ngf-max-size="1MB" class="h-50 one-column"><span>Select file</span></button> -->
+					<input type="file" id="base-64" ng-model="image64" class="h-50 one-column" base-sixty-four-input />
 	          </div>
           </div>
 		</div>

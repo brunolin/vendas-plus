@@ -43,7 +43,7 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
   $scope.validForm = function() {
     return $scope.venda.idVenda && !!$scope.venda.data && ($scope.venda.idProduto || $scope.venda.idProduto == 0);
   }
-  
+
   $scope.toggleDropdown = function($event) {
     $event.preventDefault();
     $event.stopPropagation();
@@ -61,7 +61,7 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
       alertify.success('Nota adicionada!');
       $scope.venda = {};
 	  }, function(err) {
-        alertify.success('Nota não adicionada');        
+        alertify.success('Nota não adicionada');
     });
   }
 
