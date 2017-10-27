@@ -6,10 +6,10 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
   $http.get('/r/vendedor/getCampanhas').then(function(resp) {
     $scope.produtos = resp.data;
   });
-  
+
   $http.get('/r/controller/user').then(function(resp) {
 	  $http.post('/r/vendedor/getInfoVendedor', resp.data).then(function(resp) {
-		  $scope.user = resp.data; 
+		  $scope.user = resp.data;
 	  });
   });
 
@@ -48,6 +48,12 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
       $scope.venda = {};
 	  })
   }
+
+  $scope.getImage = function() {
+    if($scope.image64) {
+      return 'data:image/jpeg;base64,' + $scope.image64.base64;
+    }
+   }
 
   $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
 }]);

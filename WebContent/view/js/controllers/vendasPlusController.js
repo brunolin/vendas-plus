@@ -1,4 +1,4 @@
-angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap']).controller('mainCtrl', ['$scope', '$uibModal', 'alertify', '$http', function($scope, $uibModal, alertify, $http){
+angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap', 'naif.base64']).controller('mainCtrl', ['$scope', '$uibModal', 'alertify', '$http', function($scope, $uibModal, alertify, $http){
 
   $scope.menu = {};
   $scope.user = undefined;
@@ -7,17 +7,17 @@ angular.module('vendasPlusApp', ['ngAnimate', 'ngAlertify', 'ui.bootstrap']).con
     $scope.menu.active = item
     $scope.selectedTemplate = 'empresa/' + item + '.html';
   };
-  
+
   $http.get('/r/controller/user').then(function(resp) {
 	  $scope.type = resp.data.type;
 	  if($scope.type == 'vendedor'){
 		  $http.post('/r/vendedor/getInfoVendedor', resp.data).then(function(resp) {
-			  $scope.user = resp.data; 
-		  });		  
+			  $scope.user = resp.data;
+		  });
 	  } else {
 		  $http.post('/r/empresa/getInfoEmpresa', resp.data).then(function(resp) {
-			  $scope.user = resp.data; 
-		  });		  
+			  $scope.user = resp.data;
+		  });
 	  }
 
   });
