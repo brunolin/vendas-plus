@@ -1,4 +1,4 @@
-angular.module('vendasPlusApp').controller('cadastroPromocaoCtrl', ['$scope', '$http', 'alertify', function($scope, $http, alertify){
+angular.module('vendasPlusApp').controller('cadastroPromocaoCtrl', ['$scope', '$http', 'alertify', 'Upload', '$timeout', function($scope, $http, alertify, Upload, $timeout){
 
   $scope.promocao = {};
   $scope.promocao.inicioCampanha = new Date();
@@ -10,10 +10,10 @@ angular.module('vendasPlusApp').controller('cadastroPromocaoCtrl', ['$scope', '$
 	  });
   });
 
-  /*$scope.save = function save() {
+  $scope.save = function save(file) {
     $scope.loadingSuccess = true;
     $scope.promocao.idEmpresa = $scope.user.idEmpresa;
-    $scope.promocao.img = $scope.image64.base64;
+    $scope.promocao.img = $scope.fileName;
     $http.post('/r/empresa/cadastrarCampanha', $scope.promocao).then(function(resp) {
       $scope.promocao = {};
       $scope.loadingSuccess = false;
@@ -21,21 +21,22 @@ angular.module('vendasPlusApp').controller('cadastroPromocaoCtrl', ['$scope', '$
     }, function(err) {
         alertify.success('Promoção não adicionada');
     });
-  };*/
+  };
 
-  $scope.save = function(file, card) {
-     $scope.loading = true;
-     file.upload = Upload.upload({
-       url: '/r/controller/upload',
-       data: card,
-       file: $scope.image64
-     }).then(function(resp){
-       $scope.loading = false;
-       alertify.success('Sucesso');
-     }, function(err){
-       alertify.error('Deu ruim');
-     });
-   };
+  $scope.sendPhoto = function() {
+	  
+	  var form = $('<form action="/r/controller/upload" method="post" enctype="multipart/form-data"></form>');
+	  var input = $('.picInput');
+	  var path = input.val();
+	  
+	  $scope.fileName = path.replace('C:\\fakepath\\', '');
+	  form.append(input);
+	  
+	  form.ajaxSubmit();
+	  $timeout(function() {
+		  $scope.save();
+	  }, 1000);
+  };
 
   $scope.options = {
     minDate: new Date(),
@@ -44,12 +45,6 @@ angular.module('vendasPlusApp').controller('cadastroPromocaoCtrl', ['$scope', '$
 
   $scope.validForm = function() {
     return $scope.promocao.vigenciaCampanha && $scope.promocao.nomeProduto && $scope.promocao.pontosRecompensa;
-  }
-
-  $scope.getImage64 = function getImage64(img) {
-    if($scope.image64) {
-      return 'data:image/jpeg;base64,' + $scope.image64.base64;
-    }
   }
 
   $scope.limpar = function limpar() {

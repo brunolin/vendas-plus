@@ -1,5 +1,6 @@
 package br.vp.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import br.vp.dao.EmpresaDAO;
@@ -26,6 +27,18 @@ public class EmpresaController {
 	}
 	
 	public void cadastrarCampanha(ProdutoDTO produto) {
+		String path = "c:\\git\\vendas-plus\\WebContent\\view\\img\\produtos\\";
+		String newFileName = produto.getNomeProduto() + "-" + produto.getImg();
+		
+		File oldfile = new File(path + produto.getImg());
+		File newfile = new File(path + newFileName);
+
+		if(oldfile.renameTo(newfile)){
+			System.out.println("Rename succesful");
+			produto.setImg(newFileName);
+		}else{
+			System.out.println("Rename failed");
+		}
 		empresaDAO.cadastroCampanha(produto);
 	}
 	

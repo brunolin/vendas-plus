@@ -20,21 +20,28 @@
 	  </div>
 	  <div class="col-xs-6">
 		  <div class="w-270 margin-top-50">
-			  <div class="no-margin h-300">
-					<img class="thumb" data-ng-src="{{getImage64()}}" />
-				</div>
-			  <div class="no-margin">
-					<input type="file" id="base-64" ng-model="image64" class="h-50 one-column" />
-	          </div>
+			  <div class="row no-margin h-250"><img ng-if="picFile" ngf-src="picFile" class="thumb"/></div>
+              <div class="row no-margin">
+ 			          <button type="file" ngf-select="upload($file, $invalidFiles)" accept="image/*" ng-model="picFile" ngf-max-height="1000" ngf-max-size="1MB" class="h-50 one-column"><span>Select file</span></button>
+		      </div>
           </div>
+		   <p>
+			Select a file : <input type="file" name="uploadedFile" size="50" class="picInput"/>
+		   </p>
 	   </div>
 		<div class="w-310">
 			<button type="button" class="btn btn-default" ng-click="limpar()">Limpar</button>
-			<button type="button" class="btn btn-success float-right" ng-click="save()"
+			<button type="button" class="btn btn-success float-right" ng-click="sendPhoto()"
 							ng-disabled="loadingSuccess || !validForm()">
 				<i class="fa fa-circle-o-notch fa-spin" ng-if="loadingSuccess"></i>
 				Confirmar
 			</button>
 		</div>
 	</form>
+          	<form id="photoUpload" action="/r/controller/upload" method="post" enctype="multipart/form-data" style="display:none;">
+			   <p>
+				Select a file : <input type="file" name="uploadedFile" size="50" />
+			   </p>		
+			   <input type="button" ng-click="sendPhoto()" value="Upload It" />
+			</form>
 </div>
