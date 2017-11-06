@@ -3,12 +3,20 @@ package br.vp.dto;
 public class VendasDTO {
 	
 	public int idProduto, idVendedor, idEmpresa;
-	public String nomeProduto, data, idVenda, aprovada;
+	public String nomeProduto, data, idVenda, aprovada, img;
 	
 	public VendasDTO() {
 		
 	}
-	
+		
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	public String getAprovada() {
 		return aprovada;
 	}

@@ -107,6 +107,7 @@ public class VendedorController {
 		venda.setIdProduto(vendaDTO.getIdProduto());
 		venda.setIdVenda(vendaDTO.getIdVenda());
 		venda.setIdVendedor(vendaDTO.getIdVendedor());
+		venda.setImg(vendaDTO.getImg());
 		
 		return vendedorHibernate.cadastroVenda(venda) ? "200" : null;
 	}

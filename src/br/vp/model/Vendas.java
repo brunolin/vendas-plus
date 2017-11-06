@@ -3,6 +3,7 @@ package br.vp.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity()
@@ -23,6 +24,11 @@ public class Vendas {
     @Column(name="APROVADA")
 	public String aprovada;
     
+    
+    @Column(name="IMG")
+    @Lob
+	public String img;
+    
     @Column(name="ID_PRODUTO")
 	public int idProduto;
     
@@ -36,6 +42,14 @@ public class Vendas {
 		
 	}
 	
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	public String getAprovada() {
 		return aprovada;
 	}

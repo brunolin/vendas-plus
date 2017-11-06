@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,6 +29,7 @@ public class Produto {
 		public String nomeProduto;
 	    
 	    @Column(name="IMG")
+	    @Lob
 		public String img;
 	    
 	    @Column(name="INICIO_CAMPANHA")
