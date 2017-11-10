@@ -85,9 +85,7 @@ public class ControllerRest {
 		List<InputPart> inputParts = uploadForm.get("uploadedFile");
 
 		for (InputPart inputPart : inputParts) {
-
 		 try {
-
 			MultivaluedMap<String, String> header = inputPart.getHeaders();
 			fileName = getFileName(header);
 
@@ -98,17 +96,12 @@ public class ControllerRest {
 
 			//constructs upload file path
 			//fileName = fileName;
-
 			writeFile(bytes,fileName);
-
 			System.out.println("Done");
-
 		  } catch (IOException e) {
 			e.printStackTrace();
 		  }
-
 		}
-
 		return Response.status(200)
 		    .entity("uploadFile is called, Uploaded file name : " + fileName).build();
 
@@ -147,7 +140,7 @@ public class ControllerRest {
 			file.createNewFile();
 		}
 
-		FileOutputStream fop = new FileOutputStream("c:\\git\\vendas-plus\\WebContent\\view\\img\\produtos\\" + file);
+		FileOutputStream fop = new FileOutputStream("c:\\git\\vendas-plus\\WebContent\\photos\\" + file);
 
 		fop.write(content);
 		fop.flush();

@@ -57,7 +57,7 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
 
   $scope.save = function save(){
     $scope.loadingSuccess = true;
-    $scope.venda.img = $scope.image64.base64;
+    $scope.venda.img = $scope.fileName;
 	  $http.post('/r/vendedor/cadastrarNota', $scope.venda).then(function(resp) {
       $scope.loadingSuccess = false;
       alertify.success('Nota adicionada!');
@@ -67,12 +67,19 @@ angular.module('vendasPlusApp').controller('cadastroNotaCtrl', ['$scope', '$http
     });
   }
 
-  $scope.getImage64 = function getImage64() {
-    if($scope.image64) {
-    	debugger;
-      return 'data:image/jpeg;base64,' + $scope.image64.base64;
-    }
-   }
+  $scope.sendPhoto = function() {
+	  var form = $('<form action="/r/controller/upload" method="post" enctype="multipart/form-data"></form>');
+	  var input = $('.picInput');
+	  var path = input.val();
+	  
+	  $scope.fileName = path.replace('C:\\fakepath\\', '');
+	  form.append(input);
+	  
+	  form.ajaxSubmit();
+	  $timeout(function() {
+		  $scope.save();
+	  }, 1000);
+  };
 
   $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
 }]);

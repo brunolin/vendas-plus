@@ -1,5 +1,6 @@
 package br.vp.controller;
 
+import java.io.File;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -108,6 +109,19 @@ public class VendedorController {
 		venda.setIdVenda(vendaDTO.getIdVenda());
 		venda.setIdVendedor(vendaDTO.getIdVendedor());
 		venda.setImg(vendaDTO.getImg());
+		
+		String path = "c:\\git\\vendas-plus\\WebContent\\view\\img\\produtos\\";
+		String newFileName = venda.getIdVendedor() + "-nota-" + venda.getNomeProduto() + "-" + venda.getImg();
+		
+		File oldfile = new File(path + venda.getImg());
+		File newfile = new File(path + newFileName);
+
+		if(oldfile.renameTo(newfile)){
+			System.out.println("Rename succesful");
+			venda.setImg(newFileName);
+		}else{
+			System.out.println("Rename failed");
+		}
 		
 		return vendedorHibernate.cadastroVenda(venda) ? "200" : null;
 	}
