@@ -10,6 +10,7 @@ import br.vp.dao.VendedorDAO;
 import br.vp.dao.hibernate.VendedorDaoHibernate;
 import br.vp.dto.*;
 import br.vp.model.*;
+import br.vp.controller.MailController;;
 
 
 /**
@@ -21,10 +22,12 @@ public class VendedorController {
 	
  	VendedorDAO vendedorDAO;
  	VendedorDaoHibernate vendedorHibernate;
+ 	MailController mail;
  	
 	public VendedorController() {
 		vendedorDAO = new VendedorDAO();
 		vendedorHibernate = new VendedorDaoHibernate();
+		mail = new MailController();
 	}
 
 	public boolean cadastroVendedor(VendedorDTO vendedorDTO){
@@ -39,7 +42,14 @@ public class VendedorController {
 		vendedor.setSenha(vendedorDTO.getSenha());
 		vendedor.setTelefone(vendedorDTO.getTelefone());
 		
-		return vendedorHibernate.cadastroVendedor(vendedor);
+		boolean retorno = vendedorHibernate.cadastroVendedor(vendedor);
+		
+		if(retorno) {
+			String mensagem = "<h1>Olá " + vendedor.getNome() + ", seja bem vindo ao Vendas Plus!</h1><br><br><h2>Aproveite nossas campanhas e boas vendas.</h2>";
+			return mail.sendMail("brunowelly@hotmail.com", mensagem);	
+		}
+		
+		return false;
 	}
 	
 	public List<ProdutoDTO> getCampanhas(){		
@@ -58,6 +68,7 @@ public class VendedorController {
 			
 			produtosDTO.add(produtoDTO);
 		}
+		
 		return produtosDTO;
 	}
 	
