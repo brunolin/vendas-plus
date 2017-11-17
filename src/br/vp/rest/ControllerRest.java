@@ -140,7 +140,7 @@ public class ControllerRest {
 			file.createNewFile();
 		}
 
-		FileOutputStream fop = new FileOutputStream("c:\\git\\vendas-plus\\WebContent\\photos\\" + file);
+		FileOutputStream fop = new FileOutputStream("c:\\git\\vendas-plus\\image\\" + file);
 
 		fop.write(content);
 		fop.flush();

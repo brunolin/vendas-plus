@@ -10,7 +10,7 @@ import br.vp.dao.VendedorDAO;
 import br.vp.dao.hibernate.VendedorDaoHibernate;
 import br.vp.dto.*;
 import br.vp.model.*;
-import br.vp.controller.MailController;;
+import br.vp.controller.*;
 
 
 /**
@@ -36,17 +36,17 @@ public class VendedorController {
 		vendedor.setNome(vendedorDTO.getNome());
 		vendedor.setCidade(vendedorDTO.getCidade());	
 		vendedor.setCpf(vendedorDTO.getCpf());
-		vendedor.setEmail(vendedorDTO.getCpf());
+		vendedor.setEmail(vendedorDTO.getEmail());
 		vendedor.setEstado(vendedorDTO.getEstado());
 		vendedor.setPontos(0);
 		vendedor.setSenha(vendedorDTO.getSenha());
 		vendedor.setTelefone(vendedorDTO.getTelefone());
 		
-		boolean retorno = vendedorHibernate.cadastroVendedor(vendedor);
+		boolean retorno = vendedorDAO.cadastroVendedor(vendedor);
 		
 		if(retorno) {
 			String mensagem = "<h1>Olá " + vendedor.getNome() + ", seja bem vindo ao Vendas Plus!</h1><br><br><h2>Aproveite nossas campanhas e boas vendas.</h2>";
-			return mail.sendMail("brunowelly@hotmail.com", mensagem);	
+			return mail.sendMail(vendedor.getEmail(), mensagem);	
 		}
 		
 		return false;
@@ -56,15 +56,17 @@ public class VendedorController {
 		ProdutoDTO produtoDTO;
 		List<ProdutoDTO> produtosDTO = new ArrayList<ProdutoDTO>();
 		
-		List<Produto> produtos = vendedorHibernate.getCampanhas();
+		List<Produto> produtos = vendedorDAO.getCampanhas();
 		
 		for(Produto produto : produtos) {
 			
 			produtoDTO = new ProdutoDTO();
 			produtoDTO.setNomeProduto(produto.getNomeProduto());
 			produtoDTO.setPontosRecompensa(produto.getPontosRecompensa());
-			produtoDTO.setImg(produto.getImg());
 			produtoDTO.setInicioCampanha(produto.getInicioCampanha());
+			
+			String image64 = ImageController.getBase64FromResource(produto.getImg());
+			produtoDTO.setImg(image64);
 			
 			produtosDTO.add(produtoDTO);
 		}
@@ -141,7 +143,7 @@ public class VendedorController {
 		VendasDTO vendaDTO;
 		List<VendasDTO> vendasDTO = new ArrayList<VendasDTO>();
 		
-		List<Vendas> vendas = vendedorHibernate.getNotasVendedor(id);
+		List<Vendas> vendas = vendedorDAO.getNotasVendedor(id);
 		
 		try{
 			for(Vendas venda : vendas) {

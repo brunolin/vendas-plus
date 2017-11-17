@@ -10,7 +10,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity()
-@Table(name="TB_PRODUTO", schema="system")
+@Table(name="TB_PRODUTO", schema="vendasplus")
 public class Produto {
 	
 	    @Id()
@@ -29,7 +29,6 @@ public class Produto {
 		public String nomeProduto;
 	    
 	    @Column(name="IMG")
-	    @Lob
 		public String img;
 	    
 	    @Column(name="INICIO_CAMPANHA")

@@ -6,7 +6,7 @@ angular.module('vendasPlusApp').controller('campanhaCtrl', ['$scope', '$uibModal
   });
   
   $scope.getImage = function getImage(img) {
-      return '../../photos/' + img;
+      return 'data:image/png;base64,' + img;
   }
 
 }]);

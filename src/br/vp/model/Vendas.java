@@ -7,7 +7,7 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity()
-@Table(name="TB_VENDAS", schema="system")
+@Table(name="TB_VENDAS", schema="vendasplus")
 
 public class Vendas {
 	
@@ -24,9 +24,7 @@ public class Vendas {
     @Column(name="APROVADA")
 	public String aprovada;
     
-    
     @Column(name="IMG")
-    @Lob
 	public String img;
     
     @Column(name="ID_PRODUTO")

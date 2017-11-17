@@ -6,12 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import br.vp.dto.BonusDTO;
 import br.vp.dto.ProdutoDTO;
 import br.vp.dto.VendasDTO;
 import br.vp.dto.VendedorDTO;
 import br.vp.jdbc.Conexao;
+import br.vp.model.Produto;
+import br.vp.model.Vendas;
+import br.vp.model.Vendedor;
 
 /**
  * 
@@ -31,7 +35,7 @@ public class VendedorDAO {
 	 * @param vendedor
 	 * @return
 	 */
-	public boolean cadastroVendedor(VendedorDTO vendedor) {
+	public boolean cadastroVendedor(Vendedor vendedor) {
 
 		String query = "{call proc_vendedor_insert(id_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
@@ -264,14 +268,14 @@ public class VendedorDAO {
 	 * Método responsável por retornar as todas as campanhas em vigência
 	 * @return
 	 */
-	public ArrayList<ProdutoDTO> getCampanhas() {
+	public List<Produto> getCampanhas() {
 		
 		String query = "SELECT * FROM TB_PRODUTO";
 		
 		try {
 			
-			ArrayList<ProdutoDTO> produtos = new ArrayList<ProdutoDTO>();
-			ProdutoDTO produto = new ProdutoDTO();
+			List<Produto> produtos = new ArrayList<Produto>();
+			Produto produto = new Produto();
 			
 			Connection myConnection = Conexao.getConexao();
 			PreparedStatement pstm = myConnection.prepareStatement(query);
@@ -287,7 +291,7 @@ public class VendedorDAO {
 				produto.setVigenciaCampanha(rs.getString("VIGENCIA_CAMPANHA"));				
 				
 				produtos.add(produto);
-				produto = new ProdutoDTO();
+				produto = new Produto();
 			}
 			
 			System.out.println("Select de produtos");
@@ -350,14 +354,14 @@ public class VendedorDAO {
 	 * @param id
 	 * @return
 	 */
-	public ArrayList<VendasDTO> getNotasVendedor(int id) {
-		//ok
+	public List<Vendas> getNotasVendedor(int id) {
+
 		String query = "SELECT * FROM TB_VENDAS WHERE ID_VENDEDOR = ?";
 		
 		try {
 			
-			ArrayList<VendasDTO> vendas = new ArrayList<VendasDTO>();
-			VendasDTO venda = new VendasDTO();
+			List<Vendas> vendas = new ArrayList<Vendas>();
+			Vendas venda = new Vendas();
 			
 			Connection myConnection = Conexao.getConexao();
 			
@@ -376,7 +380,7 @@ public class VendedorDAO {
 				venda.setAprovada(rs.getString("APROVADA"));
 				
 				vendas.add(venda);
-				venda = new VendasDTO();
+				venda = new Vendas();
 			}
 			
 			System.out.println("Select de notas para o vendedor " + id);

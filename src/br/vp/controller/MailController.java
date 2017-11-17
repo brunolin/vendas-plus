@@ -28,8 +28,10 @@ public class MailController {
         {
             String server = "smtp.gmail.com";
             String port = "465";
-            String user = "brunolinteste@gmail.com";
-            String password = "";
+            
+            //email Vendasplus
+            String user = "vendasplusmail@gmail.com";
+            String password = "Vendas3101wjs";
 
             Properties properties = new Properties();
             properties.put("mail.smtp.host", server);

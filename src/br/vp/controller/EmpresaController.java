@@ -27,7 +27,7 @@ public class EmpresaController {
 	}
 	
 	public void cadastrarCampanha(ProdutoDTO produto) {
-		String path = "c:\\git\\vendas-plus\\WebContent\\photos\\";
+		String path = "c:\\git\\vendas-plus\\image\\";
 		String newFileName = produto.getNomeProduto() + "-" + produto.getImg();
 		
 		File oldfile = new File(path + produto.getImg());
