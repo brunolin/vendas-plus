@@ -31,7 +31,7 @@ public class MailController {
             
             //email Vendasplus
             String user = "vendasplusmail@gmail.com";
-            String password = "Vendas3101wjs";
+            String password = "";
 
             Properties properties = new Properties();
             properties.put("mail.smtp.host", server);
