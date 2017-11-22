@@ -2,7 +2,7 @@
   <h3><i>Registre as suas vendas, acumule pontos e troque por produtos de sua preferência!</i></h3>
   <div class="produtos">
     <div ng-repeat="produto in produtos" class="w-200 produto">
-      <img ng-src="../img/produtos/no.jpg"></img>
+      <img ng-src="{{getImage(produto.img)}}"></img>
       <div>{{produto.nomeBonus}}</div>
       <div><strong>{{produto.pontosNecessarios}} pontos</strong></div>
       <div class="btn-trocar" ng-if="canGetItem(produto)" ng-click="resgateProduto(produto)">TROCAR</div>

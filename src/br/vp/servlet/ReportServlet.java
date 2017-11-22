@@ -32,9 +32,9 @@ public class ReportServlet extends HttpServlet {
     	
     	try {
     		JasperReport reportStream = JasperCompileManager.compileReport(url + "RelatorioVendas.jrxml");
-    		JasperPrint report = JasperFillManager.fillReport(reportStream, null, new JRBeanCollectionDataSource(controller.getNotas(id)));
-    		pdfReport = JasperExportManager.exportReportToPdf(report);
-    		//pdfReport = JasperRunManager.runReportToPdf(reportStream, null, new JRBeanCollectionDataSource(controller.getNotas(id)));
+    		/*JasperPrint report = JasperFillManager.fillReport(reportStream, null, new JRBeanCollectionDataSource(controller.getNotas(id)));
+    		pdfReport = JasperExportManager.exportReportToPdf(report);*/
+    		pdfReport = JasperRunManager.runReportToPdf(reportStream, null, new JRBeanCollectionDataSource(controller.getNotas(id)));
     		
     	} catch (Exception e) {
     		System.out.println("Erro na geração de pdf");
@@ -43,9 +43,10 @@ public class ReportServlet extends HttpServlet {
     	
         ServletOutputStream outputStream = response.getOutputStream();
         response.addHeader("Content-Type", "application/pdf");
-        response.addHeader("Content-Disposition", "inline; filename=historico-vendas.pdf");
+        response.addHeader("Content-Disposition", "attachment; filename=historico-vendas.pdf");
         response.setContentLength((int) pdfReport.length);
         
         outputStream.write(pdfReport);
+        outputStream.flush();
     }
 }

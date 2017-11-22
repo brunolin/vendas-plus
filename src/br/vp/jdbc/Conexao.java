@@ -30,13 +30,13 @@ public class Conexao {
     /* Métodos da classe */
     public static Connection getConexao() {
     	
-    	/*String tURL = "jdbc:oracle:thin:@localhost:1521:XE";
+    	String tURL = "jdbc:oracle:thin:@localhost:1521:XE";
     	String tUsuario = "system";
-    	String tSenha = "1234566";*/
+    	String tSenha = "1234566";
     	
-    	String tURL = "jdbc:oracle:thin:@vendasplus.cqhg2hfckbna.us-east-1.rds.amazonaws.com:1521:ORCL";
+    	/*String tURL = "jdbc:oracle:thin:@vendasplus.cqhg2hfckbna.us-east-1.rds.amazonaws.com:1521:ORCL";
     	String tUsuario = "vendasplus";
-    	String tSenha = "vendasplus";
+    	String tSenha = "vendasplus";*/
     	
         try {
         	Class.forName("oracle.jdbc.driver.OracleDriver");

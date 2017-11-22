@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity()
-@Table(name="TB_BONUS", schema="vendasplus")
+@Table(name="TB_BONUS", schema="system")
 public class Bonus {
 	
     @Id()
@@ -22,11 +22,22 @@ public class Bonus {
     
     @Column(name="NOME_BONUS")
 	public String nomeBonus;
+    
+    @Column(name="IMG")
+    public String img;
 
 	public Bonus() {
 		
 	}
 
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+	
 	public String getNome() {
 		return nomeBonus;
 	}

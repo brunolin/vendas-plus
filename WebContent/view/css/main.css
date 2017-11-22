@@ -5,6 +5,14 @@ body {
 
 }
 
+.report-link {
+    border: solid 1px #999;
+    border-radius: 5px;
+    height: 40px;
+    width: 100px;
+    padding: 8px;
+}
+
 .bg {
 	background-image: url('../img/bg.png');
 }

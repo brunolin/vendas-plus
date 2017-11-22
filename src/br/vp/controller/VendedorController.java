@@ -173,7 +173,7 @@ public class VendedorController {
 	public List<BonusDTO> getBonus() {
 		BonusDTO bonusDTO;
 		List<BonusDTO> bonusDTOList = new ArrayList<BonusDTO>();
-		List<Bonus> bonusList = vendedorDAO.getBonus();
+		List<Bonus> bonusList = vendedorHibernate.getBonus();
 		
 		for(Bonus bonus : bonusList) {
 			bonusDTO = new BonusDTO();
@@ -182,6 +182,9 @@ public class VendedorController {
 			bonusDTO.setIdBonus(bonus.getIdBonus());
 			bonusDTO.setNome(bonus.getNome());
 			bonusDTO.setPontosNecessarios(bonus.getPontosNecessarios());
+			
+			String image64 = ImageController.getBase64FromResource(bonus.getImg());
+			bonusDTO.setImg(image64);
 			
 			bonusDTOList.add(bonusDTO);
 		}

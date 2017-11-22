@@ -7,7 +7,7 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity()
-@Table(name="TB_VENDAS", schema="vendasplus")
+@Table(name="TB_VENDAS", schema="system")
 
 public class Vendas {
 	

@@ -8,13 +8,13 @@
   
   <!-- Detalhes do Banco de Dados-->
   <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-  <property name="connection.url">jdbc:oracle:thin:@vendasplus.cqhg2hfckbna.us-east-1.rds.amazonaws.com:1521:ORCL</property>
-  <property name="connection.username">vendasplus</property>
-  <property name="connection.password">vendasplus</property>
+  <property name="connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
+  <property name="connection.username">system</property>
+  <property name="connection.password">1234566</property>
   
   <!-- Propriedades Adicionais -->
   <property name="connection.pool_size">1</property>
-  <property name="hibernate.default_schema">vendasplus</property>
+  <property name="hibernate.default_schema">system</property>
   <property name="hibernate.current_session_context_class">thread</property>
   <property name="show_sql">true</property>
   <property name="hbm2ddl.auto">validate</property>

@@ -21,6 +21,10 @@ angular.module('vendasPlusApp').controller('resgateCtrl', ['$scope', '$uibModal'
 	  
 	  return false;
   };
+  
+  $scope.getImage = function getImage(img) {
+      return 'data:image/png;base64,' + img;
+  }
 
   $scope.resgateProduto = function resgateProduto(produto){
     $uibModal.open(
