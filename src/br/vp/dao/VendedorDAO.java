@@ -13,6 +13,7 @@ import br.vp.dto.ProdutoDTO;
 import br.vp.dto.VendasDTO;
 import br.vp.dto.VendedorDTO;
 import br.vp.jdbc.Conexao;
+import br.vp.model.Bonus;
 import br.vp.model.Produto;
 import br.vp.model.Vendas;
 import br.vp.model.Vendedor;
@@ -75,10 +76,10 @@ public class VendedorDAO {
 	 * @param cpf
 	 * @return
 	 */
-	public VendedorDTO getInfoVendedor(String cpf) {
+	public Vendedor getInfoVendedor(String cpf) {
 		String query = "SELECT * FROM TB_VENDEDOR WHERE CPF = ?";
 		
-		VendedorDTO vendedor = new VendedorDTO();
+		Vendedor vendedor = new Vendedor();
 		
 		try {
 
@@ -109,11 +110,10 @@ public class VendedorDAO {
 		}
 	}
 	
-	public VendedorDTO getInfoVendedorByEmail(String email) {
+	public Vendedor getInfoVendedorByEmail(String email) {
 		String query = "SELECT * FROM TB_VENDEDOR WHERE EMAIL = ?";
 		
-		System.out.println(email);
-		VendedorDTO vendedor = new VendedorDTO();
+		Vendedor vendedor = new Vendedor();
 		try {
 
 			Connection myConnection = Conexao.getConexao();
@@ -124,6 +124,7 @@ public class VendedorDAO {
 			ResultSet rs = pstm.executeQuery();
 			
 			while(rs.next()){				
+				vendedor.setIdVendedor(rs.getInt("ID_VENDEDOR"));
 				vendedor.setPontos(rs.getInt("PONTOS"));
 				vendedor.setNome(rs.getString("NOME_VENDEDOR"));
 				vendedor.setCidade(rs.getString("CIDADE"));
@@ -191,7 +192,7 @@ public class VendedorDAO {
 	 * @param venda
 	 * @return
 	 */
-	public boolean cadastroVenda(VendasDTO venda) {
+	public boolean cadastroVenda(Vendas venda) {
 		String query = "INSERT INTO TB_VENDAS("
 				+ "ID_VENDA, ID_PRODUTO, ID_VENDEDOR, ID_EMPRESA, NOME_PRODUTO, DATA_VENDA, APROVADA) "
 				+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
@@ -312,14 +313,14 @@ public class VendedorDAO {
 	 * Método responsável por retornar todos os bonus disponíveis
 	 * @return
 	 */
-	public ArrayList<BonusDTO> getBonus() {
+	public List<Bonus> getBonus() {
 		
 		String query = "SELECT * FROM TB_BONUS";
-		ArrayList<BonusDTO> produtos = new ArrayList<BonusDTO>();
+		List<Bonus> produtos = new ArrayList<Bonus>();
 		
 		try {
 			
-			BonusDTO bonus = new BonusDTO();
+			Bonus bonus = new Bonus();
 			
 			Connection myConnection = Conexao.getConexao();
 			PreparedStatement pstm = myConnection.prepareStatement(query);
@@ -332,7 +333,7 @@ public class VendedorDAO {
 				bonus.setNome(rs.getString("NOME_BONUS"));
 				
 				produtos.add(bonus);
-				bonus = new BonusDTO();
+				bonus = new Bonus();
 			}
 			
 			System.out.println("Select de bonus");
@@ -408,7 +409,7 @@ public class VendedorDAO {
 
 		try {
 			
-			VendedorDTO vendedor = getInfoVendedor(cpf);
+			Vendedor vendedor = getInfoVendedor(cpf);
 			
 			Connection myConnection = Conexao.getConexao();
 			PreparedStatement pstm = myConnection.prepareStatement(query);

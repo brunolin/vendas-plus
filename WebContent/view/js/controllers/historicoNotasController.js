@@ -17,8 +17,17 @@ angular.module('vendasPlusApp').controller('historicoNotasCtrl', ['$scope', '$ht
 			  });
 		  });			  
 	  }
-
+	  //window.open('data:application/octet-stream;base64,' + resp.data,'_blank');
   });
+  
+  $scope.gerarPdf = function gerarPdf() {
+	  var url ='/s/report?id=' + $scope.user.idVendedor;
+      iframe = document.createElement('iframe');
+      iframe.id = 'hiddenDownloader';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+      iframe.src = url;
+  };
 
   $scope.getStatus = function getStatus(status) {
   	if(status == 'T') {

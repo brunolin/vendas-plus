@@ -56,7 +56,7 @@ public class VendedorController {
 		ProdutoDTO produtoDTO;
 		List<ProdutoDTO> produtosDTO = new ArrayList<ProdutoDTO>();
 		
-		List<Produto> produtos = vendedorDAO.getCampanhas();
+		List<Produto> produtos = vendedorHibernate.getCampanhas();
 		
 		for(Produto produto : produtos) {
 			
@@ -64,6 +64,8 @@ public class VendedorController {
 			produtoDTO.setNomeProduto(produto.getNomeProduto());
 			produtoDTO.setPontosRecompensa(produto.getPontosRecompensa());
 			produtoDTO.setInicioCampanha(produto.getInicioCampanha());
+			produtoDTO.setIdEmpresa(produto.getIdEmpresa());
+			produtoDTO.setIdProduto(produto.getIdProduto());
 			
 			String image64 = ImageController.getBase64FromResource(produto.getImg());
 			produtoDTO.setImg(image64);
@@ -77,7 +79,7 @@ public class VendedorController {
 	public VendedorDTO getInfoVendedor(LogadoDTO login) {
 		try {		
 			VendedorDTO vendedorDTO = new VendedorDTO();
-			Vendedor vendedor = vendedorHibernate.getInfoVendedor(login.getUsername());
+			Vendedor vendedor = vendedorDAO.getInfoVendedor(login.getUsername());
 			
 			vendedorDTO.setNome(vendedor.getNome());
 			vendedorDTO.setPontos(vendedor.getPontos());
@@ -94,8 +96,9 @@ public class VendedorController {
 	public VendedorDTO getInfoVendedorByEmail(String email) {
 		try {		
 			VendedorDTO vendedorDTO = new VendedorDTO();
-			Vendedor vendedor = vendedorHibernate.getInfoVendedorByEmail(email);
+			Vendedor vendedor = vendedorDAO.getInfoVendedorByEmail(email);
 			
+			vendedorDTO.setIdVendedor(vendedor.getIdVendedor());
 			vendedorDTO.setNome(vendedor.getNome());
 			vendedorDTO.setPontos(vendedor.getPontos());
 			vendedorDTO.setCidade(vendedor.getCidade());
@@ -105,7 +108,7 @@ public class VendedorController {
 			
 			return vendedorDTO;
 		} catch (NullPointerException e) {
-			System.out.println("Salve");
+			System.out.println("Erro no retorno de dados do vendedor por email");
 		}
 		
 		return null;
@@ -136,14 +139,14 @@ public class VendedorController {
 			System.out.println("Rename failed");
 		}
 		
-		return vendedorHibernate.cadastroVenda(venda) ? "200" : null;
+		return vendedorDAO.cadastroVenda(venda) ? "200" : null;
 	}
 	
 	public List<VendasDTO> getNotas(int id) {
 		VendasDTO vendaDTO;
 		List<VendasDTO> vendasDTO = new ArrayList<VendasDTO>();
 		
-		List<Vendas> vendas = vendedorDAO.getNotasVendedor(id);
+		List<Vendas> vendas = vendedorHibernate.getNotasVendedor(id);
 		
 		try{
 			for(Vendas venda : vendas) {
@@ -170,7 +173,7 @@ public class VendedorController {
 	public List<BonusDTO> getBonus() {
 		BonusDTO bonusDTO;
 		List<BonusDTO> bonusDTOList = new ArrayList<BonusDTO>();
-		List<Bonus> bonusList = vendedorHibernate.getBonus();
+		List<Bonus> bonusList = vendedorDAO.getBonus();
 		
 		for(Bonus bonus : bonusList) {
 			bonusDTO = new BonusDTO();
@@ -187,6 +190,6 @@ public class VendedorController {
 	}
 	
 	public boolean resgatarBonus(ValidateBonusDTO bonus) {
-		return vendedorHibernate.resgatarBonus(bonus.getPontos(), bonus.getCpf());
+		return vendedorDAO.resgatarBonus(bonus.getPontos(), bonus.getCpf());
 	}
 }

@@ -23,4 +23,7 @@
       </tr>
     </tbody>
   </table>
+  
+  <a href="/s/report?id={{user.idVendedor}}" target="_blank">download file</a>
+  <button ng-if="type != 'empresa'" type="button" class="btn btn-default" ng-click="gerarPdf()">Baixar histórico</button>
 </div>

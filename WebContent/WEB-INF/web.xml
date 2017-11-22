@@ -12,6 +12,14 @@
   	<servlet-name>Faces Servlet</servlet-name>
   	<url-pattern>*.xhtml</url-pattern>
  </servlet-mapping>
+ <servlet>
+    <servlet-name>report</servlet-name>
+    <servlet-class>br.vp.servlet.ReportServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>report</servlet-name>
+    <url-pattern>/s/report</url-pattern>
+</servlet-mapping>
  <welcome-file-list>
   	<welcome-file>index.jsp</welcome-file>
  </welcome-file-list>
@@ -22,5 +30,6 @@
  <filter-mapping>
 	<filter-name>FiltroHibernate</filter-name>
 	<url-pattern>/r/*</url-pattern>
+	<url-pattern>/s/*</url-pattern>
  </filter-mapping>
 </web-app>

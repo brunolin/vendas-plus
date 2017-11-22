@@ -60,7 +60,7 @@ public class VendedorRest {
 	@Path("getInfoVendedorByEmail")
 	public VendedorDTO getInfoVendedorByEmail(@QueryParam("email") String email) {
 		
-		System.out.println(email);
+		//System.out.println(email);
 		
 		VendedorDTO vendedor = new VendedorDTO();
 		try {

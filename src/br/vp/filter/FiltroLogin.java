@@ -82,7 +82,7 @@ public class FiltroLogin implements Filter
         mConfig = pConfig;
 
         // Recuperando o contexto da aplicação
-        String tContexto = mConfig.getServletContext().getContextPath();
+        String tContexto = ((HttpServletRequest) mConfig.getServletContext()).getContextPath();
 
         // Recuperando o endereço de logout
         mEnderecoLogout = mConfig.getInitParameter(ENDERECO_LOGOUT);
