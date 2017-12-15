@@ -23,7 +23,7 @@
       </tr>
     </tbody>
   </table>
-  <iframe id="reportDownload" style="display: none;"></iframe>
   <!--<a class="report-link" ng-if="type != 'empresa'" href="/s/report?id={{user.idVendedor}}" target="_blank">Baixar PDF</a> -->
-  <button type="button" class="btn btn-default" ng-click="gerarPdf()">Baixar PDF</button>
+  <button ng-if="type != 'empresa'" type="button" class="btn btn-default" ng-click="gerarPdf()">Baixar PDF</button>
 </div>
+

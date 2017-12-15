@@ -11,7 +11,6 @@ import java.io.InputStream;
 
 public class ImageController {
 	
-	
     public static String getBase64FromResource(String resourceName) {
         byte[] byteChunk = new byte[4096];
         int n;
@@ -43,7 +42,6 @@ public class ImageController {
     	InputStream	is;
     	
     	String urlImage = "c:\\git\\vendas-plus\\image\\" + resource;
-    	System.out.println(urlImage);
     	
 		try {
 			is = new BufferedInputStream(new FileInputStream(urlImage));
